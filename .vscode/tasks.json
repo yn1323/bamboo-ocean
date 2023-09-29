@@ -1,0 +1,108 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "yarn rw g page ${input:pageName}",
+      "label": "Redwood ページの作成",
+      "detail": "yarn rw g page ${input:pageName}",
+    },
+    {
+      "type": "shell",
+      "command": "yarn rw g component ${input:componentName}",
+      "label": "Redwood コンポーネントの作成",
+      "detail": "yarn rw g component ${input:componentName}",
+    },
+    {
+      "type": "shell",
+      "command": "yarn rw g cell ${input:cellName}",
+      "label": "Redwood Cellの作成",
+      "detail": "yarn rw g cell ${input:cellName}",
+    },
+    {
+      "type": "shell",
+      "command": "yarn rw g scaffold ${input:modelName}",
+      "label": "モデルの作成",
+      "detail": "yarn rw g cell ${input:modelName}",
+    },
+    {
+      "type": "shell",
+      "command": "yarn rw g sdl ${input:sdlName} ${input:noCrud} --force",
+      "label": "Redwood SDL作成・更新",
+      "detail": "yarn rw g sdl ${input:sdlName} ${input:noCrud}"
+    },
+    {
+      "type": "shell",
+      "command": "yarn rw prisma migrate dev",
+      "label": "マイグレート",
+      "detail": "yarn rw prisma migrate dev"
+    },
+    {
+      "type": "shell",
+      "command": "yarn rw prisma db seed",
+      "label": "Seedデータの追加",
+      "detail": "yarn rw prisma db seed"
+    },
+    {
+      "type": "shell",
+      "command": "yarn rw prisma migrate reset",
+      "label": "DBリセット",
+      "detail": "yarn rw prisma migrate reset"
+    },
+    {
+      "type": "shell",
+      "command": "yarn rw g types",
+      "label": "型を手動で作成",
+      "detail": "yarn rw g types"
+    },
+    // {
+    //   "type": "shell",
+    //   "command": "yarn playwright codegen localhost:8910",
+    //   "label": "Playwright codegen",
+    //   "detail": "Playwright codegen"
+    // },
+  ],
+  "inputs": [
+    {
+      "id": "pageName",
+      "description": "ページ名",
+      "default": "",
+      "type": "promptString"
+    },
+    {
+      "id": "componentName",
+      "description": "コンポーネント名",
+      "default": "",
+      "type": "promptString"
+    },
+    {
+      "id": "cellName",
+      "description": "cell名",
+      "default": "",
+      "type": "promptString"
+    },    {
+      "id": "modelName",
+      "description": "モデル名",
+      "default": "",
+      "type": "promptString"
+    },
+    {
+      "id": "sdlName",
+      "description": "SDL名(事前にmodelを作成しておく必要があります)",
+      "default": "",
+      "type": "promptString"
+    },
+    {
+      "id": "noCrud",
+      "description": "READONLYの場合、--no-crudと入力。それ以外は空でOK",
+      "default": "",
+      "type": "promptString"
+    },
+    {
+      "id": "noCrud",
+      "description": "READONLYの場合、--no-crudと入力。それ以外は空でOK",
+      "default": "",
+      "type": "promptString"
+    },
+  ]
+}
