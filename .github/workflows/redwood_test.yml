@@ -38,10 +38,7 @@ jobs:
       - run: yarn install
       - name: Setup DB
         run: |
-          yarn rw prisma migrate dev
+          yarn rw prisma migrate deploy
           yarn rw prisma db seed
-        env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
-          TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
       - run: yarn rw test api --no-watch
       - run: yarn rw test web --no-watch
