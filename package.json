@@ -6,6 +6,9 @@
       "web"
     ]
   },
+  "scripts": {
+    "test": "rw test"
+  },
   "devDependencies": {
     "@redwoodjs/core": "6.3.1"
   },
