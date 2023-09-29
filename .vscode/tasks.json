@@ -23,7 +23,7 @@
       "type": "shell",
       "command": "yarn rw g scaffold ${input:modelName}",
       "label": "モデルの作成",
-      "detail": "yarn rw g cell ${input:modelName}",
+      "detail": "yarn rw g scaffold ${input:modelName}",
     },
     {
       "type": "shell",

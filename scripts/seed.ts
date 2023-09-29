@@ -4,9 +4,9 @@ import { db } from 'api/src/lib/db'
 export default async () => {
   try {
     const data: Prisma.CountryCreateArgs['data'][] = [
-      { name: 'United States', name2: 'USA' },
-      { name: 'Canada', name2: 'CAN' },
-      { name: 'Mexico', name2: 'MEX' },
+      { name: 'United States' },
+      { name: 'Canada' },
+      { name: 'Mexico' },
     ]
 
     console.log('Seeding countries ...')
