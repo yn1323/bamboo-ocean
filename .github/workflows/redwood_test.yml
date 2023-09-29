@@ -2,6 +2,11 @@ name: redwood_test
 
 on: [push]
 
+env:
+  DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+  TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+  DIRECT_URL: postgres://postgres:postgres@localhost:5432/postgres
+
 jobs:
   test:
     runs-on: ubuntu-latest
