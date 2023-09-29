@@ -40,13 +40,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install Playwright Browsers
-        run: yarn playwright install --with-deps
       - name: Install dependencies
         run: yarn install
+      - name: Install Playwright Browsers
+        run: yarn playwright install --with-deps
       - name: Setup DB
         run: |
-          yarn rw prisma migrate deploy
+          yarn rw prisma migrate dev
           yarn rw prisma db seed
       - name: Run Playwright tests
         run: yarn playwright test
