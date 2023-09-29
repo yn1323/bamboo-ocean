@@ -2,6 +2,10 @@
   "name": "web",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "test-storybook": "test-storybook --url http://127.0.0.1:7910/storybook --config-dir config",
+    "test-storybook:ci": "npx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"npx http-server public --port 7910\" \"npx wait-on tcp:127.0.0.1:7910 && npx test-storybook --url http://127.0.0.1:7910/storybook --config-dir config\""
+},
   "browserslist": {
     "development": [
       "last 1 version"
@@ -24,6 +28,10 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@redwoodjs/vite": "6.3.1"
+    "@redwoodjs/vite": "6.3.1",
+    "@storybook/builder-vite": "^7.4.5",
+    "@storybook/test-runner": "^0.13.0",
+    "@storybook/testing-library": "^0.2.1",
+    "@storybook/testing-react": "^2.0.1"
   }
 }
