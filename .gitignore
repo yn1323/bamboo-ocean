@@ -20,3 +20,9 @@ api/src/lib/generateGraphiQLHeader.*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# storybook build
+/web/public/storybook

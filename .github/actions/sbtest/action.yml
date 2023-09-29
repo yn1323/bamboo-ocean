@@ -1,0 +1,26 @@
+name: Storybook Test
+description: Storybook Test
+
+runs:
+  using: 'composite'
+  steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: install dependencies
+        run: yarn install --frozen-lockfile
+        shell: bash
+      # https://github.com/swc-project/swc/issues/5616
+      # TODO: GitHub actionsのswc/coreのみをインストールする
+      - name: Install playwright
+        shell: bash
+        run: yarn playwright install
+      - name: storybook build
+        run: yarn rw storybook --build
+        shell: bash
+      - name: storybook test
+        run: |
+          cd web
+          yarn test-storybook:ci
+          cd ..
+        shell: bash
