@@ -10,6 +10,17 @@ runs:
       - name: install dependencies
         run: yarn install --frozen-lockfile
         shell: bash
+      # https://github.com/swc-project/swc/issues/5616
+      # TODO: GitHub actionsのswc/coreのみをインストールする
+      - name: Install swc
+        shell: bash
+        run: |
+          yarn add \
+           "@swc/core-linux-arm-gnueabihf" \
+           "@swc/core-linux-arm64-gnu" \
+           "@swc/core-linux-arm64-musl" \
+           "@swc/core-linux-x64-gnu" \
+           "@swc/core-linux-x64-musl --optional --save-optional"
       - name: storybook build
         run: yarn rw storybook --build
         shell: bash
