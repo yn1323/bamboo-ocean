@@ -1,4 +1,4 @@
-name: redwood_test
+name: Playwright Tests
 
 on: [push]
 
@@ -7,7 +7,7 @@ env:
   TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
 
 jobs:
-  test:
+  e2e:
     runs-on: ubuntu-latest
 
     strategy:
@@ -39,10 +39,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install
+      - name: Install Playwright Browsers
+        run: yarn playwright install --with-deps
+      - name: Install dependencies
+        run: yarn install
       - name: Setup DB
         run: |
           yarn rw prisma migrate dev
           yarn rw prisma db seed
-      - run: yarn rw test api --no-watch
-      - run: yarn rw test web --no-watch
+      - name: Run Playwright tests
+        run: yarn playwright test
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+

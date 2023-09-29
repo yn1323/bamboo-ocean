@@ -5426,6 +5426,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@playwright/test@npm:^1.38.1":
+  version: 1.38.1
+  resolution: "@playwright/test@npm:1.38.1"
+  dependencies:
+    playwright: 1.38.1
+  bin:
+    playwright: cli.js
+  checksum: 9b4220ca741d5226bd4398bd0f048ba5b17b1ec870e72f6b046d569c7dc16028592eeb1ac76131dcade267d380401b5569596fcf74cf47350c01d04927ec92d0
+  languageName: node
+  linkType: hard
+
 "@pmmmwh/react-refresh-webpack-plugin@npm:0.5.10":
   version: 0.5.10
   resolution: "@pmmmwh/react-refresh-webpack-plugin@npm:0.5.10"
@@ -6862,6 +6873,13 @@ __metadata:
   version: 18.16.18
   resolution: "@types/node@npm:18.16.18"
   checksum: 1ad22342d1aaad446625e7eb2ca6137d0036fbc451fcb367c005ed4d6a102190bbba3d104652b2f9a73d0e520752b98fb89f22f5ef8fe09e8487bcb6fd75223f
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.7.1":
+  version: 20.7.1
+  resolution: "@types/node@npm:20.7.1"
+  checksum: 74f4bb0dc904edaf00f3c72e5fb04e36764a95a39392104424c37ff80bdf9a016978585dcb1c2c0eb42838860fc6c5e9e5ca16f097b080c786d39cacc25bda8b
   languageName: node
   linkType: hard
 
@@ -12950,6 +12968,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fsevents@npm:2.3.2":
+  version: 2.3.2
+  resolution: "fsevents@npm:2.3.2"
+  dependencies:
+    node-gyp: latest
+  checksum: be78a3efa3e181cda3cf7a4637cb527bcebb0bd0ea0440105a3bb45b86f9245b307dc10a2507e8f4498a7d4ec349d1910f4d73e4d4495b16103106e07eee735b
+  conditions: os=darwin
+  languageName: node
+  linkType: hard
+
 "fsevents@npm:^1.2.7":
   version: 1.2.13
   resolution: "fsevents@npm:1.2.13"
@@ -12967,6 +12995,15 @@ __metadata:
   dependencies:
     node-gyp: latest
   checksum: a1f0c44595123ed717febbc478aa952e47adfc28e2092be66b8ab1635147254ca6cfe1df792a8997f22716d4cbafc73309899ff7bfac2ac3ad8cf2e4ecc3ec60
+  conditions: os=darwin
+  languageName: node
+  linkType: hard
+
+"fsevents@patch:fsevents@2.3.2#~builtin<compat/fsevents>":
+  version: 2.3.2
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
+  dependencies:
+    node-gyp: latest
   conditions: os=darwin
   languageName: node
   linkType: hard
@@ -17769,6 +17806,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"playwright-core@npm:1.38.1":
+  version: 1.38.1
+  resolution: "playwright-core@npm:1.38.1"
+  bin:
+    playwright-core: cli.js
+  checksum: 23958aa6f30e2de85e3cd256b7b105ab75108ac1c437a405cb78a3579ae8bbc5d79a5d6136dce4914f9dff8a0af1be549d02d3e857aaec5c30b90d3d1ed72083
+  languageName: node
+  linkType: hard
+
+"playwright@npm:1.38.1":
+  version: 1.38.1
+  resolution: "playwright@npm:1.38.1"
+  dependencies:
+    fsevents: 2.3.2
+    playwright-core: 1.38.1
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    playwright: cli.js
+  checksum: c4d94e38f2bc37e547bdfd96ae09e317d7b5fb039710837ab477d3b12be2430091b93122da2658d096c7afc7838cad0b864c1957441b517bb8ededef3b16d446
+  languageName: node
+  linkType: hard
+
 "pluralize@npm:8.0.0":
   version: 8.0.0
   resolution: "pluralize@npm:8.0.0"
@@ -19373,7 +19434,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@playwright/test": ^1.38.1
     "@redwoodjs/core": 6.3.1
+    "@types/node": ^20.7.1
   languageName: unknown
   linkType: soft
 
