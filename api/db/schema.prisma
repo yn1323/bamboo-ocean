@@ -17,10 +17,10 @@ model Type {
 }
 
 model TypeRelation {
-  id         String @id @default(dbgenerated("uuid_generate_v4()"))
-  from       Type   @relation("fromTypes", fields: [fromId], references: [id])
-  fromId     String
-  to         Type   @relation("toTypes", fields: [toId], references: [id])
-  toId       String
-  powerRatio Float
+  id     String @id @default(dbgenerated("uuid_generate_v4()"))
+  from   Type   @relation("fromTypes", fields: [fromId], references: [id])
+  fromId String
+  to     Type   @relation("toTypes", fields: [toId], references: [id])
+  toId   String
+  ratio  Float
 }
