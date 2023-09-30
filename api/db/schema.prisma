@@ -9,7 +9,18 @@ generator client {
   binaryTargets = "native"
 }
 
-model Country {
-  id   Int    @id @default(autoincrement())
-  name String @unique
+model Type {
+  id        String         @id @default(dbgenerated("uuid_generate_v4()"))
+  name      String
+  fromTypes TypeRelation[] @relation("fromTypes")
+  toTypes   TypeRelation[] @relation("toTypes")
+}
+
+model TypeRelation {
+  id         String @id @default(dbgenerated("uuid_generate_v4()"))
+  from       Type   @relation("fromTypes", fields: [fromId], references: [id])
+  fromId     String
+  to         Type   @relation("toTypes", fields: [toId], references: [id])
+  toId       String
+  powerRatio Float
 }
