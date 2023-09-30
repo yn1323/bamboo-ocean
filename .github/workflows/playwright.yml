@@ -45,9 +45,7 @@ jobs:
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
       - name: Setup DB
-        run: |
-          yarn rw prisma migrate dev
-          yarn rw prisma db seed
+        run: yarn rw prisma migrate reset
       - name: Run Playwright tests
         run: yarn playwright test
       - uses: actions/upload-artifact@v3
