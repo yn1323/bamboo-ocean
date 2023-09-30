@@ -3,31 +3,31 @@
   "tasks": [
     {
       "type": "shell",
-      "command": "yarn rw g page ${input:pageName}",
+      "command": "yarn rw g page ${input:pageName} && yarn rw lint --fix",
       "label": "Redwood ページの作成",
       "detail": "yarn rw g page ${input:pageName}",
     },
     {
       "type": "shell",
-      "command": "yarn rw g component ${input:componentName}",
+      "command": "yarn rw g component ${input:componentName} && yarn rw lint --fix",
       "label": "Redwood コンポーネントの作成",
       "detail": "yarn rw g component ${input:componentName}",
     },
     {
       "type": "shell",
-      "command": "yarn rw g cell ${input:cellName}",
+      "command": "yarn rw g cell ${input:cellName} && yarn rw lint --fix",
       "label": "Redwood Cellの作成",
       "detail": "yarn rw g cell ${input:cellName}",
     },
     {
       "type": "shell",
-      "command": "yarn rw g scaffold ${input:modelName}",
+      "command": "yarn rw g scaffold ${input:modelName} && yarn rw lint --fix",
       "label": "モデルの作成",
       "detail": "yarn rw g scaffold ${input:modelName}",
     },
     {
       "type": "shell",
-      "command": "yarn rw g sdl ${input:sdlName} ${input:noCrud} --force",
+      "command": "yarn rw g sdl ${input:sdlName} ${input:noCrud} --force && yarn rw lint --fix",
       "label": "Redwood SDL作成・更新",
       "detail": "yarn rw g sdl ${input:sdlName} ${input:noCrud}"
     },
@@ -51,7 +51,7 @@
     },
     {
       "type": "shell",
-      "command": "yarn rw g types",
+      "command": "yarn rw g types && yarn rw lint --fix",
       "label": "型を手動で作成",
       "detail": "yarn rw g types"
     },
