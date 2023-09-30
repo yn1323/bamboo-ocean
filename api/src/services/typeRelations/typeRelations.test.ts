@@ -1,11 +1,11 @@
 import type { TypeRelation } from '@prisma/client'
 
 import {
-  typeRelations,
-  typeRelation,
   createTypeRelation,
-  updateTypeRelation,
   deleteTypeRelation,
+  typeRelation,
+  typeRelations,
+  updateTypeRelation,
 } from './typeRelations'
 import type { StandardScenario } from './typeRelations.scenarios'
 
@@ -36,13 +36,13 @@ describe('typeRelations', () => {
       input: {
         fromId: scenario.typeRelation.two.fromId,
         toId: scenario.typeRelation.two.toId,
-        ratio: 8264537.692559826,
+        ratio: 8264537.692559,
       },
     })
 
     expect(result.fromId).toEqual(scenario.typeRelation.two.fromId)
     expect(result.toId).toEqual(scenario.typeRelation.two.toId)
-    expect(result.ratio).toEqual(8264537.692559826)
+    expect(result.ratio).toEqual(8264537.692559)
   })
 
   scenario('updates a typeRelation', async (scenario: StandardScenario) => {
@@ -51,10 +51,10 @@ describe('typeRelations', () => {
     })) as TypeRelation
     const result = await updateTypeRelation({
       id: original.id,
-      input: { ratio: 2058223.9430841987 },
+      input: { ratio: 2058223.9430841 },
     })
 
-    expect(result.ratio).toEqual(2058223.9430841987)
+    expect(result.ratio).toEqual(2058223.9430841)
   })
 
   scenario('deletes a typeRelation', async (scenario: StandardScenario) => {
