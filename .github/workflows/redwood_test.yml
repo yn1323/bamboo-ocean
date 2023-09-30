@@ -41,9 +41,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
-      - name: Setup DB
-        run: |
-          yarn rw prisma migrate dev
-          yarn rw prisma db seed
       - run: yarn rw test api --no-watch
       - run: yarn rw test web --no-watch
