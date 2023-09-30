@@ -1,18 +1,19 @@
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
-  // extensions = [uuidOssp(map: "uuid-ossp")]
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [uuidOssp(map: "uuid-ossp")]
 }
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = "native"
+  provider        = "prisma-client-js"
+  binaryTargets   = "native"
   // バグでマイグレート時に毎回DBリセットが必要
   // https://github.com/prisma/prisma/issues/19100
   // prismak機能を利用しない場合、下記をsqlファイルの最初に手動で追記する
   // CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-  // previewFeatures = ["postgresqlExtensions"]
+  // ただしこれをつけないとCIでエラーになる
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 model Type {
