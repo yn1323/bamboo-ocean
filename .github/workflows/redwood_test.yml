@@ -41,6 +41,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
+      - run: psql -U postgres -h localhost -p 5432
+      - run: CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+      - run: \q
       - name: Setup DB
         run: |
           yarn rw prisma migrate dev
