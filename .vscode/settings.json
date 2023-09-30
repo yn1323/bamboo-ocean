@@ -8,6 +8,7 @@
     "source.fixAll.eslint"
   ],
   "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma",
     "editor.formatOnSave": true
   },
   "cSpell.words": [
