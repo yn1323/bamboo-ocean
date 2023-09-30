@@ -1,6 +1,6 @@
 import type { Type } from '@prisma/client'
 
-import { types, type, createType, updateType, deleteType } from './types'
+import { createType, deleteType, type, types, updateType } from './types'
 import type { StandardScenario } from './types.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances

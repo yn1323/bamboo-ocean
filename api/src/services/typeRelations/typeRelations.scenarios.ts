@@ -6,14 +6,14 @@ export const standard = defineScenario<Prisma.TypeRelationCreateArgs>({
   typeRelation: {
     one: {
       data: {
-        ratio: 4819441.544852352,
+        ratio: 8031453.981173214,
         from: { create: { name: 'String' } },
         to: { create: { name: 'String' } },
       },
     },
     two: {
       data: {
-        ratio: 8150161.654600609,
+        ratio: 6304109.735934756,
         from: { create: { name: 'String' } },
         to: { create: { name: 'String' } },
       },
