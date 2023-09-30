@@ -36,13 +36,13 @@ describe('typeRelations', () => {
       input: {
         fromId: scenario.typeRelation.two.fromId,
         toId: scenario.typeRelation.two.toId,
-        ratio: 1397357.329560136,
+        rate: 8032900.209262892,
       },
     })
 
     expect(result.fromId).toEqual(scenario.typeRelation.two.fromId)
     expect(result.toId).toEqual(scenario.typeRelation.two.toId)
-    expect(result.ratio).toEqual(1397357.329560136)
+    expect(result.rate).toEqual(8032900.209262892)
   })
 
   scenario('updates a typeRelation', async (scenario: StandardScenario) => {
@@ -51,10 +51,10 @@ describe('typeRelations', () => {
     })) as TypeRelation
     const result = await updateTypeRelation({
       id: original.id,
-      input: { ratio: 8621054.148178078 },
+      input: { rate: 7036503.686205393 },
     })
 
-    expect(result.ratio).toEqual(8621054.148178078)
+    expect(result.rate).toEqual(7036503.686205393)
   })
 
   scenario('deletes a typeRelation', async (scenario: StandardScenario) => {

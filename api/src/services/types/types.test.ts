@@ -1,6 +1,6 @@
 import type { Type } from '@prisma/client'
 
-import { createType, deleteType, type, types, updateType } from './types'
+import { types, type, createType, updateType, deleteType } from './types'
 import type { StandardScenario } from './types.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances
@@ -24,10 +24,11 @@ describe('types', () => {
 
   scenario('creates a type', async () => {
     const result = await createType({
-      input: { name: 'String' },
+      input: { name: 'String', battleIndex: 'String' },
     })
 
     expect(result.name).toEqual('String')
+    expect(result.battleIndex).toEqual('String')
   })
 
   scenario('updates a type', async (scenario: StandardScenario) => {

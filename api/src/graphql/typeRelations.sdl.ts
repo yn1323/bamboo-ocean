@@ -5,7 +5,7 @@ export const schema = gql`
     fromId: String!
     to: Type!
     toId: String!
-    ratio: Float!
+    rate: Float!
   }
 
   type Query {
@@ -16,13 +16,13 @@ export const schema = gql`
   input CreateTypeRelationInput {
     fromId: String!
     toId: String!
-    ratio: Float!
+    rate: Float!
   }
 
   input UpdateTypeRelationInput {
     fromId: String
     toId: String
-    ratio: Float
+    rate: Float
   }
 
   type Mutation {

@@ -2,8 +2,12 @@ export const schema = gql`
   type Type {
     id: String!
     name: String!
+    battleIndex: String!
     fromTypes: [TypeRelation]!
     toTypes: [TypeRelation]!
+    moves: [Move]!
+    pokemons: [Pokemon]!
+    battleDataTerastal: [BattleDataTerastal]!
   }
 
   type Query {
@@ -13,10 +17,12 @@ export const schema = gql`
 
   input CreateTypeInput {
     name: String!
+    battleIndex: String!
   }
 
   input UpdateTypeInput {
     name: String
+    battleIndex: String
   }
 
   type Mutation {

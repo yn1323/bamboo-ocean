@@ -96,8 +96,8 @@ model Pokemon {
   statusD Int
   statusS Int
 
-  abilitites Ability[]
-  moves      Move[]
+  abilities Ability[]
+  moves     Move[]
 
   imageUrl    String
   base64Image String

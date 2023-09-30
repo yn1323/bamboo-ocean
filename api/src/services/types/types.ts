@@ -1,6 +1,6 @@
 import type {
-  MutationResolvers,
   QueryResolvers,
+  MutationResolvers,
   TypeRelationResolvers,
 } from 'types/graphql'
 
@@ -41,5 +41,14 @@ export const Type: TypeRelationResolvers = {
   },
   toTypes: (_obj, { root }) => {
     return db.type.findUnique({ where: { id: root?.id } }).toTypes()
+  },
+  moves: (_obj, { root }) => {
+    return db.type.findUnique({ where: { id: root?.id } }).moves()
+  },
+  pokemons: (_obj, { root }) => {
+    return db.type.findUnique({ where: { id: root?.id } }).pokemons()
+  },
+  battleDataTerastal: (_obj, { root }) => {
+    return db.type.findUnique({ where: { id: root?.id } }).battleDataTerastal()
   },
 }
