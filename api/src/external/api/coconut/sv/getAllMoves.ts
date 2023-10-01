@@ -2,6 +2,7 @@ type RawMoves = {
   status: number
   result: {
     target: string
+    name: string
     text: string
     type: string
     attackType: '物理' | '特殊' | '変化'
@@ -15,7 +16,7 @@ type RawMoves = {
 
 export const getAllMoves = async () => {
   const data = await fetch(
-    `${process.env.COCONUT_SERVER_ENDPOINT}/pokemonSvAssetNames`,
+    `${process.env.COCONUT_SERVER_ENDPOINT}/pokemonSvAllMoves?moge=1`,
     {
       method: 'GET',
       headers: {

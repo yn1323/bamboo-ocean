@@ -62,14 +62,16 @@ model AttackType {
 }
 
 model Move {
-  id            String     @id @default(dbgenerated("uuid_generate_v4()"))
-  target        String
-  detail        String
-  name          String
-  type          Type       @relation(fields: [typeId], references: [id])
-  typeId        String
-  attackType    AttackType @relation(fields: [attackTypeId], references: [id])
-  attackTypeId  String
+  id     String  @id @default(dbgenerated("uuid_generate_v4()"))
+  target String
+  detail String
+  name   String
+  type   Type?   @relation(fields: [typeId], references: [id])
+  typeId String?
+
+  attackType   AttackType? @relation(fields: [attackTypeId], references: [id])
+  attackTypeId String?
+
   power         Int
   accuracy      Int
   pp            Int
