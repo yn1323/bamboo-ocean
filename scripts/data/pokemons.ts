@@ -3,6 +3,22 @@ import { getAllPokemons } from 'api/src/external/api/coconut/sv/getAllPokemons'
 import { getAssetNames } from 'api/src/external/api/coconut/sv/getAssetNames'
 import { db } from 'api/src/lib/db'
 
+const formDictionary = [
+  { name: '♀', official: 'メス' },
+  { name: '♂', official: 'オス' },
+  { name: '黒馬', official: 'こくば' },
+  { name: '白馬', official: 'はくば' },
+  { name: '霊獣', official: 'れいじゅう' },
+  { name: '化身', official: 'けしん' },
+  { name: 'パルデア単', official: 'コンバット種' },
+  { name: 'パルデア水', official: 'ウォーター種' },
+  { name: 'パルデア炎', official: 'ブレイズ種' },
+] as const
+
+const convertToOfficialFormName = (name: string) => {
+  return formDictionary.find((form) => form.name === name)?.official ?? name
+}
+
 export const insertPokemon = async () => {
   try {
     const { pokemons: assetPokemons } = await getAssetNames()
@@ -14,6 +30,8 @@ export const insertPokemon = async () => {
     const baseForms = await db.form.findMany()
 
     for (const pokemon of pokemons) {
+      const fixedForm = convertToOfficialFormName(pokemon.form)
+
       const typeIds = pokemon.types.map(
         (type) => baseTypes.find((t) => t.name === type)?.id ?? ''
       )
@@ -35,7 +53,7 @@ export const insertPokemon = async () => {
 
       const battleFormData = baseForms
         .filter((form) => form.no === pokemon.no)
-        .find((form) => form.name.includes(pokemon.form))
+        .find((form) => form.name.includes(fixedForm) && pokemon.form)
       let battleFormIndex = ''
       if (battleFormData) {
         battleFormIndex = battleFormData.formType2
@@ -45,7 +63,7 @@ export const insertPokemon = async () => {
 
       const data: Prisma.PokemonCreateArgs['data'] = {
         name: pokemon.name,
-        form: pokemon.form,
+        form: fixedForm,
         no: pokemon.no,
         height: parseFloat(pokemon.height.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
         weight: parseFloat(pokemon.weight.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
