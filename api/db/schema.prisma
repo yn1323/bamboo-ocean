@@ -120,9 +120,13 @@ model Nature {
 }
 
 model Form {
-  id   String @id @default(dbgenerated("uuid_generate_v4()"))
-  key  String
-  name String
+  id        String @id @default(dbgenerated("uuid_generate_v4()"))
+  no        String
+  formType  String
+  formType2 String
+  name      String
+
+  battleData BattleData[]
 }
 
 model BattleIndex {
@@ -143,14 +147,17 @@ model BattleData {
   pokemon   Pokemon @relation(fields: [pokemonId], references: [id])
   pokemonId String
 
+  no   String
   rank Int
-  form Int
 
   battleDataMove     BattleDataMove[]
   battleDataAbility  BattleDataAbility[]
   battleDataNature   BattleDataNature[]
   battleDataItem     BattleDataItem[]
   battleDataTerastal BattleDataTerastal[]
+
+  Form   Form?   @relation(fields: [formId], references: [id])
+  formId String?
 }
 
 model BattleDataMove {

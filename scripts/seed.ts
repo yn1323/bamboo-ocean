@@ -2,6 +2,7 @@
 
 import { insertAbility } from './data/ability'
 import { insertAttackType } from './data/attackType'
+import { insertForm } from './data/form'
 import { insertItem } from './data/item'
 import { insertNature } from './data/nature'
 import { insertType } from './data/type'
@@ -14,6 +15,7 @@ export default async () => {
   await insertItem()
   await insertAbility()
   await insertNature()
+  await insertForm()
 
   // console.log(await getAssetNames())
 }
