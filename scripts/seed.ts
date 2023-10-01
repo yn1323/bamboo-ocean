@@ -6,6 +6,7 @@ import { insertForm } from './data/form'
 import { insertItem } from './data/item'
 import { insertMove } from './data/moves'
 import { insertNature } from './data/nature'
+import { insertPokemon } from './data/pokemons'
 import { insertType } from './data/type'
 import { insertTypeRelation } from './data/typeRelation'
 
@@ -18,6 +19,7 @@ export default async () => {
   await insertNature()
   await insertForm()
   await insertMove()
+  await insertPokemon()
 
   // console.log(await getAssetNames())
 }

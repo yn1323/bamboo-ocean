@@ -34,7 +34,10 @@ const ObjectToArray = (obj: Object) => {
       ...acc,
       {
         id: key,
-        name: val,
+        // 含まれている全角数字を半角にする
+        name: val.replace(/[０-９]/g, (s) => {
+          return String.fromCharCode(s.charCodeAt(0) - 0xfee0)
+        }),
       },
     ]
   }, [])

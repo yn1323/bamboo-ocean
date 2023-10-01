@@ -87,10 +87,11 @@ model Pokemon {
   id     String @id @default(dbgenerated("uuid_generate_v4()"))
   name   String
   form   String
-  no     Int
+  no     String
   height Float
   weight Float
-  types  Type[]
+
+  types Type[]
 
   statusH Int
   statusA Int
@@ -106,7 +107,8 @@ model Pokemon {
   base64Image String
   url         String
 
-  battleIndex String
+  battleIndex     String
+  battleFormIndex String
 
   battleData BattleData[]
 }

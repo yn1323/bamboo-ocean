@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Pokemon" ALTER COLUMN "no" SET DATA TYPE TEXT;
