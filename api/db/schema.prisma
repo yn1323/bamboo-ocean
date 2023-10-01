@@ -49,6 +49,7 @@ model Ability {
   id                  String              @id @default(dbgenerated("uuid_generate_v4()"))
   name                String
   detail              String
+  battleIndex         String
   pokemons            Pokemon[]
   battleDataAbilities BattleDataAbility[]
 }
@@ -70,7 +71,7 @@ model Move {
   attackType    AttackType @relation(fields: [attackTypeId], references: [id])
   attackTypeId  String
   power         Int
-  hitRange      Int
+  accuracy      Int
   pp            Int
   isTouchable   Boolean
   enableProtect Boolean
@@ -109,9 +110,12 @@ model Pokemon {
 }
 
 model Nature {
-  id               String             @id @default(dbgenerated("uuid_generate_v4()"))
-  name             String
-  battleIndex      String
+  id          String @id @default(dbgenerated("uuid_generate_v4()"))
+  name        String
+  battleIndex String
+
+  increase         String
+  decrease         String
   battleDataNature BattleDataNature[]
 }
 
@@ -123,7 +127,10 @@ model Form {
 
 model BattleIndex {
   id         String       @id @default(dbgenerated("uuid_generate_v4()"))
-  dateAt     DateTime
+  createdAt  DateTime
+  startAt    DateTime
+  endAt      DateTime
+  name       String
   battleData BattleData[]
 }
 
