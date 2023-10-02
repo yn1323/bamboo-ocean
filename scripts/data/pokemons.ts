@@ -20,6 +20,7 @@ const convertToOfficialFormName = (name: string) => {
 }
 
 export const insertPokemon = async () => {
+  console.log('Seeding pokemon...')
   try {
     const { pokemons: assetPokemons } = await getAssetNames()
     const pokemons = await getAllPokemons()
@@ -91,8 +92,6 @@ export const insertPokemon = async () => {
 
       await db.pokemon.create({ data })
     }
-
-    console.log('Seeding pokemon...')
 
     console.log('Done.', pokemons.length)
   } catch (error) {

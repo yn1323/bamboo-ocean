@@ -1,5 +1,3 @@
-// import { getAssetNames } from 'api/src/external/api/coconut/sv/getAssetNames'
-
 import { insertAbility } from './data/ability'
 import { insertAttackType } from './data/attackType'
 import { insertForm } from './data/form'
@@ -7,6 +5,7 @@ import { insertItem } from './data/item'
 import { insertMove } from './data/moves'
 import { insertNature } from './data/nature'
 import { insertPokemon } from './data/pokemons'
+import { insertRanking } from './data/ranking'
 import { insertType } from './data/type'
 import { insertTypeRelation } from './data/typeRelation'
 
@@ -21,5 +20,5 @@ export default async () => {
   await insertMove()
   await insertPokemon()
 
-  // console.log(await getAssetNames())
+  await insertRanking()
 }

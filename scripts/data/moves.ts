@@ -35,7 +35,7 @@ export const insertMove = async () => {
       }
     })
 
-    console.log('Seeding item...')
+    console.log('Seeding move...')
 
     const result = await db.move.createMany({ data: formatted })
 

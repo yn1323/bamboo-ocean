@@ -49,15 +49,20 @@ type RawBattleData = {
   }
 }
 
+type BattleDataRate = {
+  id: string
+  rate: number
+}
+
 type BattleData = Pick<RawBattleData['result'], 'start' | 'end' | 'name'> & {
   data: {
     no: string
     form: string
-    moves: Common[]
-    abilities: Common[]
-    natures: Common[]
-    items: Common[]
-    terastals: Common[]
+    moves: BattleDataRate[]
+    abilities: BattleDataRate[]
+    natures: BattleDataRate[]
+    items: BattleDataRate[]
+    terastals: BattleDataRate[]
   }[]
 }
 
@@ -85,11 +90,26 @@ export const getBattleData = async () => {
           {
             no,
             form,
-            moves: data.temoti.waza,
-            abilities: data.temoti.tokusei,
-            natures: data.temoti.seikaku,
-            items: data.temoti.motimono,
-            terastals: data.temoti.terastal,
+            moves: data.temoti.waza.map(({ id, val }) => ({
+              id,
+              rate: parseFloat(val),
+            })),
+            abilities: data.temoti.tokusei.map(({ id, val }) => ({
+              id,
+              rate: parseFloat(val),
+            })),
+            natures: data.temoti.seikaku.map(({ id, val }) => ({
+              id,
+              rate: parseFloat(val),
+            })),
+            items: data.temoti.motimono.map(({ id, val }) => ({
+              id,
+              rate: parseFloat(val),
+            })),
+            terastals: data.temoti.terastal.map(({ id, val }) => ({
+              id,
+              rate: parseFloat(val),
+            })),
           },
         ]
       }, [])
