@@ -11,7 +11,6 @@ type RawPokemons = {
     abilities: string[]
     moves: string[]
     form: string
-    imageUrl: string
     baseStats: {
       h: number
       a: number

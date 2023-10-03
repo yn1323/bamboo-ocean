@@ -103,7 +103,6 @@ model Pokemon {
   abilities Ability[]
   moves     Move[]
 
-  imageUrl    String
   base64Image String
   url         String
 

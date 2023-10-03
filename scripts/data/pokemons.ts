@@ -31,111 +31,77 @@ export const insertPokemon = async () => {
     const baseForms = await db.form.findMany()
 
     for (const pokemon of pokemons) {
-      const fixedForm = convertToOfficialFormName(pokemon.form)
+      if (!pokemon.no) {
+        console.log('Maybe undefined  pokemon found')
+        continue
+      }
+      try {
+        const fixedForm = convertToOfficialFormName(pokemon.form)
 
-      const typeIds = pokemon.types.map(
-        (type) => baseTypes.find((t) => t.name === type)?.id ?? ''
-      )
-
-      const abilityIds = pokemon.abilities
-        .map(
-          (ability) => baseAbilities.find((a) => a.name === ability)?.id ?? ''
+        const typeIds = pokemon.types.map(
+          (type) => baseTypes.find((t) => t.name === type)?.id ?? ''
         )
-        // 誤って過去作の技も取得しているため
-        .filter((e) => e !== '')
 
-      const moveIds = pokemon.moves
-        .map((move) => baseMoves.find((m) => m.name === move)?.id ?? '')
-        // 誤って過去作の技も取得しているため
-        .filter((e) => e !== '')
+        const abilityIds = pokemon.abilities
+          .map(
+            (ability) => baseAbilities.find((a) => a.name === ability)?.id ?? ''
+          )
+          // 誤って過去作の技も取得しているため
+          .filter((e) => e !== '')
 
-      const battleIndex =
-        assetPokemons.find((p) => p.name === pokemon.name)?.id ?? ''
+        const moveIds = pokemon.moves
+          .map((move) => baseMoves.find((m) => m.name === move)?.id ?? '')
+          // 誤って過去作の技も取得しているため
+          .filter((e) => e !== '')
 
-      const battleFormData = baseForms
-        .filter((form) => form.no === pokemon.no)
-        .find((form) => form.name.includes(fixedForm) && pokemon.form)
-      let battleFormIndex = ''
-      if (battleFormData) {
-        battleFormIndex = battleFormData.formType2
-          ? `${battleFormData.no}_${battleFormData.formType}_${battleFormData.formType2}`
-          : `${battleFormData.no}_${battleFormData.formType}`
+        const battleIndex =
+          assetPokemons.find((p) => p.name === pokemon.name)?.id ?? ''
+
+        const battleFormData = baseForms
+          .filter((form) => form.no === pokemon.no)
+          .find((form) => form.name.includes(fixedForm) && pokemon.form)
+        let battleFormIndex = ''
+        if (battleFormData) {
+          battleFormIndex = battleFormData.formType2
+            ? `${battleFormData.no}_${battleFormData.formType}_${battleFormData.formType2}`
+            : `${battleFormData.no}_${battleFormData.formType}`
+        }
+
+        const data: Prisma.PokemonCreateArgs['data'] = {
+          name: pokemon.name,
+          form: fixedForm,
+          no: pokemon.no,
+          height: parseFloat(pokemon.height.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
+          weight: parseFloat(pokemon.weight.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
+          statusH: pokemon.baseStats.h,
+          statusA: pokemon.baseStats.a,
+          statusB: pokemon.baseStats.b,
+          statusC: pokemon.baseStats.c,
+          statusD: pokemon.baseStats.d,
+          statusS: pokemon.baseStats.s,
+          types: {
+            connect: typeIds.map((id) => ({ id })),
+          },
+          abilities: {
+            connect: abilityIds.map((id) => ({ id })),
+          },
+          moves: {
+            connect: moveIds.map((id) => ({ id })),
+          },
+          base64Image: pokemon.image,
+          url: pokemon.url,
+          battleIndex,
+          battleFormIndex,
+        }
+        await db.pokemon.create({ data })
+      } catch (e) {
+        console.log(`error: [${pokemon.no}] ${pokemon.name}`)
+        console.log(e)
       }
-
-      const data: Prisma.PokemonCreateArgs['data'] = {
-        name: pokemon.name,
-        form: fixedForm,
-        no: pokemon.no,
-        height: parseFloat(pokemon.height.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
-        weight: parseFloat(pokemon.weight.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
-        statusH: pokemon.baseStats.h,
-        statusA: pokemon.baseStats.a,
-        statusB: pokemon.baseStats.b,
-        statusC: pokemon.baseStats.c,
-        statusD: pokemon.baseStats.d,
-        statusS: pokemon.baseStats.s,
-        types: {
-          connect: typeIds.map((id) => ({ id })),
-        },
-        abilities: {
-          connect: abilityIds.map((id) => ({ id })),
-        },
-        moves: {
-          connect: moveIds.map((id) => ({ id })),
-        },
-        imageUrl: pokemon.imageUrl,
-        base64Image: pokemon.image,
-        url: pokemon.url,
-        battleIndex,
-        battleFormIndex,
-      }
-
-      await db.pokemon.create({ data })
     }
 
     console.log('Done.', pokemons.length)
   } catch (error) {
-    // console.error(error)
+    console.error(error)
   }
 }
-
-// const formatted: Prisma.PokemonCreateArgs['data'][] = await Promise.all(
-//   pokemons.map(async (pokemon) => {
-//     const abilities = await db.ability.findMany({
-//       where: { name: { in: pokemon.abilities } },
-//     })
-
-//     const moves = await db.move.findMany({
-//       where: { name: { in: pokemon.moves } },
-//     })
-
-//     const battleIndex =
-//       assetPokemons.find((p) => p.name === pokemon.name)?.id ?? ''
-
-//     return {
-//       name: pokemon.name,
-//       form: pokemon.form,
-//       no: pokemon.no,
-//       height: parseFloat(pokemon.height.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
-//       weight: parseFloat(pokemon.weight.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
-
-//       statusH: pokemon.baseStats.h,
-//       statusA: pokemon.baseStats.a,
-//       statusB: pokemon.baseStats.b,
-//       statusC: pokemon.baseStats.c,
-//       statusD: pokemon.baseStats.d,
-//       statusS: pokemon.baseStats.s,
-
-//       types: {
-//         connectOrCreate: [{ where: { name: 'ほのお' } }],
-//       },
-//       abilities: abilities,
-//       moves: moves,
-
-//       imageUrl: pokemon.imageUrl,
-//       base64Image: pokemon.image,
-//       url: pokemon.url,
-//       battleIndex,
-//     }
-//   })
-// )

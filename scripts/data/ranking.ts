@@ -1,8 +1,25 @@
+import console from 'console'
+
 import type { Prisma } from '@prisma/client'
 import { getBattleData } from 'api/src/external/api/coconut/sv/getBattleData'
 import { getBattleRanking } from 'api/src/external/api/coconut/sv/getBattleRanking'
 import { db } from 'api/src/lib/db'
 import { jaDateTime } from 'api/src/lib/time'
+
+// Formはあるが全部同じ扱いにしたい
+const formException = [
+  '550', // バスラオ
+  '666', // ビビヨン
+  '978', // シャリタツ
+  '931', // イキリンコ
+]
+
+const getFormId = (no: string, form: string) => {
+  if (form === '0') return ''
+  if (formException.includes(no)) return ''
+
+  return `${no}_${form.padStart(3, '0')}`
+}
 
 export const insertRanking = async () => {
   try {
@@ -43,7 +60,7 @@ export const insertRanking = async () => {
             : basePokemons.find((poke) => poke.battleIndex === id)?.id
 
         if (!pokemonId) {
-          console.error('targetPokemonId is not found.', id)
+          console.error(`targetPokemonId is not found.[${id}]`)
           return
         }
 
@@ -63,106 +80,109 @@ export const insertRanking = async () => {
 
     const resultBattleData = await Promise.all(
       battleData.data.map(async (pokemon) => {
-        const { abilities, form, items, moves, natures, no, terastals } =
-          pokemon
-        const pokeModelFormId =
-          form !== '0' ? `${no}_${form.padStart(3, '0')}` : ''
-        const formId = baseForms.find((f) => f.id === pokeModelFormId)?.id
-        const pokemonId =
-          form !== '0'
+        try {
+          const { abilities, form, items, moves, natures, no, terastals } =
+            pokemon
+          const pokeModelFormId = getFormId(no, form)
+          const formId = baseForms.find((f) => f.id === pokeModelFormId)?.id
+          const pokemonId = getFormId(no, form)
             ? basePokemons.find((poke) =>
                 poke.battleFormIndex.includes(`${no}_${form.padStart(3, '0')}`)
               )?.id ?? ''
             : basePokemons.find((poke) => poke.battleIndex === no)?.id ?? ''
-        const battleDataMove = moves
-          .map((move) => ({
-            moveId:
-              baseMoves.find(({ battleIndex }) => battleIndex === move.id)
+          const battleDataMove = moves
+            .map((move) => ({
+              moveId:
+                baseMoves.find(({ battleIndex }) => battleIndex === move.id)
+                  ?.id ?? '',
+              rate: move.rate,
+            }))
+            .filter(({ moveId }) => moveId)
+          const battleDataAbility = abilities
+            .map((ability) => ({
+              abilityId:
+                baseAbilities.find(
+                  ({ battleIndex }) => battleIndex === ability.id
+                )?.id ?? '',
+              rate: ability.rate,
+            }))
+            .filter(({ abilityId }) => abilityId)
+          const battleDataNature = natures
+            .map((nature) => ({
+              natureId:
+                baseNature.find(({ battleIndex }) => battleIndex === nature.id)
+                  ?.id ?? '',
+              rate: nature.rate,
+            }))
+            .filter(({ natureId }) => natureId)
+          const battleDataItem = items
+            .map((item) => ({
+              itemId:
+                baseItem.find(({ battleIndex }) => battleIndex === item.id)
+                  ?.id ?? '',
+              rate: item.rate,
+            }))
+            .filter(({ itemId }) => itemId)
+          const battleDataTerastal = terastals.map((terastal) => ({
+            typeId:
+              baseTypes.find(({ battleIndex }) => battleIndex === terastal.id)
                 ?.id ?? '',
-            rate: move.rate,
+            rate: terastal.rate,
           }))
-          .filter(({ moveId }) => moveId)
-        const battleDataAbility = abilities
-          .map((ability) => ({
-            abilityId:
-              baseAbilities.find(
-                ({ battleIndex }) => battleIndex === ability.id
-              )?.id ?? '',
-            rate: ability.rate,
-          }))
-          .filter(({ abilityId }) => abilityId)
-        const battleDataNature = natures
-          .map((nature) => ({
-            natureId:
-              baseNature.find(({ battleIndex }) => battleIndex === nature.id)
-                ?.id ?? '',
-            rate: nature.rate,
-          }))
-          .filter(({ natureId }) => natureId)
-        const battleDataItem = items
-          .map((item) => ({
-            itemId:
-              baseItem.find(({ battleIndex }) => battleIndex === item.id)?.id ??
-              '',
-            rate: item.rate,
-          }))
-          .filter(({ itemId }) => itemId)
-        const battleDataTerastal = terastals.map((terastal) => ({
-          typeId:
-            baseTypes.find(({ battleIndex }) => battleIndex === terastal.id)
-              ?.id ?? '',
-          rate: terastal.rate,
-        }))
 
-        const data: Prisma.BattleDataCreateArgs['data'] = {
-          battleIndexId,
-          pokemonId,
-          no,
-          formId: formId,
-          rank: battleRanking.rank.findIndex(({ id }) => id === no),
+          const data: Prisma.BattleDataCreateArgs['data'] = {
+            battleIndexId,
+            pokemonId,
+            no,
+            formId: formId,
+            rank: battleRanking.rank.findIndex(({ id }) => id === no),
+          }
+
+          const { id: battleDataId } = await db.battleData.create({ data })
+
+          await Promise.all(
+            [
+              async () =>
+                await db.battleDataMove.createMany({
+                  data: battleDataMove.map((e) => ({
+                    ...e,
+                    battleDataId,
+                  })),
+                }),
+              async () =>
+                await db.battleDataAbility.createMany({
+                  data: battleDataAbility.map((e) => ({
+                    ...e,
+                    battleDataId,
+                  })),
+                }),
+              async () =>
+                await db.battleDataNature.createMany({
+                  data: battleDataNature.map((e) => ({
+                    ...e,
+                    battleDataId,
+                  })),
+                }),
+              async () =>
+                await db.battleDataItem.createMany({
+                  data: battleDataItem.map((e) => ({
+                    ...e,
+                    battleDataId,
+                  })),
+                }),
+              async () =>
+                await db.battleDataTerastal.createMany({
+                  data: battleDataTerastal.map((e) => ({
+                    ...e,
+                    battleDataId,
+                  })),
+                }),
+            ].map((fn) => fn())
+          )
+        } catch (e) {
+          console.log(e)
+          console.log('Error', pokemon)
         }
-
-        const { id: battleDataId } = await db.battleData.create({ data })
-
-        await Promise.all(
-          [
-            async () =>
-              await db.battleDataMove.createMany({
-                data: battleDataMove.map((e) => ({
-                  ...e,
-                  battleDataId,
-                })),
-              }),
-            async () =>
-              await db.battleDataAbility.createMany({
-                data: battleDataAbility.map((e) => ({
-                  ...e,
-                  battleDataId,
-                })),
-              }),
-            async () =>
-              await db.battleDataNature.createMany({
-                data: battleDataNature.map((e) => ({
-                  ...e,
-                  battleDataId,
-                })),
-              }),
-            async () =>
-              await db.battleDataItem.createMany({
-                data: battleDataItem.map((e) => ({
-                  ...e,
-                  battleDataId,
-                })),
-              }),
-            async () =>
-              await db.battleDataTerastal.createMany({
-                data: battleDataTerastal.map((e) => ({
-                  ...e,
-                  battleDataId,
-                })),
-              }),
-          ].map((fn) => fn())
-        )
       })
     )
     console.log('Done', resultBattleData.length)
