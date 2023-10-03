@@ -109,8 +109,7 @@ model Pokemon {
   battleIndex     String
   battleFormIndex String
 
-  battleData    BattleData[]
-  battleRanking BattleRanking[]
+  battleData BattleData[]
 }
 
 model Nature {
@@ -133,16 +132,6 @@ model Form {
   battleData BattleData[]
 }
 
-model BattleRanking {
-  id            String       @id @default(dbgenerated("uuid_generate_v4()"))
-  battleIndex   BattleIndex? @relation(fields: [battleIndexId], references: [id])
-  battleIndexId String?
-
-  pokemon   Pokemon @relation(fields: [pokemonId], references: [id])
-  pokemonId String
-  rank      Int
-}
-
 model BattleIndex {
   id        String   @id @default(dbgenerated("uuid_generate_v4()"))
   createdAt DateTime
@@ -150,8 +139,7 @@ model BattleIndex {
   endAt     DateTime
   name      String
 
-  battleData    BattleData[]
-  battleRanking BattleRanking[]
+  battleData BattleData[]
 }
 
 model BattleData {

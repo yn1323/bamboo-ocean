@@ -1,17 +1,19 @@
 export const schema = gql`
   type BattleData {
     id: String!
-    BattleIndex: BattleIndex!
+    battleIndex: BattleIndex!
     battleIndexId: String!
     pokemon: Pokemon!
     pokemonId: String!
+    no: String!
     rank: Int!
-    form: Int!
     battleDataMove: [BattleDataMove]!
     battleDataAbility: [BattleDataAbility]!
     battleDataNature: [BattleDataNature]!
     battleDataItem: [BattleDataItem]!
     battleDataTerastal: [BattleDataTerastal]!
+    Form: Form
+    formId: String
   }
 
   type Query {
@@ -22,15 +24,17 @@ export const schema = gql`
   input CreateBattleDataInput {
     battleIndexId: String!
     pokemonId: String!
+    no: String!
     rank: Int!
-    form: Int!
+    formId: String
   }
 
   input UpdateBattleDataInput {
     battleIndexId: String
     pokemonId: String
+    no: String
     rank: Int
-    form: Int
+    formId: String
   }
 
   type Mutation {
