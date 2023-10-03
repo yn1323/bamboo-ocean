@@ -48,34 +48,6 @@ export const insertRanking = async () => {
       },
     })
 
-    console.log('seeding battle ranking...')
-
-    const resultRank = await Promise.all(
-      battleRanking.rank.map(async ({ id, form }, i) => {
-        const pokemonId =
-          form !== '0'
-            ? basePokemons.find((poke) =>
-                poke.battleFormIndex.includes(`${id}_${form.padStart(3, '0')}`)
-              )?.id
-            : basePokemons.find((poke) => poke.battleIndex === id)?.id
-
-        if (!pokemonId) {
-          console.error(`targetPokemonId is not found.[${id}]`)
-          return
-        }
-
-        const data = {
-          battleIndexId,
-          pokemonId,
-          rank: i + 1,
-        }
-
-        await db.battleRanking.create({ data })
-      })
-    )
-
-    console.log('Done', resultRank.length)
-
     console.log('seeding battle data...')
 
     const resultBattleData = await Promise.all(
