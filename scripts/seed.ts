@@ -1,20 +1,24 @@
-import type { Prisma } from '@prisma/client'
-import { db } from 'api/src/lib/db'
+import { insertAbility } from './data/ability'
+import { insertAttackType } from './data/attackType'
+import { insertForm } from './data/form'
+import { insertItem } from './data/item'
+import { insertMove } from './data/moves'
+import { insertNature } from './data/nature'
+import { insertPokemon } from './data/pokemons'
+import { insertRanking } from './data/ranking'
+import { insertType } from './data/type'
+import { insertTypeRelation } from './data/typeRelation'
 
 export default async () => {
-  try {
-    const data: Prisma.CountryCreateArgs['data'][] = [
-      { name: 'United States' },
-      { name: 'Canada' },
-      { name: 'Mexico' },
-    ]
+  await insertType()
+  await insertTypeRelation()
+  await insertAttackType()
+  await insertItem()
+  await insertAbility()
+  await insertNature()
+  await insertForm()
+  await insertMove()
+  await insertPokemon()
 
-    console.log('Seeding countries ...')
-
-    const countries = await db.country.createMany({ data })
-
-    console.log('Done.', countries)
-  } catch (error) {
-    console.error(error)
-  }
+  await insertRanking()
 }

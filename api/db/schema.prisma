@@ -1,26 +1,215 @@
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [uuidOssp(map: "uuid-ossp")]
 }
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = "native"
+  provider        = "prisma-client-js"
+  binaryTargets   = "native"
+  // バグでマイグレート時に毎回DBリセットが必要
+  // https://github.com/prisma/prisma/issues/19100
+  // prismak機能を利用しない場合、下記をsqlファイルの最初に手動で追記する
+  // CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+  // ただしこれをつけないとCIでエラーになる
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 model Type {
-  id        String         @id @default(dbgenerated("uuid_generate_v4()"))
-  name      String
-  fromTypes TypeRelation[] @relation("fromTypes")
-  toTypes   TypeRelation[] @relation("toTypes")
+  id                 String               @id @default(dbgenerated("uuid_generate_v4()"))
+  name               String
+  battleIndex        String // Home上でのインデックス
+  fromTypes          TypeRelation[]       @relation("fromTypes")
+  toTypes            TypeRelation[]       @relation("toTypes")
+  moves              Move[]
+  pokemons           Pokemon[]
+  battleDataTerastal BattleDataTerastal[]
 }
 
 model TypeRelation {
-  id         String @id @default(dbgenerated("uuid_generate_v4()"))
-  from       Type   @relation("fromTypes", fields: [fromId], references: [id])
-  fromId     String
-  to         Type   @relation("toTypes", fields: [toId], references: [id])
-  toId       String
-  powerRatio Float
+  id     String @id @default(dbgenerated("uuid_generate_v4()"))
+  from   Type   @relation("fromTypes", fields: [fromId], references: [id])
+  fromId String
+  to     Type   @relation("toTypes", fields: [toId], references: [id])
+  toId   String
+  rate   Float
+}
+
+model Item {
+  id          String @id @default(dbgenerated("uuid_generate_v4()"))
+  name        String
+  detail      String
+  battleIndex String
+
+  battleDataItem BattleDataItem[]
+}
+
+model Ability {
+  id                  String              @id @default(dbgenerated("uuid_generate_v4()"))
+  name                String
+  detail              String
+  battleIndex         String
+  pokemons            Pokemon[]
+  battleDataAbilities BattleDataAbility[]
+}
+
+model AttackType {
+  id    String @id @default(dbgenerated("uuid_generate_v4()"))
+  // 物理 | 特殊 | 変化
+  name  String
+  moves Move[]
+}
+
+model Move {
+  id     String  @id @default(dbgenerated("uuid_generate_v4()"))
+  target String
+  detail String
+  name   String
+  type   Type?   @relation(fields: [typeId], references: [id])
+  typeId String?
+
+  attackType   AttackType? @relation(fields: [attackTypeId], references: [id])
+  attackTypeId String?
+
+  power         Int
+  accuracy      Int
+  pp            Int
+  isTouchable   Boolean
+  enableProtect Boolean
+  pokemons      Pokemon[]
+
+  battleIndex     String
+  battleDataMoves BattleDataMove[]
+}
+
+model Pokemon {
+  id     String @id @default(dbgenerated("uuid_generate_v4()"))
+  name   String
+  form   String
+  no     String
+  height Float
+  weight Float
+
+  types Type[]
+
+  statusH Int
+  statusA Int
+  statusB Int
+  statusC Int
+  statusD Int
+  statusS Int
+
+  abilities Ability[]
+  moves     Move[]
+
+  base64Image String
+  url         String
+
+  battleIndex     String
+  battleFormIndex String
+
+  battleData BattleData[]
+}
+
+model Nature {
+  id          String @id @default(dbgenerated("uuid_generate_v4()"))
+  name        String
+  battleIndex String
+
+  increase         String
+  decrease         String
+  battleDataNature BattleDataNature[]
+}
+
+model Form {
+  id        String @id @default(dbgenerated("uuid_generate_v4()"))
+  no        String
+  formType  String
+  formType2 String
+  name      String
+
+  battleData BattleData[]
+}
+
+model BattleIndex {
+  id        String   @id @default(dbgenerated("uuid_generate_v4()"))
+  createdAt DateTime
+  startAt   DateTime
+  endAt     DateTime
+  name      String
+
+  battleData BattleData[]
+}
+
+model BattleData {
+  id String @id @default(dbgenerated("uuid_generate_v4()"))
+
+  battleIndex   BattleIndex @relation(fields: [battleIndexId], references: [id])
+  battleIndexId String
+
+  pokemon   Pokemon @relation(fields: [pokemonId], references: [id])
+  pokemonId String
+
+  no   String
+  rank Int
+
+  battleDataMove     BattleDataMove[]
+  battleDataAbility  BattleDataAbility[]
+  battleDataNature   BattleDataNature[]
+  battleDataItem     BattleDataItem[]
+  battleDataTerastal BattleDataTerastal[]
+
+  Form   Form?   @relation(fields: [formId], references: [id])
+  formId String?
+}
+
+model BattleDataMove {
+  id     String @id @default(dbgenerated("uuid_generate_v4()"))
+  move   Move   @relation(fields: [moveId], references: [id])
+  moveId String
+
+  rate         Float
+  battleData   BattleData @relation(fields: [battleDataId], references: [id])
+  battleDataId String
+}
+
+model BattleDataAbility {
+  id        String  @id @default(dbgenerated("uuid_generate_v4()"))
+  ability   Ability @relation(fields: [abilityId], references: [id])
+  abilityId String
+
+  rate         Float
+  battleData   BattleData @relation(fields: [battleDataId], references: [id])
+  battleDataId String
+}
+
+model BattleDataNature {
+  id       String @id @default(dbgenerated("uuid_generate_v4()"))
+  nature   Nature @relation(fields: [natureId], references: [id])
+  natureId String
+
+  rate         Float
+  battleData   BattleData @relation(fields: [battleDataId], references: [id])
+  battleDataId String
+}
+
+model BattleDataItem {
+  id     String @id @default(dbgenerated("uuid_generate_v4()"))
+  Item   Item   @relation(fields: [itemId], references: [id])
+  itemId String
+
+  rate         Float
+  battleData   BattleData @relation(fields: [battleDataId], references: [id])
+  battleDataId String
+}
+
+model BattleDataTerastal {
+  id     String @id @default(dbgenerated("uuid_generate_v4()"))
+  type   Type   @relation(fields: [typeId], references: [id])
+  typeId String
+
+  rate         Float
+  battleData   BattleData @relation(fields: [battleDataId], references: [id])
+  battleDataId String
 }
