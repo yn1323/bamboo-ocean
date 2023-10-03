@@ -85,11 +85,12 @@ export const insertRanking = async () => {
             pokemon
           const pokeModelFormId = getFormId(no, form)
           const formId = baseForms.find((f) => f.id === pokeModelFormId)?.id
-          const pokemonId = getFormId(no, form)
-            ? basePokemons.find((poke) =>
-                poke.battleFormIndex.includes(`${no}_${form.padStart(3, '0')}`)
-              )?.id ?? ''
-            : basePokemons.find((poke) => poke.battleIndex === no)?.id ?? ''
+          const pokemonId =
+            basePokemons.find((poke) =>
+              poke.battleFormIndex.includes(`${no}_${form.padStart(3, '0')}`)
+            )?.id ??
+            basePokemons.find((poke) => poke.battleIndex === no)?.id ??
+            ''
           const battleDataMove = moves
             .map((move) => ({
               moveId:
@@ -135,7 +136,10 @@ export const insertRanking = async () => {
             pokemonId,
             no,
             formId: formId,
-            rank: battleRanking.rank.findIndex(({ id }) => id === no),
+            rank:
+              battleRanking.rank.findIndex(
+                (rank) => rank.id === no && rank.form === form
+              ) + 1,
           }
 
           const { id: battleDataId } = await db.battleData.create({ data })
