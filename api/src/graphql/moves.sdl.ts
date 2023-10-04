@@ -4,12 +4,12 @@ export const schema = gql`
     target: String!
     detail: String!
     name: String!
-    type: Type!
-    typeId: String!
-    attackType: AttackType!
-    attackTypeId: String!
+    type: Type
+    typeId: String
+    attackType: AttackType
+    attackTypeId: String
     power: Int!
-    hitRange: Int!
+    accuracy: Int!
     pp: Int!
     isTouchable: Boolean!
     enableProtect: Boolean!
@@ -27,10 +27,10 @@ export const schema = gql`
     target: String!
     detail: String!
     name: String!
-    typeId: String!
-    attackTypeId: String!
+    typeId: String
+    attackTypeId: String
     power: Int!
-    hitRange: Int!
+    accuracy: Int!
     pp: Int!
     isTouchable: Boolean!
     enableProtect: Boolean!
@@ -44,7 +44,7 @@ export const schema = gql`
     typeId: String
     attackTypeId: String
     power: Int
-    hitRange: Int
+    accuracy: Int
     pp: Int
     isTouchable: Boolean
     enableProtect: Boolean

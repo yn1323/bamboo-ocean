@@ -3,6 +3,8 @@ export const schema = gql`
     id: String!
     name: String!
     battleIndex: String!
+    increase: String!
+    decrease: String!
     battleDataNature: [BattleDataNature]!
   }
 
@@ -14,11 +16,15 @@ export const schema = gql`
   input CreateNatureInput {
     name: String!
     battleIndex: String!
+    increase: String!
+    decrease: String!
   }
 
   input UpdateNatureInput {
     name: String
     battleIndex: String
+    increase: String
+    decrease: String
   }
 
   type Mutation {

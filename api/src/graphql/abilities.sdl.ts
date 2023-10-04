@@ -3,6 +3,7 @@ export const schema = gql`
     id: String!
     name: String!
     detail: String!
+    battleIndex: String!
     pokemons: [Pokemon]!
     battleDataAbilities: [BattleDataAbility]!
   }
@@ -15,11 +16,13 @@ export const schema = gql`
   input CreateAbilityInput {
     name: String!
     detail: String!
+    battleIndex: String!
   }
 
   input UpdateAbilityInput {
     name: String
     detail: String
+    battleIndex: String
   }
 
   type Mutation {

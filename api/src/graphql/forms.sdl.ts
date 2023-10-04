@@ -1,8 +1,11 @@
 export const schema = gql`
   type Form {
     id: String!
-    key: String!
+    no: String!
+    formType: String!
+    formType2: String!
     name: String!
+    battleData: [BattleData]!
   }
 
   type Query {
@@ -11,12 +14,16 @@ export const schema = gql`
   }
 
   input CreateFormInput {
-    key: String!
+    no: String!
+    formType: String!
+    formType2: String!
     name: String!
   }
 
   input UpdateFormInput {
-    key: String
+    no: String
+    formType: String
+    formType2: String
     name: String
   }
 

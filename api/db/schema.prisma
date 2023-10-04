@@ -133,11 +133,11 @@ model Form {
 }
 
 model BattleIndex {
-  id        String   @id @default(dbgenerated("uuid_generate_v4()"))
-  createdAt DateTime
-  startAt   DateTime
-  endAt     DateTime
-  name      String
+  id         String   @id @default(dbgenerated("uuid_generate_v4()"))
+  capturedAt DateTime
+  startAt    DateTime
+  endAt      DateTime
+  name       String
 
   battleData BattleData[]
 }

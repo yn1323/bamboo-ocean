@@ -1,7 +1,10 @@
 export const schema = gql`
   type BattleIndex {
     id: String!
-    dateAt: DateTime!
+    capturedAt: DateTime!
+    startAt: DateTime!
+    endAt: DateTime!
+    name: String!
     battleData: [BattleData]!
   }
 
@@ -11,11 +14,17 @@ export const schema = gql`
   }
 
   input CreateBattleIndexInput {
-    dateAt: DateTime!
+    capturedAt: DateTime!
+    startAt: DateTime!
+    endAt: DateTime!
+    name: String!
   }
 
   input UpdateBattleIndexInput {
-    dateAt: DateTime
+    capturedAt: DateTime
+    startAt: DateTime
+    endAt: DateTime
+    name: String
   }
 
   type Mutation {

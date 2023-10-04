@@ -3,7 +3,7 @@ export const schema = gql`
     id: String!
     name: String!
     form: String!
-    no: Int!
+    no: String!
     height: Float!
     weight: Float!
     types: [Type]!
@@ -15,10 +15,10 @@ export const schema = gql`
     statusS: Int!
     abilities: [Ability]!
     moves: [Move]!
-    imageUrl: String!
     base64Image: String!
     url: String!
     battleIndex: String!
+    battleFormIndex: String!
     battleData: [BattleData]!
   }
 
@@ -30,7 +30,7 @@ export const schema = gql`
   input CreatePokemonInput {
     name: String!
     form: String!
-    no: Int!
+    no: String!
     height: Float!
     weight: Float!
     statusH: Int!
@@ -39,16 +39,16 @@ export const schema = gql`
     statusC: Int!
     statusD: Int!
     statusS: Int!
-    imageUrl: String!
     base64Image: String!
     url: String!
     battleIndex: String!
+    battleFormIndex: String!
   }
 
   input UpdatePokemonInput {
     name: String
     form: String
-    no: Int
+    no: String
     height: Float
     weight: Float
     statusH: Int
@@ -57,10 +57,10 @@ export const schema = gql`
     statusC: Int
     statusD: Int
     statusS: Int
-    imageUrl: String
     base64Image: String
     url: String
     battleIndex: String
+    battleFormIndex: String
   }
 
   type Mutation {
