@@ -24,12 +24,18 @@ describe('items', () => {
 
   scenario('creates a item', async () => {
     const result = await createItem({
-      input: { name: 'String', detail: 'String', battleIndex: 'String' },
+      input: {
+        name: 'String',
+        detail: 'String',
+        battleIndex: 'String',
+        base64Image: 'String',
+      },
     })
 
     expect(result.name).toEqual('String')
     expect(result.detail).toEqual('String')
     expect(result.battleIndex).toEqual('String')
+    expect(result.base64Image).toEqual('String')
   })
 
   scenario('updates a item', async (scenario: StandardScenario) => {

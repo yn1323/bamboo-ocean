@@ -45,6 +45,7 @@ const ItemsList = ({ items }: FindItems) => {
             <th>Name</th>
             <th>Detail</th>
             <th>Battle index</th>
+            <th>Base64 image</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -55,6 +56,14 @@ const ItemsList = ({ items }: FindItems) => {
               <td>{truncate(item.name)}</td>
               <td>{truncate(item.detail)}</td>
               <td>{truncate(item.battleIndex)}</td>
+              <td>
+                <td>
+                  <img
+                    alt="img"
+                    src={`data:image/png;base64,  ${item.base64Image}`}
+                  />
+                </td>
+              </td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

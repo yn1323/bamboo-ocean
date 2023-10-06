@@ -4,6 +4,7 @@ export const schema = gql`
     name: String!
     detail: String!
     battleIndex: String!
+    base64Image: String!
     battleDataItem: [BattleDataItem]!
   }
 
@@ -16,12 +17,14 @@ export const schema = gql`
     name: String!
     detail: String!
     battleIndex: String!
+    base64Image: String!
   }
 
   input UpdateItemInput {
     name: String
     detail: String
     battleIndex: String
+    base64Image: String
   }
 
   type Mutation {

@@ -61,6 +61,15 @@ const Item = ({ item }: Props) => {
               <th>Battle index</th>
               <td>{item.battleIndex}</td>
             </tr>
+            <tr>
+              <th>Base64 image</th>
+              <td>
+                <img
+                  alt="img"
+                  src={`data:image/png;base64,  ${item.base64Image}`}
+                />
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

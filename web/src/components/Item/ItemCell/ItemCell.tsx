@@ -11,6 +11,7 @@ export const QUERY = gql`
       name
       detail
       battleIndex
+      base64Image
     }
   }
 `

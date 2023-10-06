@@ -14,6 +14,7 @@ export const QUERY = gql`
       name
       detail
       battleIndex
+      base64Image
     }
   }
 `
@@ -24,6 +25,7 @@ const UPDATE_ITEM_MUTATION = gql`
       name
       detail
       battleIndex
+      base64Image
     }
   }
 `

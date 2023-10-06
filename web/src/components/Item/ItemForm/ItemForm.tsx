@@ -88,6 +88,24 @@ const ItemForm = (props: ItemFormProps) => {
 
         <FieldError name="battleIndex" className="rw-field-error" />
 
+        <Label
+          name="base64Image"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Base64 image
+        </Label>
+
+        <TextField
+          name="base64Image"
+          defaultValue={props.item?.base64Image}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="base64Image" className="rw-field-error" />
+
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
