@@ -41,6 +41,7 @@ model Item {
   name        String
   detail      String
   battleIndex String
+  base64Image String
 
   battleDataItem BattleDataItem[]
 }

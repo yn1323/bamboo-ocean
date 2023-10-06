@@ -78,7 +78,12 @@ const PokemonsList = ({ pokemons }: FindPokemons) => {
               <td>{truncate(pokemon.statusC)}</td>
               <td>{truncate(pokemon.statusD)}</td>
               <td>{truncate(pokemon.statusS)}</td>
-              <td>{truncate(pokemon.base64Image)}</td>
+              <td>
+                <img
+                  alt="img"
+                  src={`data:image/png;base64,  ${pokemon.base64Image}`}
+                />
+              </td>
               <td>{truncate(pokemon.url)}</td>
               <td>{truncate(pokemon.battleIndex)}</td>
               <td>{truncate(pokemon.battleFormIndex)}</td>

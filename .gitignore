@@ -26,3 +26,5 @@ api/src/lib/generateGraphiQLHeader.*
 
 # storybook build
 /web/public/storybook
+
+/scripts/assets

@@ -3,6 +3,8 @@ import { getAllPokemons } from 'api/src/external/api/coconut/sv/getAllPokemons'
 import { getAssetNames } from 'api/src/external/api/coconut/sv/getAssetNames'
 import { db } from 'api/src/lib/db'
 
+import { readImage } from './helpers/read'
+
 const formDictionary = [
   { name: '♀', official: 'メス' },
   { name: '♂', official: 'オス' },
@@ -15,8 +17,22 @@ const formDictionary = [
   { name: 'パルデア炎', official: 'ブレイズ種' },
 ] as const
 
-const convertToOfficialFormName = (name: string) => {
-  return formDictionary.find((form) => form.name === name)?.official ?? name
+const convertToOfficialFormName = ({
+  form,
+  name,
+}: {
+  form: string
+  name: string
+}) => {
+  if (name === 'ザマゼンタ') {
+    return 'たてのおう'
+  } else if (name === 'ザシアン') {
+    return 'けんのおう'
+  }
+  return (
+    formDictionary.find((dictionary) => dictionary.name === form)?.official ??
+    form
+  )
 }
 
 export const insertPokemon = async () => {
@@ -36,7 +52,10 @@ export const insertPokemon = async () => {
         continue
       }
       try {
-        const fixedForm = convertToOfficialFormName(pokemon.form)
+        const fixedForm = convertToOfficialFormName({
+          form: pokemon.form,
+          name: pokemon.name,
+        })
 
         const typeIds = pokemon.types.map(
           (type) => baseTypes.find((t) => t.name === type)?.id ?? ''
@@ -67,6 +86,13 @@ export const insertPokemon = async () => {
             : `${battleFormData.no}_${battleFormData.formType}`
         }
 
+        const base64Image = await readImage(
+          battleFormIndex
+            ? `../../assets/pokemons/pm${battleFormIndex}.png`
+            : `../../assets/pokemons/pm${pokemon.no}.png`,
+          { showLog: true }
+        )
+
         const data: Prisma.PokemonCreateArgs['data'] = {
           name: pokemon.name,
           form: fixedForm,
@@ -88,7 +114,7 @@ export const insertPokemon = async () => {
           moves: {
             connect: moveIds.map((id) => ({ id })),
           },
-          base64Image: pokemon.image,
+          base64Image,
           url: pokemon.url,
           battleIndex,
           battleFormIndex,

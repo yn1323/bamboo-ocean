@@ -7,7 +7,7 @@ import type {
 import { db } from 'src/lib/db'
 
 export const pokemons: QueryResolvers['pokemons'] = () => {
-  return db.pokemon.findMany()
+  return db.pokemon.findMany({ orderBy: { no: 'asc' } })
 }
 
 export const pokemon: QueryResolvers['pokemon'] = ({ id }) => {

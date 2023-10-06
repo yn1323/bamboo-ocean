@@ -98,7 +98,12 @@ const Pokemon = ({ pokemon }: Props) => {
             </tr>
             <tr>
               <th>Base64 image</th>
-              <td>{pokemon.base64Image}</td>
+              <td>
+                <img
+                  alt="img"
+                  src={`data:image/png;base64,  ${pokemon.base64Image}`}
+                />
+              </td>
             </tr>
             <tr>
               <th>Url</th>
