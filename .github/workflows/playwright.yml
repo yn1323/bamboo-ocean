@@ -48,7 +48,7 @@ jobs:
         run: |
           yarn rw prisma migrate dev
           yarn rw prisma db seed
-        with:
+        env:
           COCONUT_SERVER_API_KEY: ${{ secrets.COCONUT_SERVER_API_KEY }}
           COCONUT_SERVER_ENDPOINT: ${{ secrets.COCONUT_SERVER_ENDPOINT }}
       - name: Run Playwright tests
