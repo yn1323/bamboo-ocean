@@ -24,7 +24,7 @@ export const schema = gql`
 
   type Query {
     pokemons: [Pokemon!]! @requireAuth
-    pokemon(id: String!): Pokemon @requireAuth
+    pokemon(id: String): Pokemon @requireAuth
   }
 
   input CreatePokemonInput {
