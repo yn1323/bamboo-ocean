@@ -22,5 +22,12 @@
     "terastals",
     "tokusei",
     "waza"
-  ]
+  ],
+  "files.exclude": {
+    ".redwoood/**/*.js": true
+},
+"editor.gotoLocation.alternativeDeclarationCommand": "editor.action.goToReferences",
+"typescript.preferGoToSourceDefinition": false,
+"editor.gotoLocation.alternativeDefinitionCommand": "editor.action.goToReferences",
+"editor.gotoLocation.alternativeTypeDefinitionCommand": "editor.action.goToReferences",
 }

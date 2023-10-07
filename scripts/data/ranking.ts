@@ -23,7 +23,7 @@ const getFormId = (no: string, form: string) => {
 
 export const insertRanking = async () => {
   try {
-    const createdAt = new Date()
+    const capturedAt = new Date()
     const battleRanking = await getBattleRanking()
     const battleData = await getBattleData()
 
@@ -41,7 +41,7 @@ export const insertRanking = async () => {
 
     const { id: battleIndexId } = await db.battleIndex.create({
       data: {
-        createdAt,
+        capturedAt,
         startAt: jaDateTime(new Date(battleRanking.start)),
         endAt: jaDateTime(new Date(battleRanking.end)),
         name: battleRanking.name,
