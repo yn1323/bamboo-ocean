@@ -6,19 +6,24 @@ export const standard = defineScenario<Prisma.BattleDataItemCreateArgs>({
   battleDataItem: {
     one: {
       data: {
-        rate: 7397589.291135,
+        rate: 8055544.953431,
         Item: {
-          create: { name: 'String', detail: 'String', battleIndex: 'String' },
+          create: {
+            name: 'String',
+            detail: 'String',
+            battleIndex: 'String',
+            base64Image: 'String',
+          },
         },
         battleData: {
           create: {
             no: 'String',
-            rank: 7833851,
+            rank: 7917756,
             battleIndex: {
               create: {
-                capturedAt: '2023-10-04T13:43:39.942Z',
-                startAt: '2023-10-04T13:43:39.942Z',
-                endAt: '2023-10-04T13:43:39.942Z',
+                capturedAt: '2023-10-07T14:20:09.700Z',
+                startAt: '2023-10-07T14:20:09.700Z',
+                endAt: '2023-10-07T14:20:09.700Z',
                 name: 'String',
               },
             },
@@ -27,14 +32,14 @@ export const standard = defineScenario<Prisma.BattleDataItemCreateArgs>({
                 name: 'String',
                 form: 'String',
                 no: 'String',
-                height: 1288634.9107313,
-                weight: 1519999.806663,
-                statusH: 846051,
-                statusA: 8198504,
-                statusB: 9692921,
-                statusC: 6548760,
-                statusD: 531716,
-                statusS: 4560869,
+                height: 261090.46772089,
+                weight: 812920.4850728,
+                statusH: 9933351,
+                statusA: 9666522,
+                statusB: 2372580,
+                statusC: 118306,
+                statusD: 6989699,
+                statusS: 8833594,
                 base64Image: 'String',
                 url: 'String',
                 battleIndex: 'String',
@@ -47,19 +52,24 @@ export const standard = defineScenario<Prisma.BattleDataItemCreateArgs>({
     },
     two: {
       data: {
-        rate: 4825762.298516,
+        rate: 3637889.9845446,
         Item: {
-          create: { name: 'String', detail: 'String', battleIndex: 'String' },
+          create: {
+            name: 'String',
+            detail: 'String',
+            battleIndex: 'String',
+            base64Image: 'String',
+          },
         },
         battleData: {
           create: {
             no: 'String',
-            rank: 7814757,
+            rank: 3270443,
             battleIndex: {
               create: {
-                capturedAt: '2023-10-04T13:43:39.942Z',
-                startAt: '2023-10-04T13:43:39.942Z',
-                endAt: '2023-10-04T13:43:39.942Z',
+                capturedAt: '2023-10-07T14:20:09.700Z',
+                startAt: '2023-10-07T14:20:09.700Z',
+                endAt: '2023-10-07T14:20:09.700Z',
                 name: 'String',
               },
             },
@@ -68,14 +78,14 @@ export const standard = defineScenario<Prisma.BattleDataItemCreateArgs>({
                 name: 'String',
                 form: 'String',
                 no: 'String',
-                height: 1431113.21713,
-                weight: 4849585.814161,
-                statusH: 2711587,
-                statusA: 5911650,
-                statusB: 9003283,
-                statusC: 3846999,
-                statusD: 1413594,
-                statusS: 6320770,
+                height: 548225.8831718,
+                weight: 8878786.291464,
+                statusH: 3762099,
+                statusA: 4635773,
+                statusB: 4462137,
+                statusC: 6310365,
+                statusD: 7937338,
+                statusS: 6026606,
                 base64Image: 'String',
                 url: 'String',
                 battleIndex: 'String',

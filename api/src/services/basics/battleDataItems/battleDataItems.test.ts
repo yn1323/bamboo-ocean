@@ -40,13 +40,13 @@ describe('battleDataItems', () => {
     const result = await createBattleDataItem({
       input: {
         itemId: scenario.battleDataItem.two.itemId,
-        rate: 9222069.830805,
+        rate: 7112625.948943,
         battleDataId: scenario.battleDataItem.two.battleDataId,
       },
     })
 
     expect(result.itemId).toEqual(scenario.battleDataItem.two.itemId)
-    expect(result.rate).toEqual(9222069.830805)
+    expect(result.rate).toEqual(7112625.948943)
     expect(result.battleDataId).toEqual(
       scenario.battleDataItem.two.battleDataId
     )
@@ -58,10 +58,10 @@ describe('battleDataItems', () => {
     })) as BattleDataItem
     const result = await updateBattleDataItem({
       id: original.id,
-      input: { rate: 4450236.42442 },
+      input: { rate: 2065240.6401381 },
     })
 
-    expect(result.rate).toEqual(4450236.42442)
+    expect(result.rate).toEqual(2065240.6401381)
   })
 
   scenario('deletes a battleDataItem', async (scenario: StandardScenario) => {
