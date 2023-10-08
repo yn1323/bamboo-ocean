@@ -88,7 +88,7 @@ model Pokemon {
   id     String @id @default(dbgenerated("uuid_generate_v4()"))
   name   String
   form   String
-  no     String
+  no     Int
   height Float
   weight Float
 

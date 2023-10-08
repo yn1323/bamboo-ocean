@@ -8,7 +8,7 @@ export const standard = defineScenario<Prisma.PokemonCreateArgs>({
       data: {
         name: 'String',
         form: 'String',
-        no: 'String',
+        no: 11,
         height: 8240167.193972,
         weight: 458565.1080388,
         statusH: 5165747,
@@ -27,7 +27,7 @@ export const standard = defineScenario<Prisma.PokemonCreateArgs>({
       data: {
         name: 'String',
         form: 'String',
-        no: 'String',
+        no: 11,
         height: 3179554.550467,
         weight: 6890120.58084,
         statusH: 9817567,

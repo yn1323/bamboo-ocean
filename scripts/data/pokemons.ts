@@ -98,7 +98,7 @@ export const insertPokemon = async () => {
           const data: Prisma.PokemonCreateArgs['data'] = {
             name: pokemon.name,
             form: fixedForm,
-            no: pokemon.no,
+            no: parseInt(pokemon.no),
             height: parseFloat(pokemon.height.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
             weight: parseFloat(pokemon.weight.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
             statusH: pokemon.baseStats.h,

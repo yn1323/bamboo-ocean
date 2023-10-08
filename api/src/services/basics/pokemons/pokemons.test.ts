@@ -33,7 +33,7 @@ describe('pokemons', () => {
       input: {
         name: 'String',
         form: 'String',
-        no: 'String',
+        no: 11,
         height: 3620850.7296983,
         weight: 2138045.24849,
         statusH: 3557451,
@@ -51,7 +51,7 @@ describe('pokemons', () => {
 
     expect(result.name).toEqual('String')
     expect(result.form).toEqual('String')
-    expect(result.no).toEqual('String')
+    expect(result.no).toEqual(11)
     expect(result.height).toEqual(3620850.7296983)
     expect(result.weight).toEqual(2138045.24849)
     expect(result.statusH).toEqual(3557451)

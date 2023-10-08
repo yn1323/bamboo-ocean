@@ -20,7 +20,7 @@ export const standard = defineScenario<Prisma.BattleDataCreateArgs>({
           create: {
             name: 'String',
             form: 'String',
-            no: 'String',
+            no: 11,
             height: 520290.6604524,
             weight: 6414338.9635898,
             statusH: 2107642,
@@ -53,7 +53,7 @@ export const standard = defineScenario<Prisma.BattleDataCreateArgs>({
           create: {
             name: 'String',
             form: 'String',
-            no: 'String',
+            no: 11,
             height: 2857594.5305823,
             weight: 4857092.704429,
             statusH: 4415443,
