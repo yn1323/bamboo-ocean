@@ -15,10 +15,20 @@ export const schema = gql`
 
 type RequireAuthValidate = ValidatorDirectiveFunc<{ roles?: string[] }>
 
-const validate: RequireAuthValidate = ({ directiveArgs }) => {
+const validate: RequireAuthValidate = ({ directiveArgs, context }) => {
+  const isDevelopment = process.env.NODE_ENV === 'development'
+
+  if (
+    !isDevelopment &&
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    (context as any).event.headers.x_api_key! == process.env.X_API_KEY
+  ) {
+    throw new Error('Unauthorized')
+  }
+
   const { roles } = directiveArgs
+
   applicationRequireAuth({ roles })
-}
 
 const requireAuth = createValidatorDirective(schema, validate)
 
