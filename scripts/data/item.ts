@@ -25,7 +25,7 @@ export const insertItem = async () => {
 
     const result = await db.item.createMany({ data: formattedItems })
 
-    console.log('Done.', result)
+    console.log('item done.', result)
   } catch (error) {
     console.error(error)
   }

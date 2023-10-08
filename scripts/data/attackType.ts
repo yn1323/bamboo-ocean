@@ -15,7 +15,7 @@ export const insertAttackType = async () => {
 
     const result = await db.attackType.createMany({ data })
 
-    console.log('Done.', result)
+    console.log('atack type done.', result)
   } catch (error) {
     console.error(error)
   }

@@ -349,7 +349,7 @@ export const insertTypeRelation = async () => {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result = await db.typeRelation.createMany({ data } as any)
-    console.log('Done.', result)
+    console.log('type relation done.', result)
   } catch (error) {
     console.error(error)
   }

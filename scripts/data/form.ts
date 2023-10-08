@@ -20,7 +20,7 @@ export const insertForm = async () => {
 
     const result = await db.form.createMany({ data: formattedForms })
 
-    console.log('Done.', result)
+    console.log('form done.', result)
   } catch (error) {
     console.error(error)
   }

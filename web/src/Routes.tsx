@@ -14,6 +14,36 @@ import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={ScaffoldLayout} title="MyPokemonTags" titleTo="myPokemonTags" buttonLabel="New MyPokemonTag" buttonTo="newMyPokemonTag">
+        <Route path="/my-pokemon-tags/new" page={MyPokemonTagNewMyPokemonTagPage} name="newMyPokemonTag" />
+        <Route path="/my-pokemon-tags/{id}/edit" page={MyPokemonTagEditMyPokemonTagPage} name="editMyPokemonTag" />
+        <Route path="/my-pokemon-tags/{id}" page={MyPokemonTagMyPokemonTagPage} name="myPokemonTag" />
+        <Route path="/my-pokemon-tags" page={MyPokemonTagMyPokemonTagsPage} name="myPokemonTags" />
+      </Set>
+      <Set wrap={ScaffoldLayout} title="MyPartyTags" titleTo="myPartyTags" buttonLabel="New MyPartyTag" buttonTo="newMyPartyTag">
+        <Route path="/my-party-tags/new" page={MyPartyTagNewMyPartyTagPage} name="newMyPartyTag" />
+        <Route path="/my-party-tags/{id}/edit" page={MyPartyTagEditMyPartyTagPage} name="editMyPartyTag" />
+        <Route path="/my-party-tags/{id}" page={MyPartyTagMyPartyTagPage} name="myPartyTag" />
+        <Route path="/my-party-tags" page={MyPartyTagMyPartyTagsPage} name="myPartyTags" />
+      </Set>
+      <Set wrap={ScaffoldLayout} title="MyParties" titleTo="myParties" buttonLabel="New MyParty" buttonTo="newMyParty">
+        <Route path="/my-parties/new" page={MyPartyNewMyPartyPage} name="newMyParty" />
+        <Route path="/my-parties/{id}/edit" page={MyPartyEditMyPartyPage} name="editMyParty" />
+        <Route path="/my-parties/{id}" page={MyPartyMyPartyPage} name="myParty" />
+        <Route path="/my-parties" page={MyPartyMyPartiesPage} name="myParties" />
+      </Set>
+      <Set wrap={ScaffoldLayout} title="MyPokemons" titleTo="myPokemons" buttonLabel="New MyPokemon" buttonTo="newMyPokemon">
+        <Route path="/my-pokemons/new" page={MyPokemonNewMyPokemonPage} name="newMyPokemon" />
+        <Route path="/my-pokemons/{id}/edit" page={MyPokemonEditMyPokemonPage} name="editMyPokemon" />
+        <Route path="/my-pokemons/{id}" page={MyPokemonMyPokemonPage} name="myPokemon" />
+        <Route path="/my-pokemons" page={MyPokemonMyPokemonsPage} name="myPokemons" />
+      </Set>
+      <Set wrap={ScaffoldLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
+        <Route path="/users/new" page={UserNewUserPage} name="newUser" />
+        <Route path="/users/{id}/edit" page={UserEditUserPage} name="editUser" />
+        <Route path="/users/{id}" page={UserUserPage} name="user" />
+        <Route path="/users" page={UserUsersPage} name="users" />
+      </Set>
       <Set wrap={ScaffoldLayout} title="BattleDataTerastals" titleTo="battleDataTerastals" buttonLabel="New BattleDataTerastal" buttonTo="newBattleDataTerastal">
         <Route path="/battle-data-terastals/new" page={BattleDataTerastalNewBattleDataTerastalPage} name="newBattleDataTerastal" />
         <Route path="/battle-data-terastals/{id}/edit" page={BattleDataTerastalEditBattleDataTerastalPage} name="editBattleDataTerastal" />

@@ -129,7 +129,7 @@ export const insertPokemon = async () => {
       })
     )
 
-    console.log('Done.', pokemons.length)
+    console.log('pokemon Done.', pokemons.length)
   } catch (error) {
     console.error(error)
   }

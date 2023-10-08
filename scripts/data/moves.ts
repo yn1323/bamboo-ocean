@@ -39,7 +39,7 @@ export const insertMove = async () => {
 
     const result = await db.move.createMany({ data: formatted })
 
-    console.log('Done.', result)
+    console.log('move done.', result)
   } catch (error) {
     console.error(error)
   }
