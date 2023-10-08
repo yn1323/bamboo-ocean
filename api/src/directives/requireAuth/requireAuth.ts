@@ -18,14 +18,9 @@ type RequireAuthValidate = ValidatorDirectiveFunc<{ roles?: string[] }>
 const validate: RequireAuthValidate = ({ directiveArgs, context }) => {
   const isLocal = process.env.IS_LOCAL === 'true'
 
-  console.log('hehrehrehrhehre')
-  console.log(isLocal)
-  console.log((context.event as any).headers.x_api_key)
-  console.log(process.env.X_API_KEY)
-
   if (
     !isLocal &&
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-explicit-any
     (context.event as any).headers.x_api_key !== process.env.X_API_KEY
   ) {
     throw new Error('Unauthorized')
