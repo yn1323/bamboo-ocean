@@ -13,6 +13,7 @@ export const QUERY = gql`
       detail
       battleIndex
       base64Image
+      imageUrl
     }
   }
 `

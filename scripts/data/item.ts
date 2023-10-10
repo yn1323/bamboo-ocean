@@ -20,7 +20,7 @@ export const insertItem = async () => {
           detail: items.find((i) => i.name === item.name)?.detail ?? '',
           base64Image,
           imageUrl: base64Image
-            ? `${process.env.BUCKET_URL}/pokemon/sv/pokemons/${fileName}`
+            ? `${process.env.BUCKET_URL}/pokemon/sv/items/${fileName}`
             : '',
         }
       })

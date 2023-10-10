@@ -16,6 +16,7 @@ export const schema = gql`
     abilities: [Ability]!
     moves: [Move]!
     base64Image: String!
+    imageUrl: String!
     url: String!
     battleIndex: String!
     battleFormIndex: String!
@@ -40,6 +41,7 @@ export const schema = gql`
     statusD: Int!
     statusS: Int!
     base64Image: String!
+    imageUrl: String!
     url: String!
     battleIndex: String!
     battleFormIndex: String!
@@ -58,6 +60,7 @@ export const schema = gql`
     statusD: Int
     statusS: Int
     base64Image: String
+    imageUrl: String!
     url: String
     battleIndex: String
     battleFormIndex: String

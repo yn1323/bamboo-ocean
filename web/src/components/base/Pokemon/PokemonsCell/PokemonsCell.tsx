@@ -21,6 +21,7 @@ export const QUERY = gql`
       statusD
       statusS
       base64Image
+      imageUrl
       url
       battleIndex
       battleFormIndex

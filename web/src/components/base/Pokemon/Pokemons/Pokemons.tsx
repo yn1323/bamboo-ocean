@@ -57,6 +57,7 @@ const PokemonsList = ({ pokemons }: FindPokemons) => {
             <th>Status d</th>
             <th>Status s</th>
             <th>Base64 image</th>
+            <th>Image url</th>
             <th>Url</th>
             <th>Battle index</th>
             <th>Battle form index</th>
@@ -83,6 +84,9 @@ const PokemonsList = ({ pokemons }: FindPokemons) => {
                   alt="img"
                   src={`data:image/png;base64,  ${pokemon.base64Image}`}
                 />
+              </td>
+              <td>
+                <img alt="img" src={pokemon.imageUrl} />
               </td>
               <td>{truncate(pokemon.url)}</td>
               <td>{truncate(pokemon.battleIndex)}</td>
