@@ -88,10 +88,11 @@ export const insertPokemon = async () => {
               : `${battleFormData.no}_${battleFormData.formType}`
           }
 
+          const fileName = battleFormIndex
+            ? `pokemon${battleFormIndex}.png`
+            : `pokemon${pokemon.no}.png`
           const base64Image = await readImage(
-            battleFormIndex
-              ? `../../assets/pokemons/pm${battleFormIndex}.png`
-              : `../../assets/pokemons/pm${pokemon.no}.png`,
+            `../../assets/pokemons/${fileName}`,
             { showLog: true }
           )
 
@@ -117,6 +118,9 @@ export const insertPokemon = async () => {
               connect: moveIds.map((id) => ({ id })),
             },
             base64Image,
+            imageUrl: base64Image
+              ? `${process.env.BUCKET_URL}/pokemon/sv/pokemons/${fileName}`
+              : '',
             url: pokemon.url,
             battleIndex,
             battleFormIndex,

@@ -10,6 +10,7 @@ export const standard = defineScenario<Prisma.ItemCreateArgs>({
         detail: 'String',
         battleIndex: 'String',
         base64Image: 'String',
+        imageUrl: 'String',
       },
     },
     two: {
@@ -18,6 +19,7 @@ export const standard = defineScenario<Prisma.ItemCreateArgs>({
         detail: 'String',
         battleIndex: 'String',
         base64Image: 'String',
+        imageUrl: 'String',
       },
     },
   },

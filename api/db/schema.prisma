@@ -43,6 +43,7 @@ model Item {
   detail      String
   battleIndex String
   base64Image String
+  imageUrl    String
 
   battleDataItem BattleDataItem[]
   MyPokemon      MyPokemon[]
@@ -110,6 +111,7 @@ model Pokemon {
   moves     Move[]
 
   base64Image String
+  imageUrl    String
   url         String
 
   battleIndex     String

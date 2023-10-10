@@ -29,6 +29,7 @@ describe('items', () => {
         detail: 'String',
         battleIndex: 'String',
         base64Image: 'String',
+        imageUrl: 'String',
       },
     })
 
