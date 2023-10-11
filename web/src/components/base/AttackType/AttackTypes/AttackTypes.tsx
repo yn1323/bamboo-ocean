@@ -55,7 +55,7 @@ const AttackTypesList = ({ attackTypes }: FindAttackTypes) => {
             <tr key={attackType.id}>
               <td>{truncate(attackType.id)}</td>
               <td>{truncate(attackType.name)}</td>
-              <td>
+              <td style={{ background: 'gray' }}>
                 <img src={attackType.imageUrl} alt={attackType.name} />
               </td>
               <td>

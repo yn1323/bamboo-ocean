@@ -4,8 +4,6 @@ import { Link, navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { checkboxInputTag } from 'src/lib/formatters'
-
 const DELETE_MOVE_MUTATION = gql`
   mutation DeleteMoveMutation($id: String!) {
     deleteMove(id: $id) {
@@ -81,14 +79,7 @@ const Move = ({ move }: Props) => {
               <th>Pp</th>
               <td>{move.pp}</td>
             </tr>
-            <tr>
-              <th>Is touchable</th>
-              <td>{checkboxInputTag(move.isTouchable)}</td>
-            </tr>
-            <tr>
-              <th>Enable protect</th>
-              <td>{checkboxInputTag(move.enableProtect)}</td>
-            </tr>
+
             <tr>
               <th>Battle index</th>
               <td>{move.battleIndex}</td>

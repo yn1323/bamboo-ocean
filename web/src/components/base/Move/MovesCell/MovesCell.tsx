@@ -9,7 +9,6 @@ export const QUERY = gql`
   query FindMoves {
     moves {
       id
-      target
       detail
       name
       typeId
@@ -17,9 +16,23 @@ export const QUERY = gql`
       power
       accuracy
       pp
-      isTouchable
-      enableProtect
       battleIndex
+
+      isContact
+      isQuick
+      isDelay
+      isChangeable
+      isMultipleAttack
+      isMustCritical
+      isPunch
+      isSound
+      isPowder
+      isWave
+      isJaw
+      isBullet
+      isDance
+      isWind
+      isCut
     }
   }
 `

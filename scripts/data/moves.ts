@@ -21,7 +21,6 @@ export const insertMove = async () => {
         assetMoves.find((assetMove) => assetMove.name === move.name)?.id ?? ''
 
       return {
-        target: move.target ?? '',
         detail: move.text,
         name: move.name,
         typeId,
@@ -29,8 +28,22 @@ export const insertMove = async () => {
         power: move.power,
         accuracy: move.accuracy,
         pp: move.pp,
-        isTouchable: move.isTouchable,
-        enableProtect: move.enableProtect,
+        isContact: move.isContact,
+        isQuick: move.isQuick,
+        isDelay: move.isDelay,
+        isChangeable: move.isChangeable,
+        isMultipleAttack: move.isMultipleAttack,
+        isMustCritical: move.isMustCritical,
+        isPunch: move.isPunch,
+        isSound: move.isSound,
+        isPowder: move.isPowder,
+        isWave: move.isWave,
+        isJaw: move.isJaw,
+        isBullet: move.isBullet,
+        isDance: move.isDance,
+        isWind: move.isWind,
+        isCut: move.isCut,
+
         battleIndex,
       }
     })

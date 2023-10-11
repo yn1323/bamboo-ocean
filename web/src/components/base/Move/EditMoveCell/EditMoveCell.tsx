@@ -11,7 +11,6 @@ export const QUERY = gql`
   query EditMoveById($id: String!) {
     move: move(id: $id) {
       id
-      target
       detail
       name
       typeId
@@ -19,8 +18,6 @@ export const QUERY = gql`
       power
       accuracy
       pp
-      isTouchable
-      enableProtect
       battleIndex
     }
   }
@@ -29,7 +26,6 @@ const UPDATE_MOVE_MUTATION = gql`
   mutation UpdateMoveMutation($id: String!, $input: UpdateMoveInput!) {
     updateMove(id: $id, input: $input) {
       id
-      target
       detail
       name
       typeId
@@ -37,8 +33,6 @@ const UPDATE_MOVE_MUTATION = gql`
       power
       accuracy
       pp
-      isTouchable
-      enableProtect
       battleIndex
     }
   }

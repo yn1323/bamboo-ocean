@@ -74,7 +74,6 @@ model AttackType {
 
 model Move {
   id     String  @id @default(dbgenerated("uuid_generate_v4()"))
-  target String
   detail String
   name   String
   type   Type?   @relation(fields: [typeId], references: [id])
@@ -83,12 +82,26 @@ model Move {
   attackType   AttackType? @relation(fields: [attackTypeId], references: [id])
   attackTypeId String?
 
-  power         Int
-  accuracy      Int
-  pp            Int
-  isTouchable   Boolean
-  enableProtect Boolean
-  pokemons      Pokemon[]
+  power            Int
+  accuracy         Int
+  pp               Int
+  isContact        Boolean
+  isQuick          Boolean
+  isDelay          Boolean
+  isChangeable     Boolean
+  isMultipleAttack Boolean
+  isMustCritical   Boolean
+  isPunch          Boolean
+  isSound          Boolean
+  isPowder         Boolean
+  isWave           Boolean
+  isJaw            Boolean
+  isBullet         Boolean
+  isDance          Boolean
+  isWind           Boolean
+  isCut            Boolean
+
+  pokemons Pokemon[]
 
   battleIndex     String
   battleDataMoves BattleDataMove[]

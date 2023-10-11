@@ -2,7 +2,6 @@ import type { EditMoveById, UpdateMoveInput } from 'types/graphql'
 
 import type { RWGqlError } from '@redwoodjs/forms'
 import {
-  CheckboxField,
   FieldError,
   Form,
   FormError,
@@ -35,24 +34,6 @@ const MoveForm = (props: MoveFormProps) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-
-        <Label
-          name="target"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Target
-        </Label>
-
-        <TextField
-          name="target"
-          defaultValue={props.move?.target}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="target" className="rw-field-error" />
 
         <Label
           name="detail"
@@ -179,40 +160,6 @@ const MoveForm = (props: MoveFormProps) => {
         />
 
         <FieldError name="pp" className="rw-field-error" />
-
-        <Label
-          name="isTouchable"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Is touchable
-        </Label>
-
-        <CheckboxField
-          name="isTouchable"
-          defaultChecked={props.move?.isTouchable}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
-
-        <FieldError name="isTouchable" className="rw-field-error" />
-
-        <Label
-          name="enableProtect"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Enable protect
-        </Label>
-
-        <CheckboxField
-          name="enableProtect"
-          defaultChecked={props.move?.enableProtect}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
-
-        <FieldError name="enableProtect" className="rw-field-error" />
 
         <Label
           name="battleIndex"

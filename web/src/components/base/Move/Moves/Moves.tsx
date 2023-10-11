@@ -50,9 +50,21 @@ const MovesList = ({ moves }: FindMoves) => {
             <th>Power</th>
             <th>Accuracy</th>
             <th>Pp</th>
-            <th>Is touchable</th>
-            <th>Enable protect</th>
-            <th>Battle index</th>
+            <th>isContact</th>
+            <th>isQuick</th>
+            <th>isDelay</th>
+            <th>isChangeable</th>
+            <th>isMultipleAttack</th>
+            <th>isMustCritical</th>
+            <th>isPunch</th>
+            <th>isSound</th>
+            <th>isPowder</th>
+            <th>isWave</th>
+            <th>isJaw</th>
+            <th>isBullet</th>
+            <th>isDance</th>
+            <th>isWind</th>
+            <th>isCut</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -60,7 +72,6 @@ const MovesList = ({ moves }: FindMoves) => {
           {moves.map((move) => (
             <tr key={move.id}>
               <td>{truncate(move.id)}</td>
-              <td>{truncate(move.target)}</td>
               <td>{truncate(move.detail)}</td>
               <td>{truncate(move.name)}</td>
               <td>{truncate(move.typeId)}</td>
@@ -68,8 +79,21 @@ const MovesList = ({ moves }: FindMoves) => {
               <td>{truncate(move.power)}</td>
               <td>{truncate(move.accuracy)}</td>
               <td>{truncate(move.pp)}</td>
-              <td>{checkboxInputTag(move.isTouchable)}</td>
-              <td>{checkboxInputTag(move.enableProtect)}</td>
+              <td>{checkboxInputTag(move.isContact)}</td>
+              <td>{checkboxInputTag(move.isQuick)}</td>
+              <td>{checkboxInputTag(move.isDelay)}</td>
+              <td>{checkboxInputTag(move.isChangeable)}</td>
+              <td>{checkboxInputTag(move.isMultipleAttack)}</td>
+              <td>{checkboxInputTag(move.isMustCritical)}</td>
+              <td>{checkboxInputTag(move.isPunch)}</td>
+              <td>{checkboxInputTag(move.isSound)}</td>
+              <td>{checkboxInputTag(move.isPowder)}</td>
+              <td>{checkboxInputTag(move.isWave)}</td>
+              <td>{checkboxInputTag(move.isJaw)}</td>
+              <td>{checkboxInputTag(move.isBullet)}</td>
+              <td>{checkboxInputTag(move.isDance)}</td>
+              <td>{checkboxInputTag(move.isWind)}</td>
+              <td>{checkboxInputTag(move.isCut)}</td>
               <td>{truncate(move.battleIndex)}</td>
               <td>
                 <nav className="rw-table-actions">
