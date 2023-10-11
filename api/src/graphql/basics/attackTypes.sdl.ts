@@ -3,6 +3,7 @@ export const schema = gql`
     id: String!
     name: String!
     moves: [Move]!
+    imageUrl: String!
   }
 
   type Query {
@@ -12,10 +13,12 @@ export const schema = gql`
 
   input CreateAttackTypeInput {
     name: String!
+    imageUrl: String!
   }
 
   input UpdateAttackTypeInput {
     name: String
+    imageUrl: String!
   }
 
   type Mutation {

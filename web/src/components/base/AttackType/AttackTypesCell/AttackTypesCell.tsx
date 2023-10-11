@@ -10,6 +10,7 @@ export const QUERY = gql`
     attackTypes {
       id
       name
+      imageUrl
     }
   }
 `

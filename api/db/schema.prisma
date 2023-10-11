@@ -26,6 +26,10 @@ model Type {
   pokemons           Pokemon[]
   battleDataTerastal BattleDataTerastal[]
   MyPokemon          MyPokemon[]
+
+  textImageUrl     String
+  imageUrl         String
+  terastalImageUrl String
 }
 
 model TypeRelation {
@@ -64,6 +68,8 @@ model AttackType {
   // 物理 | 特殊 | 変化
   name  String
   moves Move[]
+
+  imageUrl String
 }
 
 model Move {

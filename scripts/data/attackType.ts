@@ -2,9 +2,18 @@ import type { Prisma } from '@prisma/client'
 import { db } from 'api/src/lib/db'
 
 const attackType: Prisma.AttackTypeCreateArgs['data'][] = [
-  { name: '物理' },
-  { name: '特殊' },
-  { name: '変化' },
+  {
+    name: '物理',
+    imageUrl: `${process.env.BUCKET_URL}/pokemon/sv/attackTypes/physic.png`,
+  },
+  {
+    name: '特殊',
+    imageUrl: `${process.env.BUCKET_URL}/pokemon/sv/attackTypes/special.png`,
+  },
+  {
+    name: '変化',
+    imageUrl: `${process.env.BUCKET_URL}/pokemon/sv/attackTypes/status.png`,
+  },
 ]
 
 export const insertAttackType = async () => {

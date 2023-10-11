@@ -44,6 +44,9 @@ const TypesList = ({ types }: FindTypes) => {
             <th>Id</th>
             <th>Name</th>
             <th>Battle index</th>
+            <th>Image url</th>
+            <th>Text image url</th>
+            <th>Terastal url</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -53,6 +56,15 @@ const TypesList = ({ types }: FindTypes) => {
               <td>{truncate(type.id)}</td>
               <td>{truncate(type.name)}</td>
               <td>{truncate(type.battleIndex)}</td>
+              <td>
+                <img src={type.imageUrl} alt={type.name} />
+              </td>
+              <td>
+                <img src={type.textImageUrl} alt={type.name} />
+              </td>
+              <td>
+                <img src={type.terastalImageUrl} alt={type.name} />
+              </td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
