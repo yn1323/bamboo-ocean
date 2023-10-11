@@ -11,21 +11,26 @@ export const insertItem = async () => {
     const items = await getAllItems()
 
     const formattedItems: Prisma.ItemCreateArgs['data'][] = await Promise.all(
-      assetItems.map(async (item) => ({
-        battleIndex: item.id,
-        name: item.name,
-        detail: items.find((i) => i.name === item.name)?.detail ?? '',
-        base64Image: await readImage(
-          `../../assets/items/item_${item.id.padStart(4, '0')}.png`
-        ),
-      }))
+      assetItems.map(async (item) => {
+        const fileName = `item${item.id.padStart(4, '0')}.png`
+        const base64Image = await readImage(`../../assets/items/${fileName}`)
+        return {
+          battleIndex: item.id,
+          name: item.name,
+          detail: items.find((i) => i.name === item.name)?.detail ?? '',
+          base64Image,
+          imageUrl: base64Image
+            ? `${process.env.BUCKET_URL}/pokemon/sv/items/${fileName}`
+            : '',
+        }
+      })
     )
 
     console.log('Seeding item...')
 
     const result = await db.item.createMany({ data: formattedItems })
 
-    console.log('Done.', result)
+    console.log('item done.', result)
   } catch (error) {
     console.error(error)
   }

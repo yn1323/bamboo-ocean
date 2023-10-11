@@ -13,6 +13,7 @@ export const standard = defineScenario<Prisma.BattleDataItemCreateArgs>({
             detail: 'String',
             battleIndex: 'String',
             base64Image: 'String',
+            imageUrl: 'String',
           },
         },
         battleData: {
@@ -31,7 +32,7 @@ export const standard = defineScenario<Prisma.BattleDataItemCreateArgs>({
               create: {
                 name: 'String',
                 form: 'String',
-                no: 'String',
+                no: 11,
                 height: 261090.46772089,
                 weight: 812920.4850728,
                 statusH: 9933351,
@@ -41,6 +42,7 @@ export const standard = defineScenario<Prisma.BattleDataItemCreateArgs>({
                 statusD: 6989699,
                 statusS: 8833594,
                 base64Image: 'String',
+                imageUrl: 'String',
                 url: 'String',
                 battleIndex: 'String',
                 battleFormIndex: 'String',
@@ -59,6 +61,7 @@ export const standard = defineScenario<Prisma.BattleDataItemCreateArgs>({
             detail: 'String',
             battleIndex: 'String',
             base64Image: 'String',
+            imageUrl: 'String',
           },
         },
         battleData: {
@@ -77,7 +80,7 @@ export const standard = defineScenario<Prisma.BattleDataItemCreateArgs>({
               create: {
                 name: 'String',
                 form: 'String',
-                no: 'String',
+                no: 11,
                 height: 548225.8831718,
                 weight: 8878786.291464,
                 statusH: 3762099,
@@ -87,6 +90,7 @@ export const standard = defineScenario<Prisma.BattleDataItemCreateArgs>({
                 statusD: 7937338,
                 statusS: 6026606,
                 base64Image: 'String',
+                imageUrl: 'String',
                 url: 'String',
                 battleIndex: 'String',
                 battleFormIndex: 'String',

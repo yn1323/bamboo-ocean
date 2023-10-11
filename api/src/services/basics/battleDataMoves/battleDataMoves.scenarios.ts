@@ -36,7 +36,7 @@ export const standard = defineScenario<Prisma.BattleDataMoveCreateArgs>({
               create: {
                 name: 'String',
                 form: 'String',
-                no: 'String',
+                no: 11,
                 height: 4562489.437166,
                 weight: 862085.5402,
                 statusH: 2988674,
@@ -46,6 +46,7 @@ export const standard = defineScenario<Prisma.BattleDataMoveCreateArgs>({
                 statusD: 8056893,
                 statusS: 952092,
                 base64Image: 'String',
+                imageUrl: 'String',
                 url: 'String',
                 battleIndex: 'String',
                 battleFormIndex: 'String',
@@ -87,7 +88,7 @@ export const standard = defineScenario<Prisma.BattleDataMoveCreateArgs>({
               create: {
                 name: 'String',
                 form: 'String',
-                no: 'String',
+                no: 11,
                 height: 2026012.8150387579,
                 weight: 1655712.4836376635,
                 statusH: 4252673,
@@ -97,6 +98,7 @@ export const standard = defineScenario<Prisma.BattleDataMoveCreateArgs>({
                 statusD: 988073,
                 statusS: 941002,
                 base64Image: 'String',
+                imageUrl: 'String',
                 url: 'String',
                 battleIndex: 'String',
                 battleFormIndex: 'String',

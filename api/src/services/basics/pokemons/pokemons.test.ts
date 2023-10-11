@@ -33,7 +33,7 @@ describe('pokemons', () => {
       input: {
         name: 'String',
         form: 'String',
-        no: 'String',
+        no: 11,
         height: 3620850.7296983,
         weight: 2138045.24849,
         statusH: 3557451,
@@ -43,6 +43,7 @@ describe('pokemons', () => {
         statusD: 8081310,
         statusS: 7476500,
         base64Image: 'String',
+        imageUrl: 'String',
         url: 'String',
         battleIndex: 'String',
         battleFormIndex: 'String',
@@ -51,7 +52,7 @@ describe('pokemons', () => {
 
     expect(result.name).toEqual('String')
     expect(result.form).toEqual('String')
-    expect(result.no).toEqual('String')
+    expect(result.no).toEqual(11)
     expect(result.height).toEqual(3620850.7296983)
     expect(result.weight).toEqual(2138045.24849)
     expect(result.statusH).toEqual(3557451)
@@ -61,6 +62,7 @@ describe('pokemons', () => {
     expect(result.statusD).toEqual(8081310)
     expect(result.statusS).toEqual(7476500)
     expect(result.base64Image).toEqual('String')
+    expect(result.imageUrl).toEqual('String')
     expect(result.url).toEqual('String')
     expect(result.battleIndex).toEqual('String')
     expect(result.battleFormIndex).toEqual('String')

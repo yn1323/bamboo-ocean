@@ -88,17 +88,18 @@ export const insertPokemon = async () => {
               : `${battleFormData.no}_${battleFormData.formType}`
           }
 
+          const fileName = battleFormIndex
+            ? `pokemon${battleFormIndex}.png`
+            : `pokemon${pokemon.no}.png`
           const base64Image = await readImage(
-            battleFormIndex
-              ? `../../assets/pokemons/pm${battleFormIndex}.png`
-              : `../../assets/pokemons/pm${pokemon.no}.png`,
+            `../../assets/pokemons/${fileName}`,
             { showLog: true }
           )
 
           const data: Prisma.PokemonCreateArgs['data'] = {
             name: pokemon.name,
             form: fixedForm,
-            no: pokemon.no,
+            no: parseInt(pokemon.no),
             height: parseFloat(pokemon.height.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
             weight: parseFloat(pokemon.weight.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
             statusH: pokemon.baseStats.h,
@@ -117,6 +118,9 @@ export const insertPokemon = async () => {
               connect: moveIds.map((id) => ({ id })),
             },
             base64Image,
+            imageUrl: base64Image
+              ? `${process.env.BUCKET_URL}/pokemon/sv/pokemons/${fileName}`
+              : '',
             url: pokemon.url,
             battleIndex,
             battleFormIndex,
@@ -129,7 +133,7 @@ export const insertPokemon = async () => {
       })
     )
 
-    console.log('Done.', pokemons.length)
+    console.log('pokemon Done.', pokemons.length)
   } catch (error) {
     console.error(error)
   }

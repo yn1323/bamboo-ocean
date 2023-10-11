@@ -141,7 +141,7 @@ export const insertNature = async () => {
 
     const result = await db.nature.createMany({ data: natures })
 
-    console.log('Done.', result)
+    console.log('nature done.', result)
   } catch (error) {
     console.error(error)
   }

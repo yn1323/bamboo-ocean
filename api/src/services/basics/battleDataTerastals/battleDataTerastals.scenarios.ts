@@ -24,7 +24,7 @@ export const standard = defineScenario<Prisma.BattleDataTerastalCreateArgs>({
               create: {
                 name: 'String',
                 form: 'String',
-                no: 'String',
+                no: 11,
                 height: 9750082.187862,
                 weight: 7739654.241943,
                 statusH: 1726874,
@@ -34,6 +34,7 @@ export const standard = defineScenario<Prisma.BattleDataTerastalCreateArgs>({
                 statusD: 6974618,
                 statusS: 1295559,
                 base64Image: 'String',
+                imageUrl: 'String',
                 url: 'String',
                 battleIndex: 'String',
                 battleFormIndex: 'String',
@@ -63,7 +64,7 @@ export const standard = defineScenario<Prisma.BattleDataTerastalCreateArgs>({
               create: {
                 name: 'String',
                 form: 'String',
-                no: 'String',
+                no: 11,
                 height: 7654872.018394,
                 weight: 5544011.60666,
                 statusH: 8598672,
@@ -73,6 +74,7 @@ export const standard = defineScenario<Prisma.BattleDataTerastalCreateArgs>({
                 statusD: 3527532,
                 statusS: 379825,
                 base64Image: 'String',
+                imageUrl: 'String',
                 url: 'String',
                 battleIndex: 'String',
                 battleFormIndex: 'String',

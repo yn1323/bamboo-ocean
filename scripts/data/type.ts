@@ -30,7 +30,7 @@ export const insertType = async () => {
 
     const result = await db.type.createMany({ data })
 
-    console.log('Done.', result)
+    console.log('type done.', result)
   } catch (error) {
     console.error(error)
   }

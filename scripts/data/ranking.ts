@@ -103,15 +103,16 @@ export const insertRanking = async () => {
             rate: terastal.rate,
           }))
 
+          const rank = battleRanking.rank.findIndex(
+            (rank) => rank.id === no && rank.form === form
+          )
+
           const data: Prisma.BattleDataCreateArgs['data'] = {
             battleIndexId,
             pokemonId,
             no,
             formId: formId,
-            rank:
-              battleRanking.rank.findIndex(
-                (rank) => rank.id === no && rank.form === form
-              ) + 1,
+            rank: rank < 0 ? rank : rank + 1,
           }
 
           const { id: battleDataId } = await db.battleData.create({ data })
@@ -161,7 +162,7 @@ export const insertRanking = async () => {
         }
       })
     )
-    console.log('Done', resultBattleData.length)
+    console.log('rank done', resultBattleData.length)
   } catch (error) {
     console.error(error)
   }

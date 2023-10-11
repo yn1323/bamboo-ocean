@@ -19,7 +19,7 @@ export const insertAbility = async () => {
 
     const result = await db.ability.createMany({ data: formattedItems })
 
-    console.log('Done.', result)
+    console.log('ability done.', result)
   } catch (error) {
     console.error(error)
   }

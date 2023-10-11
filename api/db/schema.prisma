@@ -25,6 +25,7 @@ model Type {
   moves              Move[]
   pokemons           Pokemon[]
   battleDataTerastal BattleDataTerastal[]
+  MyPokemon          MyPokemon[]
 }
 
 model TypeRelation {
@@ -42,8 +43,10 @@ model Item {
   detail      String
   battleIndex String
   base64Image String
+  imageUrl    String
 
   battleDataItem BattleDataItem[]
+  MyPokemon      MyPokemon[]
 }
 
 model Ability {
@@ -53,6 +56,7 @@ model Ability {
   battleIndex         String
   pokemons            Pokemon[]
   battleDataAbilities BattleDataAbility[]
+  MyPokemon           MyPokemon[]
 }
 
 model AttackType {
@@ -82,13 +86,15 @@ model Move {
 
   battleIndex     String
   battleDataMoves BattleDataMove[]
+
+  myPokemon MyPokemon[]
 }
 
 model Pokemon {
   id     String @id @default(dbgenerated("uuid_generate_v4()"))
   name   String
   form   String
-  no     String
+  no     Int
   height Float
   weight Float
 
@@ -105,12 +111,14 @@ model Pokemon {
   moves     Move[]
 
   base64Image String
+  imageUrl    String
   url         String
 
   battleIndex     String
   battleFormIndex String
 
   battleData BattleData[]
+  MyPokemon  MyPokemon[]
 }
 
 model Nature {
@@ -121,6 +129,7 @@ model Nature {
   increase         String
   decrease         String
   battleDataNature BattleDataNature[]
+  MyPokemon        MyPokemon[]
 }
 
 model Form {
@@ -213,4 +222,89 @@ model BattleDataTerastal {
   rate         Float
   battleData   BattleData @relation(fields: [battleDataId], references: [id])
   battleDataId String
+}
+
+model User {
+  id            String         @id @default(dbgenerated("uuid_generate_v4()"))
+  name          String
+  createdUserAt DateTime
+  updatedUserAt DateTime
+  deletedUserAt DateTime?
+  myPokemon     MyPokemon[]
+  myParty       MyParty[]
+  myPartyTag    MyPartyTag[]
+  myPokemonTag  MyPokemonTag[]
+}
+
+model MyPartyTag {
+  id       String  @id @default(dbgenerated("uuid_generate_v4()"))
+  name     String
+  favorite Boolean
+  memo     String
+
+  myParty MyParty[]
+  user    User      @relation(fields: [userId], references: [id])
+  userId  String
+}
+
+model MyPokemonTag {
+  id       String  @id @default(dbgenerated("uuid_generate_v4()"))
+  name     String
+  favorite Boolean
+  memo     String
+
+  myPokemon MyPokemon[]
+  user      User        @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+model MyPokemon {
+  id       String  @id @default(dbgenerated("uuid_generate_v4()"))
+  name     String
+  favorite Boolean
+  evH      Int
+  evA      Int
+  evB      Int
+  evC      Int
+  evD      Int
+  evS      Int
+  memo     String
+
+  tag MyPokemonTag[]
+
+  pokemon   Pokemon @relation(fields: [pokemonId], references: [id])
+  pokemonId String
+
+  item   Item?   @relation(fields: [itemId], references: [id])
+  itemId String?
+
+  ability   Ability? @relation(fields: [abilityId], references: [id])
+  abilityId String?
+
+  nature   Nature @relation(fields: [natureId], references: [id])
+  natureId String
+
+  terastal   Type?   @relation(fields: [terastalId], references: [id])
+  terastalId String?
+
+  moves Move[]
+
+  myParty MyParty[]
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model MyParty {
+  id       String  @id @default(dbgenerated("uuid_generate_v4()"))
+  name     String
+  favorite Boolean
+  memo     String
+
+  tag MyPartyTag[]
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  myPokemon MyPokemon[]
 }
