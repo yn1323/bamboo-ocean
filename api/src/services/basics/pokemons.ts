@@ -1,7 +1,7 @@
 import type {
+  QueryResolvers,
   MutationResolvers,
   PokemonRelationResolvers,
-  QueryResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -52,5 +52,20 @@ export const Pokemon: PokemonRelationResolvers = {
   },
   battleData: (_obj, { root }) => {
     return db.pokemon.findUnique({ where: { id: root?.id } }).battleData()
+  },
+  MyPokemon: (_obj, { root }) => {
+    return db.pokemon.findUnique({ where: { id: root?.id } }).MyPokemon()
+  },
+  MyEnemy: (_obj, { root }) => {
+    return db.pokemon.findUnique({ where: { id: root?.id } }).MyEnemy()
+  },
+  evolutionFrom: (_obj, { root }) => {
+    return db.pokemon.findUnique({ where: { id: root?.id } }).evolutionFrom()
+  },
+  evolutionTo: (_obj, { root }) => {
+    return db.pokemon.findUnique({ where: { id: root?.id } }).evolutionTo()
+  },
+  Evolution: (_obj, { root }) => {
+    return db.pokemon.findUnique({ where: { id: root?.id } }).Evolution()
   },
 }

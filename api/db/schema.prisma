@@ -30,6 +30,7 @@ model Type {
   textImageUrl     String
   imageUrl         String
   terastalImageUrl String
+  myEnemy          MyEnemy[]
 }
 
 model TypeRelation {
@@ -50,7 +51,8 @@ model Item {
   imageUrl    String
 
   battleDataItem BattleDataItem[]
-  MyPokemon      MyPokemon[]
+  myPokemon      MyPokemon[]
+  myEnemy        MyEnemy[]
 }
 
 model Ability {
@@ -60,7 +62,8 @@ model Ability {
   battleIndex         String
   pokemons            Pokemon[]
   battleDataAbilities BattleDataAbility[]
-  MyPokemon           MyPokemon[]
+  myPokemon           MyPokemon[]
+  myEnemy             MyEnemy[]
 }
 
 model AttackType {
@@ -107,6 +110,7 @@ model Move {
   battleDataMoves BattleDataMove[]
 
   myPokemon MyPokemon[]
+  myEnemy   MyEnemy[]
 }
 
 model Pokemon {
@@ -138,6 +142,20 @@ model Pokemon {
 
   battleData BattleData[]
   MyPokemon  MyPokemon[]
+
+  myEnemy MyEnemy[]
+
+  evolutionFrom Evolution[] @relation("EvolutionFrom")
+  evolutionTo   Evolution[] @relation("EvolutionTo")
+  evolutions    Evolution[]
+}
+
+model Evolution {
+  id        String    @id @default(dbgenerated("uuid_generate_v4()"))
+  pokemon   Pokemon   @relation(fields: [pokemonId], references: [id])
+  pokemonId String
+  from      Pokemon[] @relation("EvolutionFrom")
+  to        Pokemon[] @relation("EvolutionTo")
 }
 
 model Nature {
@@ -148,7 +166,8 @@ model Nature {
   increase         String
   decrease         String
   battleDataNature BattleDataNature[]
-  MyPokemon        MyPokemon[]
+  myPokemon        MyPokemon[]
+  myEnemy          MyEnemy[]
 }
 
 model Form {
@@ -189,7 +208,7 @@ model BattleData {
   battleDataItem     BattleDataItem[]
   battleDataTerastal BattleDataTerastal[]
 
-  Form   Form?   @relation(fields: [formId], references: [id])
+  form   Form?   @relation(fields: [formId], references: [id])
   formId String?
 }
 
@@ -253,6 +272,8 @@ model User {
   myParty       MyParty[]
   myPartyTag    MyPartyTag[]
   myPokemonTag  MyPokemonTag[]
+  myEnemy       MyEnemy[]
+  myEnemyTag    MyEnemyTag[]
 }
 
 model MyPartyTag {
@@ -310,8 +331,76 @@ model MyPokemon {
 
   myParty MyParty[]
 
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
+  user          User            @relation(fields: [userId], references: [id])
+  userId        String
+  myPokemonPros MyPokemonPros[]
+  myPokemonCons MyPokemonCons[]
+}
+
+model MyEnemyTag {
+  id       String  @id @default(dbgenerated("uuid_generate_v4()"))
+  name     String
+  favorite Boolean
+  memo     String
+
+  myEnemy MyEnemy[]
+  user    User      @relation(fields: [userId], references: [id])
+  userId  String
+}
+
+model MyEnemy {
+  id       String  @id @default(dbgenerated("uuid_generate_v4()"))
+  name     String
+  favorite Boolean
+  evH      Int
+  evA      Int
+  evB      Int
+  evC      Int
+  evD      Int
+  evS      Int
+  memo     String
+
+  tag MyEnemyTag[]
+
+  pokemon   Pokemon @relation(fields: [pokemonId], references: [id])
+  pokemonId String
+
+  item   Item?   @relation(fields: [itemId], references: [id])
+  itemId String?
+
+  ability   Ability? @relation(fields: [abilityId], references: [id])
+  abilityId String?
+
+  nature   Nature @relation(fields: [natureId], references: [id])
+  natureId String
+
+  terastal   Type?   @relation(fields: [terastalId], references: [id])
+  terastalId String?
+
+  moves Move[]
+
+  user          User            @relation(fields: [userId], references: [id])
+  userId        String
+  myPokemonPros MyPokemonPros[]
+  myPokemonCons MyPokemonCons[]
+}
+
+model MyPokemonPros {
+  id          String    @id @default(dbgenerated("uuid_generate_v4()"))
+  myPokemon   MyPokemon @relation(fields: [myPokemonId], references: [id])
+  myPokemonId String
+
+  myEnemy   MyEnemy @relation(fields: [myEnemyId], references: [id])
+  myEnemyId String
+}
+
+model MyPokemonCons {
+  id          String    @id @default(dbgenerated("uuid_generate_v4()"))
+  myPokemon   MyPokemon @relation(fields: [myPokemonId], references: [id])
+  myPokemonId String
+
+  myEnemy   MyEnemy @relation(fields: [myEnemyId], references: [id])
+  myEnemyId String
 }
 
 model MyParty {

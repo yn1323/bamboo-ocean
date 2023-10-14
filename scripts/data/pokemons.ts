@@ -46,6 +46,13 @@ export const insertPokemon = async () => {
     const baseMoves = await db.move.findMany()
     const baseForms = await db.form.findMany()
 
+    const pokemonIdMemo: {
+      name: string
+      id: string
+      evolutionFrom: string[]
+      evolutionTo: string[]
+    }[] = []
+
     await Promise.all(
       pokemons.map(async (pokemon) => {
         if (!pokemon.no) {
@@ -125,7 +132,13 @@ export const insertPokemon = async () => {
             battleIndex,
             battleFormIndex,
           }
-          await db.pokemon.create({ data })
+          const r = await db.pokemon.create({ data })
+          pokemonIdMemo.push({
+            name: pokemon.name,
+            id: r.id,
+            evolutionFrom: pokemon.evolutionFrom,
+            evolutionTo: pokemon.evolutionTo,
+          })
         } catch (e) {
           console.log(`error: [${pokemon.no}] ${pokemon.name}`)
           console.log(e)
@@ -134,6 +147,31 @@ export const insertPokemon = async () => {
     )
 
     console.log('pokemon Done.', pokemons.length)
+
+    const evolutionResult = await Promise.all(
+      pokemonIdMemo.map(async (p) => {
+        if (p.evolutionFrom.length === 0 && p.evolutionTo.length === 0) {
+          return
+        }
+        const data: Prisma.EvolutionCreateArgs['data'] = {
+          pokemonId: p.id,
+          from: {
+            connect: p.evolutionFrom.map((from) => ({
+              id: pokemonIdMemo.find((p) => p.name === from)?.id ?? '',
+            })),
+          },
+          to: {
+            connect: p.evolutionTo.map((to) => ({
+              id: pokemonIdMemo.find((p) => p.name === to)?.id ?? '',
+            })),
+          },
+        }
+
+        await db.evolution.create({ data })
+      })
+    )
+
+    console.log('Evolution Done.', evolutionResult.length)
   } catch (error) {
     console.error(error)
   }
