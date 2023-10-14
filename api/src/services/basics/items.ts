@@ -1,7 +1,7 @@
 import type {
-  ItemRelationResolvers,
-  MutationResolvers,
   QueryResolvers,
+  MutationResolvers,
+  ItemRelationResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -38,5 +38,11 @@ export const deleteItem: MutationResolvers['deleteItem'] = ({ id }) => {
 export const Item: ItemRelationResolvers = {
   battleDataItem: (_obj, { root }) => {
     return db.item.findUnique({ where: { id: root?.id } }).battleDataItem()
+  },
+  myPokemon: (_obj, { root }) => {
+    return db.item.findUnique({ where: { id: root?.id } }).myPokemon()
+  },
+  myEnemy: (_obj, { root }) => {
+    return db.item.findUnique({ where: { id: root?.id } }).myEnemy()
   },
 }

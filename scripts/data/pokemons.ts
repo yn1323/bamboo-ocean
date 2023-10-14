@@ -126,7 +126,13 @@ export const insertPokemon = async () => {
             },
             base64Image,
             imageUrl: base64Image
-              ? `${process.env.BUCKET_URL}/pokemon/sv/pokemons/${fileName}`
+              ? `${process.env.BUCKET_URL}/pokemon/sv/pokemons/128/${fileName}`
+              : '',
+            imageSmallUrl: base64Image
+              ? `${process.env.BUCKET_URL}/pokemon/sv/pokemons/64/${fileName}`
+              : '',
+            imageLargeUrl: base64Image
+              ? `${process.env.BUCKET_URL}/pokemon/sv/pokemons/256/${fileName}`
               : '',
             url: pokemon.url,
             battleIndex,

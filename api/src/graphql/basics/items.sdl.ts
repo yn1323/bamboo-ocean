@@ -6,7 +6,11 @@ export const schema = gql`
     battleIndex: String!
     base64Image: String!
     imageUrl: String!
+    imageSmallUrl: String!
+    imageLargeUrl: String!
     battleDataItem: [BattleDataItem]!
+    myPokemon: [MyPokemon]!
+    myEnemy: [MyEnemy]!
   }
 
   type Query {
@@ -20,6 +24,8 @@ export const schema = gql`
     battleIndex: String!
     base64Image: String!
     imageUrl: String!
+    imageSmallUrl: String!
+    imageLargeUrl: String!
   }
 
   input UpdateItemInput {
@@ -27,7 +33,9 @@ export const schema = gql`
     detail: String
     battleIndex: String
     base64Image: String
-    imageUrl: String!
+    imageUrl: String
+    imageSmallUrl: String
+    imageLargeUrl: String
   }
 
   type Mutation {

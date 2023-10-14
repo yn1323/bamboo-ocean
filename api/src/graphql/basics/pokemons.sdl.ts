@@ -17,15 +17,17 @@ export const schema = gql`
     moves: [Move]!
     base64Image: String!
     imageUrl: String!
+    imageSmallUrl: String!
+    imageLargeUrl: String!
     url: String!
     battleIndex: String!
     battleFormIndex: String!
     battleData: [BattleData]!
     MyPokemon: [MyPokemon]!
-    MyEnemy: [MyEnemy]!
+    myEnemy: [MyEnemy]!
     evolutionFrom: [Evolution]!
     evolutionTo: [Evolution]!
-    Evolution: [Evolution]!
+    evolutions: [Evolution]!
   }
 
   type Query {
@@ -47,6 +49,8 @@ export const schema = gql`
     statusS: Int!
     base64Image: String!
     imageUrl: String!
+    imageSmallUrl: String!
+    imageLargeUrl: String!
     url: String!
     battleIndex: String!
     battleFormIndex: String!
@@ -66,6 +70,8 @@ export const schema = gql`
     statusS: Int
     base64Image: String
     imageUrl: String
+    imageSmallUrl: String
+    imageLargeUrl: String
     url: String
     battleIndex: String
     battleFormIndex: String

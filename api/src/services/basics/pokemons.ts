@@ -56,8 +56,8 @@ export const Pokemon: PokemonRelationResolvers = {
   MyPokemon: (_obj, { root }) => {
     return db.pokemon.findUnique({ where: { id: root?.id } }).MyPokemon()
   },
-  MyEnemy: (_obj, { root }) => {
-    return db.pokemon.findUnique({ where: { id: root?.id } }).MyEnemy()
+  myEnemy: (_obj, { root }) => {
+    return db.pokemon.findUnique({ where: { id: root?.id } }).myEnemy()
   },
   evolutionFrom: (_obj, { root }) => {
     return db.pokemon.findUnique({ where: { id: root?.id } }).evolutionFrom()
@@ -65,7 +65,7 @@ export const Pokemon: PokemonRelationResolvers = {
   evolutionTo: (_obj, { root }) => {
     return db.pokemon.findUnique({ where: { id: root?.id } }).evolutionTo()
   },
-  Evolution: (_obj, { root }) => {
-    return db.pokemon.findUnique({ where: { id: root?.id } }).Evolution()
+  evolutions: (_obj, { root }) => {
+    return db.pokemon.findUnique({ where: { id: root?.id } }).evolutions()
   },
 }
