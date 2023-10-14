@@ -46,6 +46,7 @@ const AttackTypesList = ({ attackTypes }: FindAttackTypes) => {
           <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Image url</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -54,6 +55,9 @@ const AttackTypesList = ({ attackTypes }: FindAttackTypes) => {
             <tr key={attackType.id}>
               <td>{truncate(attackType.id)}</td>
               <td>{truncate(attackType.name)}</td>
+              <td style={{ background: 'gray' }}>
+                <img src={attackType.imageUrl} alt={attackType.name} />
+              </td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

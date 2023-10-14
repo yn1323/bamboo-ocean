@@ -3,7 +3,7 @@ export const schema = gql`
     id: String!
     name: String!
     form: String!
-    no: String!
+    no: Int!
     height: Float!
     weight: Float!
     types: [Type]!
@@ -17,21 +17,28 @@ export const schema = gql`
     moves: [Move]!
     base64Image: String!
     imageUrl: String!
+    imageSmallUrl: String!
+    imageLargeUrl: String!
     url: String!
     battleIndex: String!
     battleFormIndex: String!
     battleData: [BattleData]!
+    MyPokemon: [MyPokemon]!
+    myEnemy: [MyEnemy]!
+    evolutionFrom: [Evolution]!
+    evolutionTo: [Evolution]!
+    evolutions: [Evolution]!
   }
 
   type Query {
     pokemons: [Pokemon!]! @requireAuth
-    pokemon(id: String): Pokemon @requireAuth
+    pokemon(id: String!): Pokemon @requireAuth
   }
 
   input CreatePokemonInput {
     name: String!
     form: String!
-    no: String!
+    no: Int!
     height: Float!
     weight: Float!
     statusH: Int!
@@ -42,6 +49,8 @@ export const schema = gql`
     statusS: Int!
     base64Image: String!
     imageUrl: String!
+    imageSmallUrl: String!
+    imageLargeUrl: String!
     url: String!
     battleIndex: String!
     battleFormIndex: String!
@@ -50,7 +59,7 @@ export const schema = gql`
   input UpdatePokemonInput {
     name: String
     form: String
-    no: String
+    no: Int
     height: Float
     weight: Float
     statusH: Int
@@ -60,7 +69,9 @@ export const schema = gql`
     statusD: Int
     statusS: Int
     base64Image: String
-    imageUrl: String!
+    imageUrl: String
+    imageSmallUrl: String
+    imageLargeUrl: String
     url: String
     battleIndex: String
     battleFormIndex: String

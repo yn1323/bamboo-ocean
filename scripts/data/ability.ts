@@ -8,12 +8,13 @@ export const insertAbility = async () => {
     const { abilities: assetAbilities } = await getAssetNames()
     const abilities = await getAllAbilities()
 
-    const formattedItems: Prisma.AbilityCreateArgs['data'][] =
-      assetAbilities.map((ability) => ({
+    const formattedItems: Prisma.AbilityCreateArgs['data'][] = assetAbilities
+      .map((ability) => ({
         battleIndex: ability.id,
         name: ability.name,
         detail: abilities.find((i) => i.name === ability.name)?.detail ?? '',
       }))
+      .filter((a) => a.detail)
 
     console.log('Seeding ability...')
 

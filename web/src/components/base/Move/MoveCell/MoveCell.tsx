@@ -8,7 +8,6 @@ export const QUERY = gql`
   query FindMoveById($id: String!) {
     move: move(id: $id) {
       id
-      target
       detail
       name
       typeId
@@ -16,8 +15,6 @@ export const QUERY = gql`
       power
       accuracy
       pp
-      isTouchable
-      enableProtect
       battleIndex
     }
   }

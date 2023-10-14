@@ -1,7 +1,6 @@
 export const schema = gql`
   type Move {
     id: String!
-    target: String!
     detail: String!
     name: String!
     type: Type
@@ -11,11 +10,24 @@ export const schema = gql`
     power: Int!
     accuracy: Int!
     pp: Int!
-    isTouchable: Boolean!
-    enableProtect: Boolean!
     pokemons: [Pokemon]!
     battleIndex: String!
     battleDataMoves: [BattleDataMove]!
+    isContact: Boolean!
+    isQuick: Boolean!
+    isDelay: Boolean!
+    isChangeable: Boolean!
+    isMultipleAttack: Boolean!
+    isMustCritical: Boolean!
+    isPunch: Boolean!
+    isSound: Boolean!
+    isPowder: Boolean!
+    isWave: Boolean!
+    isJaw: Boolean!
+    isBullet: Boolean!
+    isDance: Boolean!
+    isWind: Boolean!
+    isCut: Boolean!
   }
 
   type Query {
@@ -24,7 +36,6 @@ export const schema = gql`
   }
 
   input CreateMoveInput {
-    target: String!
     detail: String!
     name: String!
     typeId: String
@@ -32,13 +43,25 @@ export const schema = gql`
     power: Int!
     accuracy: Int!
     pp: Int!
-    isTouchable: Boolean!
-    enableProtect: Boolean!
     battleIndex: String!
+    isContact: Boolean!
+    isQuick: Boolean!
+    isDelay: Boolean!
+    isChangeable: Boolean!
+    isMultipleAttack: Boolean!
+    isMustCritical: Boolean!
+    isPunch: Boolean!
+    isSound: Boolean!
+    isPowder: Boolean!
+    isWave: Boolean!
+    isJaw: Boolean!
+    isBullet: Boolean!
+    isDance: Boolean!
+    isWind: Boolean!
+    isCut: Boolean!
   }
 
   input UpdateMoveInput {
-    target: String
     detail: String
     name: String
     typeId: String
@@ -46,9 +69,22 @@ export const schema = gql`
     power: Int
     accuracy: Int
     pp: Int
-    isTouchable: Boolean
-    enableProtect: Boolean
     battleIndex: String
+    isContact: Boolean
+    isQuick: Boolean
+    isDelay: Boolean
+    isChangeable: Boolean
+    isMultipleAttack: Boolean
+    isMustCritical: Boolean
+    isPunch: Boolean
+    isSound: Boolean
+    isPowder: Boolean
+    isWave: Boolean
+    isJaw: Boolean
+    isBullet: Boolean
+    isDance: Boolean
+    isWind: Boolean
+    isCut: Boolean
   }
 
   type Mutation {

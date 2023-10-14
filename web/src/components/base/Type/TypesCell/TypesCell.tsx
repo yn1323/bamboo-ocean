@@ -11,6 +11,9 @@ export const QUERY = gql`
       id
       name
       battleIndex
+      imageUrl
+      textImageUrl
+      terastalImageUrl
     }
   }
 `

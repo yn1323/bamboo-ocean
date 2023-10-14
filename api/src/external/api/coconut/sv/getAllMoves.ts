@@ -1,7 +1,6 @@
 type RawMoves = {
   status: number
   result: {
-    target: string
     name: string
     text: string
     type: string
@@ -9,8 +8,21 @@ type RawMoves = {
     power: number
     accuracy: number
     pp: number
-    isTouchable: boolean
-    enableProtect: boolean
+    isContact: boolean
+    isQuick: boolean
+    isDelay: boolean
+    isChangeable: boolean
+    isMultipleAttack: boolean
+    isMustCritical: boolean
+    isPunch: boolean
+    isSound: boolean
+    isPowder: boolean
+    isWave: boolean
+    isJaw: boolean
+    isBullet: boolean
+    isDance: boolean
+    isWind: boolean
+    isCut: boolean
   }[]
 }
 
@@ -33,5 +45,10 @@ export const getAllMoves = async () => {
 
   if (!data) return []
 
-  return data.result
+  return data.result.map((d) => ({
+    ...d,
+    power: d.power ?? 0,
+    accuracy: d.accuracy ?? 0,
+    pp: d.pp ?? 0,
+  }))
 }

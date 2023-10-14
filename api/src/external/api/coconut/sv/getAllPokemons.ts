@@ -20,6 +20,8 @@ type RawPokemons = {
       s: number
     }
     height: string
+    evolutionFrom: string[]
+    evolutionTo: string[]
   }[]
 }
 

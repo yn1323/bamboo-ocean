@@ -15,6 +15,12 @@ import NotFoundPage from 'src/pages/NotFoundPage/NotFoundPage'
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={ScaffoldLayout} title="Pokemons" titleTo="pokemons" buttonLabel="New Pokemon" buttonTo="newPokemon">
+        <Route path="/pokemons/new" page={PokemonNewPokemonPage} name="newPokemon" />
+        <Route path="/pokemons/{id}/edit" page={PokemonEditPokemonPage} name="editPokemon" />
+        <Route path="/pokemons/{id}" page={PokemonPokemonPage} name="pokemon" />
+        <Route path="/pokemons" page={PokemonPokemonsPage} name="pokemons" />
+      </Set>
       <Set wrap={ScaffoldLayout} title="MyPokemonTags" titleTo="myPokemonTags" buttonLabel="New MyPokemonTag" buttonTo="newMyPokemonTag">
         <Route path="/base/my-pokemon-tags/new" page={BaseMyPokemonTagMyPokemonTagsPage} name="newMyPokemonTag" />
         <Route path="/base/my-pokemon-tags/{id}/edit" page={BaseMyPokemonTagEditMyPokemonTagPage} name="editMyPokemonTag" />

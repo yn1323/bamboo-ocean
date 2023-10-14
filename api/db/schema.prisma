@@ -26,6 +26,11 @@ model Type {
   pokemons           Pokemon[]
   battleDataTerastal BattleDataTerastal[]
   MyPokemon          MyPokemon[]
+
+  textImageUrl     String
+  imageUrl         String
+  terastalImageUrl String
+  myEnemy          MyEnemy[]
 }
 
 model TypeRelation {
@@ -42,11 +47,15 @@ model Item {
   name        String
   detail      String
   battleIndex String
-  base64Image String
-  imageUrl    String
+
+  base64Image   String
+  imageUrl      String
+  imageSmallUrl String
+  imageLargeUrl String
 
   battleDataItem BattleDataItem[]
-  MyPokemon      MyPokemon[]
+  myPokemon      MyPokemon[]
+  myEnemy        MyEnemy[]
 }
 
 model Ability {
@@ -56,7 +65,8 @@ model Ability {
   battleIndex         String
   pokemons            Pokemon[]
   battleDataAbilities BattleDataAbility[]
-  MyPokemon           MyPokemon[]
+  myPokemon           MyPokemon[]
+  myEnemy             MyEnemy[]
 }
 
 model AttackType {
@@ -64,11 +74,12 @@ model AttackType {
   // 物理 | 特殊 | 変化
   name  String
   moves Move[]
+
+  imageUrl String
 }
 
 model Move {
   id     String  @id @default(dbgenerated("uuid_generate_v4()"))
-  target String
   detail String
   name   String
   type   Type?   @relation(fields: [typeId], references: [id])
@@ -77,17 +88,32 @@ model Move {
   attackType   AttackType? @relation(fields: [attackTypeId], references: [id])
   attackTypeId String?
 
-  power         Int
-  accuracy      Int
-  pp            Int
-  isTouchable   Boolean
-  enableProtect Boolean
-  pokemons      Pokemon[]
+  power            Int
+  accuracy         Int
+  pp               Int
+  isContact        Boolean
+  isQuick          Boolean
+  isDelay          Boolean
+  isChangeable     Boolean
+  isMultipleAttack Boolean
+  isMustCritical   Boolean
+  isPunch          Boolean
+  isSound          Boolean
+  isPowder         Boolean
+  isWave           Boolean
+  isJaw            Boolean
+  isBullet         Boolean
+  isDance          Boolean
+  isWind           Boolean
+  isCut            Boolean
+
+  pokemons Pokemon[]
 
   battleIndex     String
   battleDataMoves BattleDataMove[]
 
   myPokemon MyPokemon[]
+  myEnemy   MyEnemy[]
 }
 
 model Pokemon {
@@ -110,15 +136,32 @@ model Pokemon {
   abilities Ability[]
   moves     Move[]
 
-  base64Image String
-  imageUrl    String
-  url         String
+  base64Image   String
+  imageUrl      String
+  imageSmallUrl String
+  imageLargeUrl String
+
+  url String
 
   battleIndex     String
   battleFormIndex String
 
   battleData BattleData[]
   MyPokemon  MyPokemon[]
+
+  myEnemy MyEnemy[]
+
+  evolutionFrom Evolution[] @relation("EvolutionFrom")
+  evolutionTo   Evolution[] @relation("EvolutionTo")
+  evolutions    Evolution[]
+}
+
+model Evolution {
+  id        String    @id @default(dbgenerated("uuid_generate_v4()"))
+  pokemon   Pokemon   @relation(fields: [pokemonId], references: [id])
+  pokemonId String
+  from      Pokemon[] @relation("EvolutionFrom")
+  to        Pokemon[] @relation("EvolutionTo")
 }
 
 model Nature {
@@ -129,7 +172,8 @@ model Nature {
   increase         String
   decrease         String
   battleDataNature BattleDataNature[]
-  MyPokemon        MyPokemon[]
+  myPokemon        MyPokemon[]
+  myEnemy          MyEnemy[]
 }
 
 model Form {
@@ -170,7 +214,7 @@ model BattleData {
   battleDataItem     BattleDataItem[]
   battleDataTerastal BattleDataTerastal[]
 
-  Form   Form?   @relation(fields: [formId], references: [id])
+  form   Form?   @relation(fields: [formId], references: [id])
   formId String?
 }
 
@@ -234,6 +278,8 @@ model User {
   myParty       MyParty[]
   myPartyTag    MyPartyTag[]
   myPokemonTag  MyPokemonTag[]
+  myEnemy       MyEnemy[]
+  myEnemyTag    MyEnemyTag[]
 }
 
 model MyPartyTag {
@@ -291,8 +337,76 @@ model MyPokemon {
 
   myParty MyParty[]
 
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
+  user          User            @relation(fields: [userId], references: [id])
+  userId        String
+  myPokemonPros MyPokemonPros[]
+  myPokemonCons MyPokemonCons[]
+}
+
+model MyEnemyTag {
+  id       String  @id @default(dbgenerated("uuid_generate_v4()"))
+  name     String
+  favorite Boolean
+  memo     String
+
+  myEnemy MyEnemy[]
+  user    User      @relation(fields: [userId], references: [id])
+  userId  String
+}
+
+model MyEnemy {
+  id       String  @id @default(dbgenerated("uuid_generate_v4()"))
+  name     String
+  favorite Boolean
+  evH      Int
+  evA      Int
+  evB      Int
+  evC      Int
+  evD      Int
+  evS      Int
+  memo     String
+
+  tag MyEnemyTag[]
+
+  pokemon   Pokemon @relation(fields: [pokemonId], references: [id])
+  pokemonId String
+
+  item   Item?   @relation(fields: [itemId], references: [id])
+  itemId String?
+
+  ability   Ability? @relation(fields: [abilityId], references: [id])
+  abilityId String?
+
+  nature   Nature @relation(fields: [natureId], references: [id])
+  natureId String
+
+  terastal   Type?   @relation(fields: [terastalId], references: [id])
+  terastalId String?
+
+  moves Move[]
+
+  user          User            @relation(fields: [userId], references: [id])
+  userId        String
+  myPokemonPros MyPokemonPros[]
+  myPokemonCons MyPokemonCons[]
+}
+
+model MyPokemonPros {
+  id          String    @id @default(dbgenerated("uuid_generate_v4()"))
+  myPokemon   MyPokemon @relation(fields: [myPokemonId], references: [id])
+  myPokemonId String
+
+  myEnemy   MyEnemy @relation(fields: [myEnemyId], references: [id])
+  myEnemyId String
+}
+
+model MyPokemonCons {
+  id          String    @id @default(dbgenerated("uuid_generate_v4()"))
+  myPokemon   MyPokemon @relation(fields: [myPokemonId], references: [id])
+  myPokemonId String
+
+  myEnemy   MyEnemy @relation(fields: [myEnemyId], references: [id])
+  myEnemyId String
 }
 
 model MyParty {
