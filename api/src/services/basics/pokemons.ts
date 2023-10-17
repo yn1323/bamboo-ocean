@@ -4,18 +4,12 @@ import type {
   QueryResolvers,
 } from 'types/graphql'
 
-import { cache } from 'src/lib/cache'
 import { db } from 'src/lib/db'
 
 export const pokemons: QueryResolvers['pokemons'] = () => {
-  return cache(
-    'pokemons',
-    () =>
-      db.pokemon.findMany({
-        orderBy: { no: 'asc' },
-      }),
-    { expires: 3600 }
-  )
+  return db.pokemon.findMany({
+    orderBy: { no: 'asc' },
+  })
 }
 
 export const pokemon: QueryResolvers['pokemon'] = ({ id }) => {
