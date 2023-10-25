@@ -63,6 +63,8 @@ moveAndDelete(path.resolve(baseDirectory, './services'))
 execSync('yarn rw g types')
 execSync('yarn rw lint --fix')
 
+console.log('PLEASE execute migration')
+
 /**
  * 特定のファイル以外を特定のディレクトリに移動する関数
  * @param {string} directory - ディレクトリのパス
