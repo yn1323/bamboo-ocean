@@ -1,6 +1,6 @@
 import type {
-  MutationResolvers,
   QueryResolvers,
+  MutationResolvers,
   TypeRelationRelationResolvers,
 } from 'types/graphql'
 

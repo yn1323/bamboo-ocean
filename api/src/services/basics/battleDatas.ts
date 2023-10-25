@@ -1,7 +1,7 @@
 import type {
-  BattleDataRelationResolvers,
-  MutationResolvers,
   QueryResolvers,
+  MutationResolvers,
+  BattleDataRelationResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -74,7 +74,7 @@ export const BattleData: BattleDataRelationResolvers = {
       .findUnique({ where: { id: root?.id } })
       .battleDataTerastal()
   },
-  Form: (_obj, { root }) => {
-    return db.battleData.findUnique({ where: { id: root?.id } }).Form()
+  form: (_obj, { root }) => {
+    return db.battleData.findUnique({ where: { id: root?.id } }).form()
   },
 }

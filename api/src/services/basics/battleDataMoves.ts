@@ -1,7 +1,7 @@
 import type {
-  BattleDataMoveRelationResolvers,
-  MutationResolvers,
   QueryResolvers,
+  MutationResolvers,
+  BattleDataMoveRelationResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'

@@ -1,7 +1,7 @@
 import type {
-  FormRelationResolvers,
-  MutationResolvers,
   QueryResolvers,
+  MutationResolvers,
+  FormRelationResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'

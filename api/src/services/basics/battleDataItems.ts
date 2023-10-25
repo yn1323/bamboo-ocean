@@ -39,8 +39,8 @@ export const deleteBattleDataItem: MutationResolvers['deleteBattleDataItem'] =
   }
 
 export const BattleDataItem: BattleDataItemRelationResolvers = {
-  Item: (_obj, { root }) => {
-    return db.battleDataItem.findUnique({ where: { id: root?.id } }).Item()
+  item: (_obj, { root }) => {
+    return db.battleDataItem.findUnique({ where: { id: root?.id } }).item()
   },
   battleData: (_obj, { root }) => {
     return db.battleDataItem

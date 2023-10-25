@@ -23,7 +23,7 @@ export const schema = gql`
     battleIndex: String!
     battleFormIndex: String!
     battleData: [BattleData]!
-    MyPokemon: [MyPokemon]!
+    myPokemon: [MyPokemon]!
     myEnemy: [MyEnemy]!
     evolutionFrom: [Evolution]!
     evolutionTo: [Evolution]!

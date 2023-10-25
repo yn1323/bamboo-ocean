@@ -1,7 +1,7 @@
 import type {
+  QueryResolvers,
   MutationResolvers,
   MyPartyTagRelationResolvers,
-  QueryResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'

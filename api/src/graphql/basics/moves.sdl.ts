@@ -10,9 +10,6 @@ export const schema = gql`
     power: Int!
     accuracy: Int!
     pp: Int!
-    pokemons: [Pokemon]!
-    battleIndex: String!
-    battleDataMoves: [BattleDataMove]!
     isContact: Boolean!
     isQuick: Boolean!
     isDelay: Boolean!
@@ -28,6 +25,11 @@ export const schema = gql`
     isDance: Boolean!
     isWind: Boolean!
     isCut: Boolean!
+    pokemons: [Pokemon]!
+    battleIndex: String!
+    battleDataMoves: [BattleDataMove]!
+    myPokemon: [MyPokemon]!
+    myEnemy: [MyEnemy]!
   }
 
   type Query {
@@ -43,7 +45,6 @@ export const schema = gql`
     power: Int!
     accuracy: Int!
     pp: Int!
-    battleIndex: String!
     isContact: Boolean!
     isQuick: Boolean!
     isDelay: Boolean!
@@ -59,6 +60,7 @@ export const schema = gql`
     isDance: Boolean!
     isWind: Boolean!
     isCut: Boolean!
+    battleIndex: String!
   }
 
   input UpdateMoveInput {
@@ -69,7 +71,6 @@ export const schema = gql`
     power: Int
     accuracy: Int
     pp: Int
-    battleIndex: String
     isContact: Boolean
     isQuick: Boolean
     isDelay: Boolean
@@ -85,6 +86,7 @@ export const schema = gql`
     isDance: Boolean
     isWind: Boolean
     isCut: Boolean
+    battleIndex: String
   }
 
   type Mutation {

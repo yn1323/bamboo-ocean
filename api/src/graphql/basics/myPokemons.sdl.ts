@@ -25,6 +25,8 @@ export const schema = gql`
     myParty: [MyParty]!
     user: User!
     userId: String!
+    myPokemonPros: [MyPokemonPros]!
+    myPokemonCons: [MyPokemonCons]!
   }
 
   type Query {

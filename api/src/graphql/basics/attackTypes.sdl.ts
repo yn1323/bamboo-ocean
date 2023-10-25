@@ -18,7 +18,7 @@ export const schema = gql`
 
   input UpdateAttackTypeInput {
     name: String
-    imageUrl: String!
+    imageUrl: String
   }
 
   type Mutation {

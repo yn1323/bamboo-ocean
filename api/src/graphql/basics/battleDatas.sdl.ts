@@ -12,7 +12,7 @@ export const schema = gql`
     battleDataNature: [BattleDataNature]!
     battleDataItem: [BattleDataItem]!
     battleDataTerastal: [BattleDataTerastal]!
-    Form: Form
+    form: Form
     formId: String
   }
 

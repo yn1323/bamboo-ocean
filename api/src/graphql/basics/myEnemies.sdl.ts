@@ -24,8 +24,8 @@ export const schema = gql`
     moves: [Move]!
     user: User!
     userId: String!
-    MyPokemonPros: [MyPokemonPros]!
-    MyPokemonCons: [MyPokemonCons]!
+    myPokemonPros: [MyPokemonPros]!
+    myPokemonCons: [MyPokemonCons]!
   }
 
   type Query {

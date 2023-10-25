@@ -65,10 +65,10 @@ export const MyEnemy: MyEnemyRelationResolvers = {
   user: (_obj, { root }) => {
     return db.myEnemy.findUnique({ where: { id: root?.id } }).user()
   },
-  MyPokemonPros: (_obj, { root }) => {
-    return db.myEnemy.findUnique({ where: { id: root?.id } }).MyPokemonPros()
+  myPokemonPros: (_obj, { root }) => {
+    return db.myEnemy.findUnique({ where: { id: root?.id } }).myPokemonPros()
   },
-  MyPokemonCons: (_obj, { root }) => {
-    return db.myEnemy.findUnique({ where: { id: root?.id } }).MyPokemonCons()
+  myPokemonCons: (_obj, { root }) => {
+    return db.myEnemy.findUnique({ where: { id: root?.id } }).myPokemonCons()
   },
 }

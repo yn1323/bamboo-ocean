@@ -8,9 +8,11 @@ export const schema = gql`
     moves: [Move]!
     pokemons: [Pokemon]!
     battleDataTerastal: [BattleDataTerastal]!
-    imageUrl: String!
+    MyPokemon: [MyPokemon]!
     textImageUrl: String!
+    imageUrl: String!
     terastalImageUrl: String!
+    myEnemy: [MyEnemy]!
   }
 
   type Query {
@@ -21,17 +23,17 @@ export const schema = gql`
   input CreateTypeInput {
     name: String!
     battleIndex: String!
-    imageUrl: String!
     textImageUrl: String!
+    imageUrl: String!
     terastalImageUrl: String!
   }
 
   input UpdateTypeInput {
     name: String
     battleIndex: String
-    imageUrl: String!
-    textImageUrl: String!
-    terastalImageUrl: String!
+    textImageUrl: String
+    imageUrl: String
+    terastalImageUrl: String
   }
 
   type Mutation {

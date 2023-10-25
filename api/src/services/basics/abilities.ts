@@ -1,7 +1,7 @@
 import type {
-  AbilityRelationResolvers,
-  MutationResolvers,
   QueryResolvers,
+  MutationResolvers,
+  AbilityRelationResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -48,5 +48,11 @@ export const Ability: AbilityRelationResolvers = {
     return db.ability
       .findUnique({ where: { id: root?.id } })
       .battleDataAbilities()
+  },
+  myPokemon: (_obj, { root }) => {
+    return db.ability.findUnique({ where: { id: root?.id } }).myPokemon()
+  },
+  myEnemy: (_obj, { root }) => {
+    return db.ability.findUnique({ where: { id: root?.id } }).myEnemy()
   },
 }

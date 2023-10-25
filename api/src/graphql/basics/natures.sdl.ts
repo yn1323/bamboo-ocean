@@ -6,6 +6,8 @@ export const schema = gql`
     increase: String!
     decrease: String!
     battleDataNature: [BattleDataNature]!
+    myPokemon: [MyPokemon]!
+    myEnemy: [MyEnemy]!
   }
 
   type Query {

@@ -1,7 +1,7 @@
 import type {
-  MoveRelationResolvers,
-  MutationResolvers,
   QueryResolvers,
+  MutationResolvers,
+  MoveRelationResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -47,5 +47,11 @@ export const Move: MoveRelationResolvers = {
   },
   battleDataMoves: (_obj, { root }) => {
     return db.move.findUnique({ where: { id: root?.id } }).battleDataMoves()
+  },
+  myPokemon: (_obj, { root }) => {
+    return db.move.findUnique({ where: { id: root?.id } }).myPokemon()
+  },
+  myEnemy: (_obj, { root }) => {
+    return db.move.findUnique({ where: { id: root?.id } }).myEnemy()
   },
 }

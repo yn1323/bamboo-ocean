@@ -9,6 +9,8 @@ export const schema = gql`
     myParty: [MyParty]!
     myPartyTag: [MyPartyTag]!
     myPokemonTag: [MyPokemonTag]!
+    myEnemy: [MyEnemy]!
+    myEnemyTag: [MyEnemyTag]!
   }
 
   type Query {

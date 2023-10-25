@@ -43,8 +43,8 @@ export const deleteMyEnemyTag: MutationResolvers['deleteMyEnemyTag'] = ({
 }
 
 export const MyEnemyTag: MyEnemyTagRelationResolvers = {
-  MyEnemy: (_obj, { root }) => {
-    return db.myEnemyTag.findUnique({ where: { id: root?.id } }).MyEnemy()
+  myEnemy: (_obj, { root }) => {
+    return db.myEnemyTag.findUnique({ where: { id: root?.id } }).myEnemy()
   },
   user: (_obj, { root }) => {
     return db.myEnemyTag.findUnique({ where: { id: root?.id } }).user()

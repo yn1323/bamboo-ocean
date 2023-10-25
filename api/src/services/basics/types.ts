@@ -51,4 +51,10 @@ export const Type: TypeRelationResolvers = {
   battleDataTerastal: (_obj, { root }) => {
     return db.type.findUnique({ where: { id: root?.id } }).battleDataTerastal()
   },
+  MyPokemon: (_obj, { root }) => {
+    return db.type.findUnique({ where: { id: root?.id } }).MyPokemon()
+  },
+  myEnemy: (_obj, { root }) => {
+    return db.type.findUnique({ where: { id: root?.id } }).myEnemy()
+  },
 }

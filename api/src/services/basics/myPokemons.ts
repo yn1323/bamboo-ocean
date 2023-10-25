@@ -1,7 +1,7 @@
 import type {
+  QueryResolvers,
   MutationResolvers,
   MyPokemonRelationResolvers,
-  QueryResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -69,5 +69,11 @@ export const MyPokemon: MyPokemonRelationResolvers = {
   },
   user: (_obj, { root }) => {
     return db.myPokemon.findUnique({ where: { id: root?.id } }).user()
+  },
+  myPokemonPros: (_obj, { root }) => {
+    return db.myPokemon.findUnique({ where: { id: root?.id } }).myPokemonPros()
+  },
+  myPokemonCons: (_obj, { root }) => {
+    return db.myPokemon.findUnique({ where: { id: root?.id } }).myPokemonCons()
   },
 }

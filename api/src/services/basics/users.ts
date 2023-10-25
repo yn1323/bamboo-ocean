@@ -48,4 +48,10 @@ export const User: UserRelationResolvers = {
   myPokemonTag: (_obj, { root }) => {
     return db.user.findUnique({ where: { id: root?.id } }).myPokemonTag()
   },
+  myEnemy: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).myEnemy()
+  },
+  myEnemyTag: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).myEnemyTag()
+  },
 }

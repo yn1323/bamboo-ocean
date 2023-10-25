@@ -147,7 +147,7 @@ model Pokemon {
   battleFormIndex String
 
   battleData BattleData[]
-  MyPokemon  MyPokemon[]
+  myPokemon  MyPokemon[]
 
   myEnemy MyEnemy[]
 
@@ -250,7 +250,7 @@ model BattleDataNature {
 
 model BattleDataItem {
   id     String @id @default(dbgenerated("uuid_generate_v4()"))
-  Item   Item   @relation(fields: [itemId], references: [id])
+  item   Item   @relation(fields: [itemId], references: [id])
   itemId String
 
   rate         Float

@@ -1,7 +1,7 @@
 export const schema = gql`
   type BattleDataItem {
     id: String!
-    Item: Item!
+    item: Item!
     itemId: String!
     rate: Float!
     battleData: BattleData!
