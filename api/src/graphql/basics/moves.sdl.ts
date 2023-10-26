@@ -25,11 +25,11 @@ export const schema = gql`
     isDance: Boolean!
     isWind: Boolean!
     isCut: Boolean!
-    pokemons: [Pokemon]!
+    pokemons: [Pokemon!]!
     battleIndex: String!
-    battleDataMoves: [BattleDataMove]!
-    myPokemon: [MyPokemon]!
-    myEnemy: [MyEnemy]!
+    battleDataMoves: [BattleDataMove!]!
+    myPokemon: [MyPokemon!]!
+    myEnemy: [MyEnemy!]!
   }
 
   type Query {

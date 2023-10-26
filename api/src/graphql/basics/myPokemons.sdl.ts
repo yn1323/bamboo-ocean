@@ -10,7 +10,7 @@ export const schema = gql`
     evD: Int!
     evS: Int!
     memo: String!
-    tag: [MyPokemonTag]!
+    tag: [MyPokemonTag!]!
     pokemon: Pokemon!
     pokemonId: String!
     item: Item
@@ -21,12 +21,12 @@ export const schema = gql`
     natureId: String!
     terastal: Type
     terastalId: String
-    moves: [Move]!
-    myParty: [MyParty]!
+    moves: [Move!]!
+    myParty: [MyParty!]!
     user: User!
     userId: String!
-    myPokemonPros: [MyPokemonPros]!
-    myPokemonCons: [MyPokemonCons]!
+    myPokemonPros: [MyPokemonPros!]!
+    myPokemonCons: [MyPokemonCons!]!
   }
 
   type Query {

@@ -6,15 +6,15 @@ export const schema = gql`
     no: Int!
     height: Float!
     weight: Float!
-    types: [Type]!
+    types: [Type!]!
     statusH: Int!
     statusA: Int!
     statusB: Int!
     statusC: Int!
     statusD: Int!
     statusS: Int!
-    abilities: [Ability]!
-    moves: [Move]!
+    abilities: [Ability!]!
+    moves: [Move!]!
     base64Image: String!
     imageUrl: String!
     imageSmallUrl: String!
@@ -22,12 +22,12 @@ export const schema = gql`
     url: String!
     battleIndex: String!
     battleFormIndex: String!
-    battleData: [BattleData]!
-    myPokemon: [MyPokemon]!
-    myEnemy: [MyEnemy]!
-    evolutionFrom: [Evolution]!
-    evolutionTo: [Evolution]!
-    evolutions: [Evolution]!
+    battleData: [BattleData!]!
+    myPokemon: [MyPokemon!]!
+    myEnemy: [MyEnemy!]!
+    evolutionFrom: [Evolution!]!
+    evolutionTo: [Evolution!]!
+    evolutions: [Evolution!]!
   }
 
   type Query {

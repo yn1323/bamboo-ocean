@@ -2,7 +2,7 @@ export const schema = gql`
   type AttackType {
     id: String!
     name: String!
-    moves: [Move]!
+    moves: [Move!]!
     imageUrl: String!
   }
 

@@ -5,7 +5,7 @@ export const schema = gql`
     formType: String!
     formType2: String!
     name: String!
-    battleData: [BattleData]!
+    battleData: [BattleData!]!
   }
 
   type Query {

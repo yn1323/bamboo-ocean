@@ -4,10 +4,10 @@ export const schema = gql`
     name: String!
     detail: String!
     battleIndex: String!
-    pokemons: [Pokemon]!
-    battleDataAbilities: [BattleDataAbility]!
-    myPokemon: [MyPokemon]!
-    myEnemy: [MyEnemy]!
+    pokemons: [Pokemon!]!
+    battleDataAbilities: [BattleDataAbility!]!
+    myPokemon: [MyPokemon!]!
+    myEnemy: [MyEnemy!]!
   }
 
   type Query {

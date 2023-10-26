@@ -4,7 +4,7 @@ export const schema = gql`
     name: String!
     favorite: Boolean!
     memo: String!
-    myEnemy: [MyEnemy]!
+    myEnemy: [MyEnemy!]!
     user: User!
     userId: String!
   }

@@ -5,7 +5,7 @@ export const schema = gql`
     startAt: DateTime!
     endAt: DateTime!
     name: String!
-    battleData: [BattleData]!
+    battleData: [BattleData!]!
   }
 
   type Query {

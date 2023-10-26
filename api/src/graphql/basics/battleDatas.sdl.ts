@@ -7,11 +7,11 @@ export const schema = gql`
     pokemonId: String!
     no: String!
     rank: Int!
-    battleDataMove: [BattleDataMove]!
-    battleDataAbility: [BattleDataAbility]!
-    battleDataNature: [BattleDataNature]!
-    battleDataItem: [BattleDataItem]!
-    battleDataTerastal: [BattleDataTerastal]!
+    battleDataMove: [BattleDataMove!]!
+    battleDataAbility: [BattleDataAbility!]!
+    battleDataNature: [BattleDataNature!]!
+    battleDataItem: [BattleDataItem!]!
+    battleDataTerastal: [BattleDataTerastal!]!
     form: Form
     formId: String
   }

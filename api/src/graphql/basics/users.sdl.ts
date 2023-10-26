@@ -5,12 +5,12 @@ export const schema = gql`
     createdUserAt: DateTime!
     updatedUserAt: DateTime!
     deletedUserAt: DateTime
-    myPokemon: [MyPokemon]!
-    myParty: [MyParty]!
-    myPartyTag: [MyPartyTag]!
-    myPokemonTag: [MyPokemonTag]!
-    myEnemy: [MyEnemy]!
-    myEnemyTag: [MyEnemyTag]!
+    myPokemon: [MyPokemon!]!
+    myParty: [MyParty!]!
+    myPartyTag: [MyPartyTag!]!
+    myPokemonTag: [MyPokemonTag!]!
+    myEnemy: [MyEnemy!]!
+    myEnemyTag: [MyEnemyTag!]!
   }
 
   type Query {

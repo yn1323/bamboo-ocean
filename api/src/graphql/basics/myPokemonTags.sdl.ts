@@ -4,7 +4,7 @@ export const schema = gql`
     name: String!
     favorite: Boolean!
     memo: String!
-    myPokemon: [MyPokemon]!
+    myPokemon: [MyPokemon!]!
     user: User!
     userId: String!
   }

@@ -8,9 +8,9 @@ export const schema = gql`
     imageUrl: String!
     imageSmallUrl: String!
     imageLargeUrl: String!
-    battleDataItem: [BattleDataItem]!
-    myPokemon: [MyPokemon]!
-    myEnemy: [MyEnemy]!
+    battleDataItem: [BattleDataItem!]!
+    myPokemon: [MyPokemon!]!
+    myEnemy: [MyEnemy!]!
   }
 
   type Query {

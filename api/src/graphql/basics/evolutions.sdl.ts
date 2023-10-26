@@ -3,8 +3,8 @@ export const schema = gql`
     id: String!
     pokemon: Pokemon!
     pokemonId: String!
-    from: [Pokemon]!
-    to: [Pokemon]!
+    from: [Pokemon!]!
+    to: [Pokemon!]!
   }
 
   type Query {

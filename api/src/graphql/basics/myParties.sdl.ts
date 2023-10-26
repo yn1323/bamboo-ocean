@@ -4,10 +4,10 @@ export const schema = gql`
     name: String!
     favorite: Boolean!
     memo: String!
-    tag: [MyPartyTag]!
+    tag: [MyPartyTag!]!
     user: User!
     userId: String!
-    myPokemon: [MyPokemon]!
+    myPokemon: [MyPokemon!]!
   }
 
   type Query {

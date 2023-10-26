@@ -3,16 +3,16 @@ export const schema = gql`
     id: String!
     name: String!
     battleIndex: String!
-    fromTypes: [TypeRelation]!
-    toTypes: [TypeRelation]!
-    moves: [Move]!
-    pokemons: [Pokemon]!
-    battleDataTerastal: [BattleDataTerastal]!
-    MyPokemon: [MyPokemon]!
+    fromTypes: [TypeRelation!]!
+    toTypes: [TypeRelation!]!
+    moves: [Move!]!
+    pokemons: [Pokemon!]!
+    battleDataTerastal: [BattleDataTerastal!]!
+    MyPokemon: [MyPokemon!]!
     textImageUrl: String!
     imageUrl: String!
     terastalImageUrl: String!
-    myEnemy: [MyEnemy]!
+    myEnemy: [MyEnemy!]!
   }
 
   type Query {

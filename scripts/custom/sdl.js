@@ -36,32 +36,34 @@ const Models = [
 
 const baseDirectory = path.resolve(__dirname, '../../api/src')
 
-deleteDirectoryRecursive(
-  path.resolve(baseDirectory, './graphql'),
-  [],
-  originalFiles.map((f) => `${f}.sdl.ts`)
-)
+updateFilesInDirectory(path.resolve(baseDirectory, './graphql/basics'))
 
-deleteDirectoryRecursive(
-  path.resolve(baseDirectory, './services'),
-  [],
-  originalFiles.map((f) => `${f}.ts`)
-)
+// deleteDirectoryRecursive(
+//   path.resolve(baseDirectory, './graphql'),
+//   [],
+//   originalFiles.map((f) => `${f}.sdl.ts`)
+// )
 
-Models.forEach((model) => {
-  // echo | とすることでコマンド内でEnterをおしたことにする
-  execSync(`echo | yarn rw g sdl ${model}`)
-})
+// deleteDirectoryRecursive(
+//   path.resolve(baseDirectory, './services'),
+//   [],
+//   originalFiles.map((f) => `${f}.ts`)
+// )
 
-moveFilesExcept(
-  path.resolve(baseDirectory, './graphql'),
-  originalFiles.map((f) => `${f}.sdl.ts`)
-)
+// Models.forEach((model) => {
+//   // echo | とすることでコマンド内でEnterをおしたことにする
+//   execSync(`echo | yarn rw g sdl ${model}`)
+// })
 
-moveAndDelete(path.resolve(baseDirectory, './services'))
+// moveFilesExcept(
+//   path.resolve(baseDirectory, './graphql'),
+//   originalFiles.map((f) => `${f}.sdl.ts`)
+// )
 
-execSync('yarn rw g types')
-execSync('yarn rw lint --fix')
+// moveAndDelete(path.resolve(baseDirectory, './services'))
+
+// execSync('yarn rw g types')
+// execSync('yarn rw lint --fix')
 
 console.log('PLEASE execute migration')
 
@@ -153,4 +155,43 @@ function deleteDirectoryRecursive(
       fs.rmdirSync(curPath)
     }
   }
+}
+
+/**
+ * 指定されたディレクトリ内のすべてのファイルの内容を変更します。
+ * 配列型の文字列 `[Type]` を `[Type!]` に置換します。
+ *
+ * @param {string} directoryPath - 変更を適用するファイルが含まれるディレクトリのパス。
+ */
+function updateFilesInDirectory(directoryPath) {
+  fs.readdir(directoryPath, (err, files) => {
+    if (err) {
+      console.error('Error reading the directory:', err)
+      return
+    }
+
+    files.forEach((file) => {
+      const filePath = path.join(directoryPath, file)
+
+      // ファイルの内容を読み込む
+      fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+          console.error(`Error reading the file ${file}:`, err)
+          return
+        }
+
+        // 文字列の置換を行う
+        const modifiedData = data.replace(/\[([a-zA-Z0-9_]+)\]/g, '[$1!]')
+
+        // 変更をファイルに書き戻す
+        fs.writeFile(filePath, modifiedData, 'utf8', (err) => {
+          if (err) {
+            console.error(`Error writing to the file ${file}:`, err)
+          } else {
+            console.log(`File ${file} updated successfully`)
+          }
+        })
+      })
+    })
+  })
 }
