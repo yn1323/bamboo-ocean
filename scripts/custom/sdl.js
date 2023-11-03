@@ -38,32 +38,32 @@ const baseDirectory = path.resolve(__dirname, '../../api/src')
 
 updateFilesInDirectory(path.resolve(baseDirectory, './graphql/basics'))
 
-// deleteDirectoryRecursive(
-//   path.resolve(baseDirectory, './graphql'),
-//   [],
-//   originalFiles.map((f) => `${f}.sdl.ts`)
-// )
+deleteDirectoryRecursive(
+  path.resolve(baseDirectory, './graphql'),
+  [],
+  originalFiles.map((f) => `${f}.sdl.ts`)
+)
 
-// deleteDirectoryRecursive(
-//   path.resolve(baseDirectory, './services'),
-//   [],
-//   originalFiles.map((f) => `${f}.ts`)
-// )
+deleteDirectoryRecursive(
+  path.resolve(baseDirectory, './services'),
+  [],
+  originalFiles.map((f) => `${f}.ts`)
+)
 
-// Models.forEach((model) => {
-//   // echo | とすることでコマンド内でEnterをおしたことにする
-//   execSync(`echo | yarn rw g sdl ${model}`)
-// })
+Models.forEach((model) => {
+  // echo | とすることでコマンド内でEnterをおしたことにする
+  execSync(`echo | yarn rw g sdl ${model}`)
+})
 
-// moveFilesExcept(
-//   path.resolve(baseDirectory, './graphql'),
-//   originalFiles.map((f) => `${f}.sdl.ts`)
-// )
+moveFilesExcept(
+  path.resolve(baseDirectory, './graphql'),
+  originalFiles.map((f) => `${f}.sdl.ts`)
+)
 
-// moveAndDelete(path.resolve(baseDirectory, './services'))
+moveAndDelete(path.resolve(baseDirectory, './services'))
 
-// execSync('yarn rw g types')
-// execSync('yarn rw lint --fix')
+execSync('yarn rw g types')
+execSync('yarn rw lint --fix')
 
 console.log('PLEASE execute migration')
 
