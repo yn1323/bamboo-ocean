@@ -6,6 +6,7 @@ export const schema = gql`
   type Query {
     battleDatasLatest: [BattleData!]! @requireAuth
     pokemonSearch(
+      name: String
       types: [String!]
       moves: [String!]
       abilities: [String!]

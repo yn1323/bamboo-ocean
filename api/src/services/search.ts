@@ -4,6 +4,7 @@ import type {
   QuerypokemonSearchArgs,
 } from 'types/graphql'
 
+import { hiraToKana } from 'src/helpers/string'
 import { db } from 'src/lib/db'
 
 export const battleDatasLatest: QueryResolvers['battleDatasLatest'] =
@@ -44,8 +45,16 @@ export const pokemonSearch: QueryResolvers['pokemonSearch'] = async (
   _,
   { info: { variableValues } }
 ) => {
-  const { types, moves, abilities, options }: QuerypokemonSearchArgs =
-    variableValues
+  const {
+    name,
+    types = [],
+    moves = [],
+    abilities = [],
+    options = {
+      condition: 'AND',
+      evolvedOnly: true,
+    },
+  }: QuerypokemonSearchArgs = variableValues
 
   const { condition, evolvedOnly }: PokemonSearchOption = options
 
@@ -53,7 +62,8 @@ export const pokemonSearch: QueryResolvers['pokemonSearch'] = async (
 
   const result = await db.pokemon.findMany({
     where: {
-      ...(evolvedOnly ? { evolutionFrom: { some: {} } } : {}),
+      ...(name ? { name: { contains: hiraToKana(name) } } : {}),
+      ...(evolvedOnly ? { evolutionTo: { none: {} } } : {}),
       [operator]: {
         ...(types.length === 1
           ? { types: { every: { name: { in: types } } } }
