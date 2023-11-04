@@ -41,6 +41,26 @@ export const battleDatasLatest: QueryResolvers['battleDatasLatest'] =
     return [...rank, ...outOfRange]
   }
 
+export const pokemonList: QueryResolvers['pokemonList'] = async (
+  _,
+  { info: { variableValues } }
+) => {
+  const {
+    options = {
+      evolvedOnly: true,
+    },
+  }: QuerypokemonSearchArgs = variableValues
+
+  const { evolvedOnly }: PokemonSearchOption = options
+  const result = await db.pokemon.findMany({
+    where: {
+      ...(evolvedOnly ? { evolutionTo: { none: {} } } : {}),
+    },
+    orderBy: { no: 'asc' },
+  })
+  return result
+}
+
 export const pokemonSearch: QueryResolvers['pokemonSearch'] = async (
   _,
   { info: { variableValues } }
