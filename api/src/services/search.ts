@@ -75,6 +75,9 @@ export const pokemonSearch: QueryResolvers['pokemonSearch'] = async (
       evolvedOnly: true,
     },
   }: QuerypokemonSearchArgs = variableValues
+  const fixedMoves = moves.filter((move) => move)
+  const fixedTypes = types.filter((type) => type)
+  const fixedAbilities = abilities.filter((ability) => ability)
 
   const { condition, evolvedOnly }: PokemonSearchOption = options
 
@@ -85,41 +88,41 @@ export const pokemonSearch: QueryResolvers['pokemonSearch'] = async (
       ...(name ? { name: { contains: hiraToKana(name) } } : {}),
       ...(evolvedOnly ? { evolutionTo: { none: {} } } : {}),
       [operator]: {
-        ...(types.length === 1
-          ? { types: { every: { name: { in: types } } } }
+        ...(fixedTypes.length === 1
+          ? { types: { some: { name: fixedTypes[0] } } }
           : {}),
-        ...(types.length === 2 && {
+        ...(fixedTypes.length === 2 && {
           AND: [
-            { types: { some: { name: types[0] } } },
-            { types: { some: { name: types[1] } } },
+            { types: { some: { name: fixedTypes[0] } } },
+            { types: { some: { name: fixedTypes[1] } } },
           ],
         }),
-        ...(moves.length === 1
-          ? { moves: { some: { name: { in: moves } } } }
+        ...(fixedMoves.length === 1
+          ? { moves: { some: { name: fixedMoves[0] } } }
           : {}),
-        ...(moves.length === 2 && {
+        ...(fixedMoves.length === 2 && {
           AND: [
-            { moves: { some: { name: moves[0] } } },
-            { moves: { some: { name: moves[1] } } },
+            { moves: { some: { name: fixedMoves[0] } } },
+            { moves: { some: { name: fixedMoves[1] } } },
           ],
         }),
-        ...(moves.length === 3 && {
+        ...(fixedMoves.length === 3 && {
           AND: [
-            { moves: { some: { name: moves[0] } } },
-            { moves: { some: { name: moves[1] } } },
-            { moves: { some: { name: moves[2] } } },
+            { moves: { some: { name: fixedMoves[0] } } },
+            { moves: { some: { name: fixedMoves[1] } } },
+            { moves: { some: { name: fixedMoves[2] } } },
           ],
         }),
-        ...(moves.length === 4 && {
+        ...(fixedMoves.length === 4 && {
           AND: [
-            { moves: { some: { name: moves[0] } } },
-            { moves: { some: { name: moves[1] } } },
-            { moves: { some: { name: moves[2] } } },
-            { moves: { some: { name: moves[3] } } },
+            { moves: { some: { name: fixedMoves[0] } } },
+            { moves: { some: { name: fixedMoves[1] } } },
+            { moves: { some: { name: fixedMoves[2] } } },
+            { moves: { some: { name: fixedMoves[3] } } },
           ],
         }),
-        ...(abilities.length
-          ? { abilities: { some: { name: { in: abilities } } } }
+        ...(fixedAbilities.length
+          ? { abilities: { some: { name: fixedAbilities[0] } } }
           : {}),
       },
     },
