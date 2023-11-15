@@ -3,8 +3,13 @@ export const schema = gql`
     condition: String # AND | OR
     evolvedOnly: Boolean
   }
+
+  type LatestBattleDataIndex {
+    capturedAt: DateTime!
+    battleDatas: [BattleData!]!
+  }
   type Query {
-    battleDatasLatest: [BattleData!]! @requireAuth
+    battleDatasLatest: LatestBattleDataIndex @requireAuth
     pokemonList(options: PokemonSearchOption): [Pokemon!]! @requireAuth
     pokemonSearch(
       name: String

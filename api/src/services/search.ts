@@ -15,6 +15,7 @@ export const battleDatasLatest: QueryResolvers['battleDatasLatest'] =
     })
 
     const latestBattleIndexId = latest[0].id
+    const capturedAt = latest[0].capturedAt
 
     const result = [
       async () =>
@@ -38,7 +39,10 @@ export const battleDatasLatest: QueryResolvers['battleDatasLatest'] =
 
     const [rank, outOfRange] = await Promise.all(result.map((fn) => fn()))
 
-    return [...rank, ...outOfRange]
+    return {
+      capturedAt,
+      battleDatas: [...rank, ...outOfRange],
+    }
   }
 
 export const pokemonList: QueryResolvers['pokemonList'] = async (
