@@ -1,6 +1,7 @@
 export const schema = gql`
   type MyDamageCalc {
     id: String!
+    clientId: String!
     myDamageCalcIndex: MyDamageCalcIndex
     myDamageCalcIndexId: String
     pokemon: Pokemon!
@@ -41,6 +42,7 @@ export const schema = gql`
   }
 
   input CreateMyDamageCalcInput {
+    clientId: String!
     myDamageCalcIndexId: String
     pokemonId: String!
     itemId: String
@@ -69,6 +71,7 @@ export const schema = gql`
   }
 
   input UpdateMyDamageCalcInput {
+    clientId: String
     myDamageCalcIndexId: String
     pokemonId: String
     itemId: String

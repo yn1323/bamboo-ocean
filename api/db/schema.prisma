@@ -450,8 +450,6 @@ model MyDamageCalcIndex {
   user   User   @relation(fields: [userId], references: [id])
   userId String
 
-  clientId String
-
   createdAt DateTime
   updatedAt DateTime
 
@@ -464,6 +462,8 @@ model MyDamageCalcIndex {
 
 model MyDamageCalc {
   id String @id @default(dbgenerated("uuid_generate_v4()"))
+
+  clientId String
 
   myDamageCalcIndex   MyDamageCalcIndex? @relation(fields: [myDamageCalcIndexId], references: [id])
   myDamageCalcIndexId String?

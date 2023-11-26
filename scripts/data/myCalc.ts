@@ -43,6 +43,7 @@ export const insertMyCalc = async () => {
       rankS: 0,
       side: 'attack',
       order: 0,
+      clientId: 'clientId',
 
       ability: { connect: { id: baseAbility?.id } },
       item: { connect: { id: baseItem?.id } },
@@ -69,7 +70,6 @@ export const insertMyCalc = async () => {
       myDamageCalc: {
         connect: [{ id: calc.id }],
       },
-      clientId: 'clientId',
     }
 
     await db.myDamageCalcIndex.create({ data: myDamageCalcIndex })

@@ -3,7 +3,6 @@ export const schema = gql`
     id: String!
     user: User!
     userId: String!
-    clientId: String!
     createdAt: DateTime!
     updatedAt: DateTime!
     title: String!
@@ -19,7 +18,6 @@ export const schema = gql`
 
   input CreateMyDamageCalcIndexInput {
     userId: String!
-    clientId: String!
     title: String!
     memo: String!
     favorite: Boolean!
@@ -27,7 +25,6 @@ export const schema = gql`
 
   input UpdateMyDamageCalcIndexInput {
     userId: String
-    clientId: String
     title: String
     memo: String
     favorite: Boolean
