@@ -11,6 +11,7 @@ export const schema = gql`
     myPokemonTag: [MyPokemonTag!]!
     myEnemy: [MyEnemy!]!
     myEnemyTag: [MyEnemyTag!]!
+    MyDamageCalcIndex: [MyDamageCalcIndex!]!
   }
 
   type Query {

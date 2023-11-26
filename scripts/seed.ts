@@ -3,6 +3,7 @@ import { insertAttackType } from './data/attackType'
 import { insertForm } from './data/form'
 import { insertItem } from './data/item'
 import { insertMove } from './data/moves'
+import { insertMyCalc } from './data/myCalc'
 import { insertMyData } from './data/myData'
 import { insertMyTags } from './data/myTags'
 import { insertNature } from './data/nature'
@@ -32,4 +33,5 @@ export default async () => {
   await insertUser()
   await insertMyTags()
   await insertMyData()
+  await insertMyCalc()
 }

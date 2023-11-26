@@ -9,6 +9,12 @@ export const schema = gql`
     evC: Int!
     evD: Int!
     evS: Int!
+    ivH: Int!
+    ivA: Int!
+    ivB: Int!
+    ivC: Int!
+    ivD: Int!
+    ivS: Int!
     memo: String!
     tag: [MyEnemyTag!]!
     pokemon: Pokemon!
@@ -42,6 +48,12 @@ export const schema = gql`
     evC: Int!
     evD: Int!
     evS: Int!
+    ivH: Int!
+    ivA: Int!
+    ivB: Int!
+    ivC: Int!
+    ivD: Int!
+    ivS: Int!
     memo: String!
     pokemonId: String!
     itemId: String
@@ -60,6 +72,12 @@ export const schema = gql`
     evC: Int
     evD: Int
     evS: Int
+    ivH: Int
+    ivA: Int
+    ivB: Int
+    ivC: Int
+    ivD: Int
+    ivS: Int
     memo: String
     pokemonId: String
     itemId: String

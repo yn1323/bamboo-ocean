@@ -13,6 +13,7 @@ export const schema = gql`
     imageUrl: String!
     terastalImageUrl: String!
     myEnemy: [MyEnemy!]!
+    myDamageCalc: [MyDamageCalc!]!
   }
 
   type Query {

@@ -54,4 +54,7 @@ export const User: UserRelationResolvers = {
   myEnemyTag: (_obj, { root }) => {
     return db.user.findUnique({ where: { id: root?.id } }).myEnemyTag()
   },
+  MyDamageCalcIndex: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).MyDamageCalcIndex()
+  },
 }

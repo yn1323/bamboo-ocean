@@ -54,4 +54,7 @@ export const Move: MoveRelationResolvers = {
   myEnemy: (_obj, { root }) => {
     return db.move.findUnique({ where: { id: root?.id } }).myEnemy()
   },
+  MyDamageCalc: (_obj, { root }) => {
+    return db.move.findUnique({ where: { id: root?.id } }).MyDamageCalc()
+  },
 }

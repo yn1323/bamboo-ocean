@@ -30,6 +30,8 @@ export const schema = gql`
     battleDataMoves: [BattleDataMove!]!
     myPokemon: [MyPokemon!]!
     myEnemy: [MyEnemy!]!
+    MyDamageCalc: MyDamageCalc
+    myDamageCalcId: String
   }
 
   type Query {
@@ -61,6 +63,7 @@ export const schema = gql`
     isWind: Boolean!
     isCut: Boolean!
     battleIndex: String!
+    myDamageCalcId: String
   }
 
   input UpdateMoveInput {
@@ -87,6 +90,7 @@ export const schema = gql`
     isWind: Boolean
     isCut: Boolean
     battleIndex: String
+    myDamageCalcId: String
   }
 
   type Mutation {

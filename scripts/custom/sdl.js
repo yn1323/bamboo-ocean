@@ -32,6 +32,8 @@ const Models = [
   'MyPokemonPros',
   'MyPokemonCons',
   'MyParty',
+  'MyDamageCalcIndex',
+  'MyDamageCalc',
 ]
 
 const baseDirectory = path.resolve(__dirname, '../../api/src')

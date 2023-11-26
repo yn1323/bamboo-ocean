@@ -1,7 +1,7 @@
 import type {
+  QueryResolvers,
   MutationResolvers,
   NatureRelationResolvers,
-  QueryResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -47,5 +47,8 @@ export const Nature: NatureRelationResolvers = {
   },
   myEnemy: (_obj, { root }) => {
     return db.nature.findUnique({ where: { id: root?.id } }).myEnemy()
+  },
+  myDamageCalc: (_obj, { root }) => {
+    return db.nature.findUnique({ where: { id: root?.id } }).myDamageCalc()
   },
 }

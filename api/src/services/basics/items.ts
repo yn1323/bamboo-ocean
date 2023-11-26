@@ -45,4 +45,7 @@ export const Item: ItemRelationResolvers = {
   myEnemy: (_obj, { root }) => {
     return db.item.findUnique({ where: { id: root?.id } }).myEnemy()
   },
+  myDamageCalc: (_obj, { root }) => {
+    return db.item.findUnique({ where: { id: root?.id } }).myDamageCalc()
+  },
 }

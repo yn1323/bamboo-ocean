@@ -8,6 +8,7 @@ export const schema = gql`
     battleDataNature: [BattleDataNature!]!
     myPokemon: [MyPokemon!]!
     myEnemy: [MyEnemy!]!
+    myDamageCalc: [MyDamageCalc!]!
   }
 
   type Query {

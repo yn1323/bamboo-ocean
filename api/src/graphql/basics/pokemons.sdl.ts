@@ -28,6 +28,7 @@ export const schema = gql`
     evolutionFrom: [Evolution!]!
     evolutionTo: [Evolution!]!
     evolutions: [Evolution!]!
+    myDamageCalc: [MyDamageCalc!]!
   }
 
   type Query {

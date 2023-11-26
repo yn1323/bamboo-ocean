@@ -55,4 +55,7 @@ export const Ability: AbilityRelationResolvers = {
   myEnemy: (_obj, { root }) => {
     return db.ability.findUnique({ where: { id: root?.id } }).myEnemy()
   },
+  myDamageCalc: (_obj, { root }) => {
+    return db.ability.findUnique({ where: { id: root?.id } }).myDamageCalc()
+  },
 }

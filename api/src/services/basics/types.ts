@@ -1,6 +1,6 @@
 import type {
-  MutationResolvers,
   QueryResolvers,
+  MutationResolvers,
   TypeRelationResolvers,
 } from 'types/graphql'
 
@@ -56,5 +56,8 @@ export const Type: TypeRelationResolvers = {
   },
   myEnemy: (_obj, { root }) => {
     return db.type.findUnique({ where: { id: root?.id } }).myEnemy()
+  },
+  myDamageCalc: (_obj, { root }) => {
+    return db.type.findUnique({ where: { id: root?.id } }).myDamageCalc()
   },
 }

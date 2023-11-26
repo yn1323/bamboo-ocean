@@ -68,4 +68,7 @@ export const Pokemon: PokemonRelationResolvers = {
   evolutions: (_obj, { root }) => {
     return db.pokemon.findUnique({ where: { id: root?.id } }).evolutions()
   },
+  myDamageCalc: (_obj, { root }) => {
+    return db.pokemon.findUnique({ where: { id: root?.id } }).myDamageCalc()
+  },
 }
