@@ -43,7 +43,7 @@ export const insertMyCalc = async () => {
       rankS: 0,
       side: 'attack',
       order: 0,
-      clientId: 'clientId',
+      client: `${Math.random()}`,
 
       ability: { connect: { id: baseAbility?.id } },
       item: { connect: { id: baseItem?.id } },
