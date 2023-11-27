@@ -30,7 +30,7 @@
   "devDependencies": {
     "@redwoodjs/vite": "6.3.2",
     "@storybook/builder-vite": "^7.4.5",
-    "@storybook/test-runner": "^0.13.0",
+    "@storybook/test-runner": "^0.16.0",
     "@storybook/testing-library": "^0.2.1",
     "@storybook/testing-react": "^2.0.1"
   }
