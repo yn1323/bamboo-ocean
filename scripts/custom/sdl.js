@@ -5,6 +5,7 @@ const path = require('path')
 
 const originalFiles = ['build', 'search']
 // const baseSdlDirectoryName = ['basics']
+const generatedDirectoryName = '__generated__'
 const Models = [
   'Type',
   'TypeRelation',
@@ -38,18 +39,16 @@ const Models = [
 
 const baseDirectory = path.resolve(__dirname, '../../api/src')
 
-updateFilesInDirectory(path.resolve(baseDirectory, './graphql/basics'))
+const excludeDirectories = getOriginalSdlDirectoriesAndFiles()
 
 deleteDirectoryRecursive(
   path.resolve(baseDirectory, './graphql'),
-  [],
-  originalFiles.map((f) => `${f}.sdl.ts`)
+  excludeDirectories
 )
 
 deleteDirectoryRecursive(
   path.resolve(baseDirectory, './services'),
-  [],
-  originalFiles.map((f) => `${f}.ts`)
+  excludeDirectories
 )
 
 Models.forEach((model) => {
@@ -64,10 +63,25 @@ moveFilesExcept(
 
 moveAndDelete(path.resolve(baseDirectory, './services'))
 
+updateFilesInDirectory(
+  path.resolve(baseDirectory, `./graphql/${generatedDirectoryName}`)
+)
+
 execSync('yarn rw g types')
 execSync('yarn rw lint --fix')
 
 console.log('PLEASE execute migration')
+
+function getOriginalSdlDirectoriesAndFiles() {
+  const sdlDirectories = fs
+    .readdirSync(path.resolve(baseDirectory, './graphql'))
+    .filter((sub) =>
+      fs.statSync(path.join(baseDirectory, './graphql', sub)).isDirectory()
+    )
+    .filter((sub) => !sub.startsWith(generatedDirectoryName))
+
+  return sdlDirectories
+}
 
 /**
  * 特定のファイル以外を特定のディレクトリに移動する関数
@@ -75,7 +89,7 @@ console.log('PLEASE execute migration')
  * @param {string[]} excludeFileNames - 削除から除外するファイルの名前の配列
  */
 function moveFilesExcept(directory, excludeFileNames = []) {
-  const basicsDir = path.join(directory, 'basics')
+  const basicsDir = path.join(directory, generatedDirectoryName)
   if (!fs.existsSync(basicsDir)) {
     fs.mkdirSync(basicsDir)
   }
@@ -96,7 +110,7 @@ function moveFilesExcept(directory, excludeFileNames = []) {
  * @param {string} directory - ディレクトリのパス
  */
 function moveAndDelete(directory) {
-  const basicsDir = path.join(directory, 'basics')
+  const basicsDir = path.join(directory, generatedDirectoryName)
   if (!fs.existsSync(basicsDir)) {
     fs.mkdirSync(basicsDir)
   }
