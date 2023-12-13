@@ -295,6 +295,7 @@ model MyPartyTag {
   name     String
   favorite Boolean
   memo     String
+  teamId   String
 
   myParty MyParty[]
   user    User      @relation(fields: [userId], references: [id])

@@ -61,7 +61,7 @@ moveFilesExcept(
   originalFiles.map((f) => `${f}.sdl.ts`)
 )
 
-moveAndDelete(path.resolve(baseDirectory, './services'))
+moveAndDelete(path.resolve(baseDirectory, './services'), excludeDirectories)
 
 updateFilesInDirectory(
   path.resolve(baseDirectory, `./graphql/${generatedDirectoryName}`)
@@ -108,8 +108,9 @@ function moveFilesExcept(directory, excludeFileNames = []) {
 /**
  * 特定のファイル以外を特定のディレクトリに移動する関数
  * @param {string} directory - ディレクトリのパス
+ * @param {string[]} skipDirectories - 削除から除外するフォルダ名
  */
-function moveAndDelete(directory) {
+function moveAndDelete(directory, skipDirectories) {
   const basicsDir = path.join(directory, generatedDirectoryName)
   if (!fs.existsSync(basicsDir)) {
     fs.mkdirSync(basicsDir)
@@ -118,6 +119,7 @@ function moveAndDelete(directory) {
   const subDirs = fs
     .readdirSync(directory)
     .filter((sub) => fs.statSync(path.join(directory, sub)).isDirectory())
+    .filter((sub) => !skipDirectories.includes(sub))
   for (const subDir of subDirs) {
     const fullSubDir = path.join(directory, subDir)
     const files = fs.readdirSync(fullSubDir)
