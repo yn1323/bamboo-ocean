@@ -4,6 +4,7 @@ type RawItems = {
     name: string
     detail: string
     type: string
+    order: number
   }[]
 }
 

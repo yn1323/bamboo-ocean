@@ -21,6 +21,7 @@ export const insertItem = async () => {
           name: item.name,
           detail: itemInfo?.detail ?? '',
           type: itemInfo?.type ?? '',
+          order: itemInfo?.order ?? '',
           base64Image,
           imageUrl: base64Image
             ? `${process.env.BUCKET_URL}/pokemon/sv/items/128/${fileName}`
@@ -39,7 +40,7 @@ export const insertItem = async () => {
 
     // 画像のないアイテムは除外
     const result = await db.item.createMany({
-      data: formattedItems.filter((item) => item.base64Image && item.detail),
+      data: formattedItems.filter((item) => item.type),
     })
 
     console.log('item done.', result)
