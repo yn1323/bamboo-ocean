@@ -3,6 +3,7 @@ type RawItems = {
   result: {
     name: string
     detail: string
+    type: string
   }[]
 }
 

@@ -4,6 +4,7 @@ export const schema = gql`
     name: String!
     detail: String!
     battleIndex: String!
+    type: String!
     base64Image: String!
     imageUrl: String!
     imageSmallUrl: String!
@@ -23,6 +24,7 @@ export const schema = gql`
     name: String!
     detail: String!
     battleIndex: String!
+    type: String!
     base64Image: String!
     imageUrl: String!
     imageSmallUrl: String!
@@ -33,6 +35,7 @@ export const schema = gql`
     name: String
     detail: String
     battleIndex: String
+    type: String
     base64Image: String
     imageUrl: String
     imageSmallUrl: String
