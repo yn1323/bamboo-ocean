@@ -55,12 +55,18 @@
       "label": "型を手動で作成",
       "detail": "yarn rw g types"
     },
-    // {
-    //   "type": "shell",
-    //   "command": "yarn playwright codegen localhost:8910",
-    //   "label": "Playwright codegen",
-    //   "detail": "Playwright codegen"
-    // },
+    {
+      "type": "shell",
+      "command": "yarn sdl",
+      "label": "全SDLを生成するスクリプト",
+      "detail": "全SDLを生成するスクリプト"
+    },
+    {
+      "type": "shell",
+      "command": "cd supabase && supabase stop && supabase start",
+      "label": "Supabase",
+      "detail": "Supabase起動"
+    },
   ],
   "inputs": [
     {

@@ -161,12 +161,13 @@ export const insertPokemon = async () => {
         }
         const data: Prisma.EvolutionCreateArgs['data'] = {
           pokemonId: p.id,
-          from: {
+          // なぜか逆
+          to: {
             connect: p.evolutionFrom.map((from) => ({
               id: pokemonIdMemo.find((p) => p.name === from)?.id ?? '',
             })),
           },
-          to: {
+          from: {
             connect: p.evolutionTo.map((to) => ({
               id: pokemonIdMemo.find((p) => p.name === to)?.id ?? '',
             })),

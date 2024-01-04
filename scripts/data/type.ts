@@ -128,6 +128,13 @@ const types: Prisma.TypeCreateArgs['data'][] = [
     textImageUrl: `${process.env.BUCKET_URL}/pokemon/sv/types/fairy_text.png`,
     terastalImageUrl: `${process.env.BUCKET_URL}/pokemon/sv/types/fairy_tera.png`,
   },
+  {
+    name: 'ステラ',
+    battleIndex: '99',
+    imageUrl: `${process.env.BUCKET_URL}/pokemon/sv/types/stellar.png`,
+    textImageUrl: `${process.env.BUCKET_URL}/pokemon/sv/types/stellar.png`,
+    terastalImageUrl: `${process.env.BUCKET_URL}/pokemon/sv/types/stellar.png`,
+  },
 ]
 
 export const insertType = async () => {

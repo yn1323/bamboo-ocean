@@ -11,7 +11,8 @@
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui",
     "e2e:debug": "playwright test --debug",
-    "e2e:codegen": "playwright codegen"
+    "e2e:codegen": "playwright codegen",
+    "sdl": "node ./scripts/custom/sdl.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.38.1",
