@@ -34,6 +34,17 @@ export const schema = gql`
     rankS: Int!
     side: String!
     order: Int!
+    isBurn: Boolean!
+    isCharge: Boolean!
+    isCritical: Boolean!
+    weather: String!
+    field: String!
+    hasReflect: Boolean!
+    hasLightScreen: Boolean!
+    extraDamageStealthRock: Boolean!
+    extraDamageDisguise: Boolean!
+    extraDamageRockyHelmet: Boolean!
+    extraDamageLifeOrb: Boolean!
   }
 
   type Query {
@@ -68,6 +79,17 @@ export const schema = gql`
     rankS: Int!
     side: String!
     order: Int!
+    isBurn: Boolean!
+    isCharge: Boolean!
+    isCritical: Boolean!
+    weather: String!
+    field: String!
+    hasReflect: Boolean!
+    hasLightScreen: Boolean!
+    extraDamageStealthRock: Boolean!
+    extraDamageDisguise: Boolean!
+    extraDamageRockyHelmet: Boolean!
+    extraDamageLifeOrb: Boolean!
   }
 
   input UpdateMyDamageCalcInput {
@@ -97,6 +119,17 @@ export const schema = gql`
     rankS: Int
     side: String
     order: Int
+    isBurn: Boolean
+    isCharge: Boolean
+    isCritical: Boolean
+    weather: String
+    field: String
+    hasReflect: Boolean
+    hasLightScreen: Boolean
+    extraDamageStealthRock: Boolean
+    extraDamageDisguise: Boolean
+    extraDamageRockyHelmet: Boolean
+    extraDamageLifeOrb: Boolean
   }
 
   type Mutation {

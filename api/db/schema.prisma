@@ -509,6 +509,22 @@ model MyDamageCalc {
   rankD Int
   rankS Int
 
-  side  String
+  side  String // attack | defense
   order Int
+
+  // attack
+  isBurn     Boolean
+  isCharge   Boolean
+  isCritical Boolean
+
+  // defense
+  weather        String
+  field          String
+  hasReflect     Boolean
+  hasLightScreen Boolean
+
+  extraDamageStealthRock Boolean
+  extraDamageDisguise    Boolean
+  extraDamageRockyHelmet Boolean
+  extraDamageLifeOrb     Boolean
 }

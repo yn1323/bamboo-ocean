@@ -43,6 +43,19 @@ export const insertMyCalc = async () => {
       rankS: 0,
       side: 'attack',
       order: 0,
+
+      isBurn: false,
+      isCharge: false,
+      isCritical: false,
+      weather: '',
+      field: '',
+      hasReflect: false,
+      hasLightScreen: false,
+      extraDamageStealthRock: false,
+      extraDamageDisguise: false,
+      extraDamageRockyHelmet: false,
+      extraDamageLifeOrb: false,
+
       client: `${Math.random()}`,
 
       ability: { connect: { id: baseAbility?.id } },
