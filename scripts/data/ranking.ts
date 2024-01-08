@@ -115,8 +115,6 @@ export const insertRanking = async () => {
             rank: rank < 0 ? rank : rank + 1,
           }
 
-          if (pokemon.no !== '233') return
-
           const { id: battleDataId } = await db.battleData.create({ data })
 
           await Promise.all(
