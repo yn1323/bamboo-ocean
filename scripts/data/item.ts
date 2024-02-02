@@ -14,10 +14,14 @@ export const insertItem = async () => {
       assetItems.map(async (item) => {
         const fileName = `item${item.id.padStart(4, '0')}.png`
         const base64Image = await readImage(`../../assets/items/${fileName}`)
+        const itemInfo = items.find((i) => i.name === item.name)
+
         return {
           battleIndex: item.id,
           name: item.name,
-          detail: items.find((i) => i.name === item.name)?.detail ?? '',
+          detail: itemInfo?.detail ?? '',
+          type: itemInfo?.type ?? '',
+          order: itemInfo?.order ?? '',
           base64Image,
           imageUrl: base64Image
             ? `${process.env.BUCKET_URL}/pokemon/sv/items/128/${fileName}`
@@ -34,7 +38,10 @@ export const insertItem = async () => {
 
     console.log('Seeding item...')
 
-    const result = await db.item.createMany({ data: formattedItems })
+    // 画像のないアイテムは除外
+    const result = await db.item.createMany({
+      data: formattedItems.filter((item) => item.type),
+    })
 
     console.log('item done.', result)
   } catch (error) {

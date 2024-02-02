@@ -154,11 +154,11 @@ export const insertRanking = async () => {
                     battleDataId,
                   })),
                 }),
-            ].map((fn) => fn())
+            ].map((fn) => fn().catch((e) => console.log('dataError', e)))
           )
         } catch (e) {
           console.log(e)
-          console.log('Error', pokemon)
+          console.log('Error: pokemon', pokemon)
         }
       })
     )

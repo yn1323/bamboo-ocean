@@ -13,6 +13,7 @@ export const insertMyTags = async () => {
         favorite: false,
         memo: '',
         name: '仮想敵',
+        teamId: '1222',
       },
       {
         userId: user.id,
@@ -20,6 +21,7 @@ export const insertMyTags = async () => {
         favorite: false,
         memo: 'いつもの！',
         name: 'いつもの',
+        teamId: '1',
       },
     ]
 

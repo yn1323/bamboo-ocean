@@ -35,6 +35,12 @@ const convertToOfficialFormName = ({
   )
 }
 
+const convertToOfficialName = (name: string) => {
+  if (name === 'ポリゴン2') return 'ポリゴン２'
+  if (name === 'ポリゴンZ') return 'ポリゴンＺ'
+  return name
+}
+
 export const insertPokemon = async () => {
   console.log('Seeding pokemon...')
   try {
@@ -83,7 +89,9 @@ export const insertPokemon = async () => {
             .filter((e) => e !== '')
 
           const battleIndex =
-            assetPokemons.find((p) => p.name === pokemon.name)?.id ?? ''
+            assetPokemons.find(
+              (p) => p.name === convertToOfficialName(pokemon.name)
+            )?.id ?? ''
 
           const battleFormData = baseForms
             .filter((form) => form.no === pokemon.no)
@@ -104,7 +112,7 @@ export const insertPokemon = async () => {
           )
 
           const data: Prisma.PokemonCreateArgs['data'] = {
-            name: pokemon.name,
+            name: convertToOfficialName(pokemon.name),
             form: fixedForm,
             no: parseInt(pokemon.no),
             height: parseFloat(pokemon.height.match(/\d+(\.\d+)?/)?.[0] ?? '0'),
@@ -142,8 +150,15 @@ export const insertPokemon = async () => {
           pokemonIdMemo.push({
             name: pokemon.name,
             id: r.id,
-            evolutionFrom: pokemon.evolutionFrom,
-            evolutionTo: pokemon.evolutionTo,
+            // 難しい進化は複雑になる可能性があるため重複を削除
+            evolutionFrom: Array.from(
+              new Set(
+                pokemon.evolutionFrom.map((e) => convertToOfficialName(e))
+              )
+            ),
+            evolutionTo: Array.from(
+              new Set(pokemon.evolutionTo.map((e) => convertToOfficialName(e)))
+            ),
           })
         } catch (e) {
           console.log(`error: [${pokemon.no}] ${pokemon.name}`)
@@ -161,12 +176,13 @@ export const insertPokemon = async () => {
         }
         const data: Prisma.EvolutionCreateArgs['data'] = {
           pokemonId: p.id,
-          from: {
+          // なぜか逆
+          to: {
             connect: p.evolutionFrom.map((from) => ({
               id: pokemonIdMemo.find((p) => p.name === from)?.id ?? '',
             })),
           },
-          to: {
+          from: {
             connect: p.evolutionTo.map((to) => ({
               id: pokemonIdMemo.find((p) => p.name === to)?.id ?? '',
             })),

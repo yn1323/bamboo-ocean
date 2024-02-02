@@ -3,7 +3,7 @@ import console from 'console'
 import type { Prisma } from '@prisma/client'
 import { db } from 'api/src/lib/db'
 
-export const insertMyData = async () => {
+export const insertMyCalc = async () => {
   try {
     const user = await db.user.findFirst()
 
@@ -15,16 +15,15 @@ export const insertMyData = async () => {
     const baseItem = await db.item.findFirst()
     const baseNature = await db.nature.findFirst()
     const baseMoves = await db.move.findMany({
-      take: 4,
+      take: 10,
     })
     const baseType = await db.type.findFirst()
 
     if (!user || !basePartyTags || !basePokemonTags) return
 
-    console.log('Seeding my data...')
+    console.log('Seeding my calculation...')
 
-    const myPokemon: Prisma.MyPokemonCreateInput = {
-      name: '',
+    const myCalc: Prisma.MyDamageCalcCreateInput = {
       evH: 0,
       evA: 4,
       evB: 0,
@@ -37,40 +36,58 @@ export const insertMyData = async () => {
       ivC: 31,
       ivD: 31,
       ivS: 31,
-      favorite: false,
-      memo: '',
+      rankA: 0,
+      rankB: 0,
+      rankC: 0,
+      rankD: 0,
+      rankS: 0,
+      side: 'attack',
+      order: 0,
+
+      isBurn: false,
+      isCharge: false,
+      isCritical: false,
+      weather: '',
+      field: '',
+      hasReflect: false,
+      hasLightScreen: false,
+      extraDamageStealthRock: false,
+      extraDamageDisguise: false,
+      extraDamageRockyHelmet: false,
+      extraDamageLifeOrb: false,
+
+      client: `${Math.random()}`,
+
       ability: { connect: { id: baseAbility?.id } },
       item: { connect: { id: baseItem?.id } },
       nature: { connect: { id: baseNature?.id } },
       moves: {
-        connect: baseMoves?.map((move) => ({ id: move.id })),
+        connect: baseMoves
+          ?.filter((move) => move.power > 0)
+          .filter((_, i) => i < 4)
+          .map((move) => ({ id: move.id })),
       },
       pokemon: { connect: { id: basePokemon?.id } },
-      tag: {
-        connect: [{ id: basePokemonTags?.id }],
-      },
       terastal: { connect: { id: baseType?.id } },
-      user: { connect: { id: user?.id } },
     }
 
-    const poke = await db.myPokemon.create({ data: myPokemon })
+    const calc = await db.myDamageCalc.create({ data: myCalc })
 
-    const myParty: Prisma.MyPartyCreateInput = {
-      name: 'Party1',
+    const myDamageCalcIndex: Prisma.MyDamageCalcIndexCreateInput = {
+      title: 'Calc1',
       favorite: false,
-      memo: '',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      memo: 'memo',
       user: { connect: { id: user?.id } },
-      myPokemon: {
-        connect: [{ id: poke.id }],
-      },
-      tag: {
-        connect: [{ id: basePartyTags?.id }],
+      myDamageCalc: {
+        connect: [{ id: calc.id }],
       },
     }
 
-    await db.myParty.create({ data: myParty })
+    await db.myDamageCalcIndex.create({ data: myDamageCalcIndex })
 
-    console.log('my data done.')
+    console.log('my data calc.')
   } catch (error) {
     console.error(error)
   }
