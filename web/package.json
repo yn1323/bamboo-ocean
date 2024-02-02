@@ -18,9 +18,9 @@
     "@chakra-ui/react": "^2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@redwoodjs/forms": "6.3.2",
-    "@redwoodjs/router": "6.3.2",
-    "@redwoodjs/web": "6.3.2",
+    "@redwoodjs/forms": "6.6.4",
+    "@redwoodjs/router": "6.6.4",
+    "@redwoodjs/web": "6.6.4",
     "framer-motion": "^10.0.0",
     "humanize-string": "3.0.0",
     "prop-types": "15.8.1",
@@ -28,7 +28,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@redwoodjs/vite": "6.3.2",
+    "@redwoodjs/vite": "6.6.4",
     "@storybook/builder-vite": "^7.4.5",
     "@storybook/test-runner": "^0.13.0",
     "@storybook/testing-library": "^0.2.1",

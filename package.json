@@ -16,8 +16,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.38.1",
-    "@redwoodjs/cli-storybook": "6.3.2",
-    "@redwoodjs/core": "6.3.2",
+    "@redwoodjs/cli-storybook": "6.6.4",
+    "@redwoodjs/core": "6.6.4",
     "@types/node": "^20.7.1",
     "chromatic": "^7.2.0"
   },
